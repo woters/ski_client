@@ -99,10 +99,7 @@ public class SendData extends AsyncTask<String, Void, String> {
             HttpEntity entity = response.getEntity();
 
 
-            while (response.getParams()) {
-                writer.println("<p>Name: " + rs.getString("Name") + "</p>");
-                writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
-            }
+
 
 
 
