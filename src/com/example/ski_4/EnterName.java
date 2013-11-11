@@ -76,14 +76,10 @@ public class EnterName extends Fragment implements ICallBackFragmentAdapter{
     private View.OnClickListener lsn1=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (vp != null) {
-                // = tabsAdapter.getViewPager();
-                vp.setCurrentItem(vp.getCurrentItem()-1, true);
-            }
-            else{
-                Log.e(this.getClass().getName(),"Error empty vp");
-            }        }
-    }  ;
+            getActivity().finish() ;
+        }
+    };
+
 
     private View.OnClickListener lsn2=new View.OnClickListener() {
         @Override

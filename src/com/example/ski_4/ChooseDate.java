@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.Calendar;
 
@@ -55,16 +57,23 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
         Log.w("ChooseDate", "Generated view");
 
         Button button1 = (Button) view.findViewById(R.id.button1);
-        button1.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                //this.finish();
-                getActivity().finish();
 
-            }
-        });
+        switch (Constants.ACTIVITY){
+            case 0:
+                button1.setOnClickListener(lsn1);
+                break;
+            case 1:
+                button1.setOnClickListener(lsn3);
+                break;
+            default:
+                button1.setOnClickListener(lsn1);
+                break;
+        }
+
+
 
         Button button2 = (Button) view.findViewById(R.id.button2);
-        button2.setOnClickListener(lsn);
+        button2.setOnClickListener(lsn2);
 
         datePicker1 = (DatePicker) view.findViewById(R.id.datePicker1);
 
@@ -91,12 +100,31 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
         return year;
     }
 
-    private OnClickListener lsn=new OnClickListener() {
+    private View.OnClickListener lsn1=new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().finish() ;
+        }
+    };
+
+    private View.OnClickListener lsn2=new OnClickListener() {
         @Override
         public void onClick(View v) {
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem()+1, true);
+            }
+            else{
+                Log.e(this.getClass().getName(),"Error empty vp");
+            }        }
+    }  ;
+
+    private View.OnClickListener lsn3=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (vp != null) {
+                // = tabsAdapter.getViewPager();
+                vp.setCurrentItem(vp.getCurrentItem()-1, true);
             }
             else{
                 Log.e(this.getClass().getName(),"Error empty vp");
