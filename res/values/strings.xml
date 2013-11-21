@@ -6,6 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="Buy">Buy Ski-pass</string>
     <string name="Sell">Sell Ski-pass</string>
+    <string name="Check">Check Ski-pass</string>
+
 
     <color name="hex_gray">#f2f2f2</color>
     <color name="l_gray">#f8f8f8</color>
@@ -21,6 +23,7 @@
     <string name="title_activity_go_to_enter_name">GoToEnterName</string>
     <string name="Name">Enter Your Name</string>
     <string name="Phone">Enter Your Phone</string>
+    <string name="Number">Enter Your Ski-pass Number</string>
     <string name="title_activity_enter_price">EnterPrice</string>
     <string name="title_activity_show_list">ShowList</string>
     <string name="List">Avaliable Ski-passes</string>
