@@ -2,7 +2,6 @@ package com.example.ski_4;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.DatePicker;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -62,14 +61,14 @@ public class SendData extends AsyncTask<String, Void, String> {
         //int val = getIntent().getIntExtra("runner", -1);
         switch (Constants.ACTIVITY){
         case 0:
-        post = new HttpPost("http://10.200.5.98:8080/ski2/buy");
+        post = new HttpPost("http://54.202.82.233:8080/ski2/buy");
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
             nameValuePairs.add(new BasicNameValuePair("date1", date1));
             nameValuePairs.add(new BasicNameValuePair("date2", date2));
         break;
         case 1:
-        post = new HttpPost("http://10.200.5.98:8080/ski2/sell");
+        post = new HttpPost("http://54.202.82.233:8080/ski2/sell");
             price = EnterPrice.getPrice();
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
@@ -85,11 +84,11 @@ public class SendData extends AsyncTask<String, Void, String> {
             nameValuePairs.add(new BasicNameValuePair("number", number));
         break;
             case 2:
-                post = new HttpPost("http://10.200.5.98:8080/ski2/");
+                post = new HttpPost("http://54.202.82.233:8080/ski2/");
                 number = Check.getNumber();
                 nameValuePairs.add(new BasicNameValuePair("number", number));
                 break;
-        default:     post = new HttpPost("http://10.200.5.98:8080/ski2/buy");
+        default:     post = new HttpPost("http://54.202.82.233:8080/ski2/buy");
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
             nameValuePairs.add(new BasicNameValuePair("date1", date1));
