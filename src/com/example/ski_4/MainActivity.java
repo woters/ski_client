@@ -5,29 +5,37 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
+import com.perm.kate.api.Api;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Locale;
 
 
 
 
 public class MainActivity extends Activity {
+
+    private final int REQUEST_LOGIN=1;
+
+    ImageButton authorizeButton;
+    Button logoutButton;
+    Button postButton;
+    EditText messageEditText;
+
+    VkAccount account=new VkAccount();
+    Api api;
 
 
 
@@ -50,6 +58,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Log.d("Image Button", "button Clicked");
                 loginToFacebook();
+
+                setupUI();
+
+
+
+                //Если сессия есть создаём API для обращения к серверу
+                if(account.access_token!=null)
+                    api=new Api(account.access_token, VkLoginActivity.API_ID);
             }
         });
 
@@ -209,7 +225,20 @@ public class MainActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         facebook.authorizeCallback(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_LOGIN) {
+            if (resultCode == RESULT_OK) {
+                //авторизовались успешно
+                account.access_token=data.getStringExtra("token");
+                account.user_id=data.getLongExtra("user_id", 0);
+                account.save(MainActivity.this);
+                api=new Api(account.access_token, VkLoginActivity.API_ID);
+
+            }
+        }
     }
+
+
 
 
     /**
@@ -344,5 +373,30 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    private void setupUI() {
+        authorizeButton=(ImageButton)findViewById(R.id.btn_vk);
+        /*logoutButton=(Button)findViewById(R.id.logout);
+        postButton=(Button)findViewById(R.id.post);
+        messageEditText=(EditText)findViewById(R.id.message);*/
+        authorizeButton.setOnClickListener(authorizeClick);
+        /*logoutButton.setOnClickListener(logoutClick);
+        postButton.setOnClickListener(postClick);*/
+    }
+
+    private View.OnClickListener authorizeClick=new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startLoginActivity();
+        }
+    };
+
+    private void startLoginActivity() {
+        Intent intent = new Intent();
+        intent.setClass(this, VkLoginActivity.class);
+        startActivityForResult(intent, REQUEST_LOGIN);
+    }
+
+
 
 }
