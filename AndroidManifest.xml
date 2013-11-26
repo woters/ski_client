@@ -18,6 +18,9 @@
         <activity android:name=".Container_Sell"></activity>
         <activity android:name=".Container_Buy"></activity>
         <activity android:name=".Check"></activity>
+        <activity android:name=".Info"></activity>
+
+
         <activity            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
                              android:name="com.google.ads.AdActivity" />
         <activity android:name=".VkLoginActivity"

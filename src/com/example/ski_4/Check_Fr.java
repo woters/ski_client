@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
 
@@ -88,6 +89,10 @@ public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
     private View.OnClickListener lsn2=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (editTextN.getText().toString().length() ==0) {
+                Toast.makeText(getActivity(), "Your ski-pass Number is empty", Toast.LENGTH_LONG).show();
+            }
+            else{
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem()+1, true);
@@ -95,6 +100,7 @@ public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
             else{
                 Log.e(this.getClass().getName(),"Error empty vp");
             }        }
+        }
     }  ;
 
     @Override

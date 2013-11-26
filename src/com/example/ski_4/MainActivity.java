@@ -128,6 +128,15 @@ public class MainActivity extends Activity {
         //ft.commit();
     }
 
+    public void GoToInfo(View view) {
+        Intent intent = new Intent(this, Info.class);
+//intent.putExtra("runner", Constants.ACTIVITY_SELL);
+
+        startActivity(intent);
+// ft.replace(R.id.your_placehodler, new YourFragment());
+//ft.commit();
+    }
+
 
 
 

@@ -37,6 +37,7 @@ public class Check extends Activity {
 
         editTextN = (EditText) findViewById(R.id.editTextN);
 
+
     }
 
 
@@ -44,10 +45,17 @@ public class Check extends Activity {
     public static String getNumber(){
 
         String number = editTextN.getText().toString();
-        return number;
+         return number;
+
+
     }
 
     public void GoNext(View view) {
+
+        if (editTextN.getText().toString().length() ==0) {
+            Toast.makeText(Check.this, "Your ski-pass number is empty" , Toast.LENGTH_LONG).show();
+        }
+        else {
         Thread t = new Thread(){
             public void run(){
                 new SendData().execute("");
@@ -55,6 +63,7 @@ public class Check extends Activity {
         };
         t.start();
         Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
+        }
     }
 
 

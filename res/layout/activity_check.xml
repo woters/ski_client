@@ -52,7 +52,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint = "22-4444-22-666666"
-                    android:inputType="number" >
+                    android:inputType="date" >
 
                 <requestFocus />
             </EditText>
