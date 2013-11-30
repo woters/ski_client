@@ -61,14 +61,15 @@ public class SendData extends AsyncTask<String, Void, String> {
         //int val = getIntent().getIntExtra("runner", -1);
         switch (Constants.ACTIVITY){
         case 0:
-        post = new HttpPost("http://54.202.82.233:8080/ski2/buy");
+        post = new HttpPost("http://54.244.158.65:8080/ski2/buy");
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
             nameValuePairs.add(new BasicNameValuePair("date1", date1));
             nameValuePairs.add(new BasicNameValuePair("date2", date2));
+            Log.w("Ski_c", "Ski_c info added to buy");
         break;
         case 1:
-        post = new HttpPost("http://54.202.82.233:8080/ski2/sell");
+        post = new HttpPost("http://54.244.158.65:8080/ski2/sell");
             price = EnterPrice.getPrice();
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
@@ -81,14 +82,15 @@ public class SendData extends AsyncTask<String, Void, String> {
             nameValuePairs.add(new BasicNameValuePair("date2", date2));
             nameValuePairs.add(new BasicNameValuePair("phone", phone));
             nameValuePairs.add(new BasicNameValuePair("name", name));
-            nameValuePairs.add(new BasicNameValuePair("number", number));
+            Log.w("Ski_c", "Ski_c info added to sell");
+            /*nameValuePairs.add(new BasicNameValuePair("number", number));*/
         break;
             case 2:
-                post = new HttpPost("http://54.202.82.233:8080/ski2/");
+                post = new HttpPost("http://54.244.158.65:8080/ski2/");
                 number = Check.getNumber();
                 nameValuePairs.add(new BasicNameValuePair("number", number));
                 break;
-        default:     post = new HttpPost("http://54.202.82.233:8080/ski2/buy");
+        default:     post = new HttpPost("http://54.244.158.65:8080/ski2/buy");
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
             nameValuePairs.add(new BasicNameValuePair("date1", date1));
@@ -97,13 +99,12 @@ public class SendData extends AsyncTask<String, Void, String> {
         }
 
 
-
-
         try {
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = client.execute(post);
+            Log.w("Ski_c", "Ski_c info sent to sell");
             Log.v("response code", response.getStatusLine().getStatusCode() + "");
-            HttpEntity entity = response.getEntity();
+      //      HttpEntity entity = response.getEntity();
             /*
 
             while (response.getParams()) {
@@ -113,13 +114,16 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
 
-            String responseText = EntityUtils.toString(entity);
-            System.out.println(responseText);
+     //       String responseText = EntityUtils.toString(entity);
+     //       System.out.println(responseText);
         } catch (UnsupportedEncodingException e) {
+            Log.w("Ski_c", "Ski_c UnsupportedEncodingException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (ClientProtocolException e) {
+            Log.w("Ski_c", "Ski_c ClientProtocolException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
+            Log.w("Ski_c", "Ski_c IOException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }

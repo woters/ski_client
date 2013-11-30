@@ -68,9 +68,18 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
 
               button2.setOnClickListener(new OnClickListener() {
                   public void onClick(View view) {
+
+                      Thread t = new Thread(){
+                          public void run(){
+                              new SendData().execute("");
+                              Log.w("Ski_c", "Ski_c execute senddata");
+                          }
+                      };
+                      t.start();
                       //this.finish();
                       getActivity().finish();
                       Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
+                      Log.w("Ski_c", "Ski_c pushed to send");
                   }
               });
               //tvOut.setText("Done");
@@ -79,6 +88,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
           case 0:
 
               button2.setOnClickListener(lsn2);
+
               break;
       }
 
@@ -132,6 +142,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 Thread t = new Thread(){
                     public void run(){
                         new SendData().execute("");
+                        Log.w("Ski_c", "Ski_c execute senddata");
                     }
                 };
                 t.start();
