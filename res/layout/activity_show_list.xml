@@ -10,15 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ShowList" >
 
-    
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        
-        >
-
-        <TextView
+    <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,12 +19,33 @@
             android:text="@string/List"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+
+        android:layout_below="@+id/textView1">
+
+
+
         <ListView
             android:id="@+id/listView1"
+            android:layout_weight="1"
+            android:layout_gravity="left"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </ListView>
+
+        <ListView
+                android:id="@+id/listView2"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+        </ListView>
         
-    </TableLayout>
+    </LinearLayout>
 
 </RelativeLayout>

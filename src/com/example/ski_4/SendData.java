@@ -102,7 +102,7 @@ public class SendData extends AsyncTask<String, Void, String> {
         try {
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = client.execute(post);
-            Log.w("Ski_c", "Ski_c info sent to sell");
+            Log.w("Ski_c", "Ski_c info sent");
             Log.v("response code", response.getStatusLine().getStatusCode() + "");
       //      HttpEntity entity = response.getEntity();
             /*
@@ -124,6 +124,7 @@ public class SendData extends AsyncTask<String, Void, String> {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
             Log.w("Ski_c", "Ski_c IOException");
+            System.out.println("General Ski_c I/O exception: " + e.getMessage());
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }

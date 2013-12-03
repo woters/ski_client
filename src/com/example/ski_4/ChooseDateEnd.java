@@ -1,5 +1,6 @@
 package com.example.ski_4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -135,6 +136,8 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
     private View.OnClickListener lsn2=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem()+1, true);
@@ -149,8 +152,21 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
             }
             else{
                 Log.e(this.getClass().getName(),"Error empty vp");
-            }        }
+            }
+
+
+
+
+                    Intent intent = new Intent(getActivity(),ListActivity.class);
+                    startActivity(intent);
+            Log.w("Ski_c", "Ski_c show list");
+
+
+
     }  ;
+
+
+    };
 
     @Override
     public TabsAdapter getTabsAdapter() {

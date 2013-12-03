@@ -38,8 +38,8 @@ public class Container_Buy extends Activity {
                 ChooseDate.class, null);
         mTabsAdapter.addTab(actionBar.newTab().setText("Date End"),
                 ChooseDateEnd.class, null);
-        mTabsAdapter.addTab(actionBar.newTab().setText("List"),
-                ShowList.class, null);
+        /*mTabsAdapter.addTab(actionBar.newTab().setText("List"),
+                ShowList.class, null);*/
        // mTabsAdapter.setChildrenAdapterReference();
     }
 
