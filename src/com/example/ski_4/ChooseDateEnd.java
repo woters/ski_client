@@ -11,10 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Calendar;
 
 public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
   
@@ -129,7 +126,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 vp.setCurrentItem(vp.getCurrentItem()-1, true);
             }
             else{
-                Log.e(this.getClass().getName(),"Error empty vp");
+               /* Log.e(this.getClass().getName(),"Error empty vp");*/
             }        }
     }  ;
 
@@ -151,14 +148,17 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 t.start();
             }
             else{
-                Log.e(this.getClass().getName(),"Error empty vp");
+                /*Log.e(this.getClass().getName(),"Error empty vp");*/
             }
 
 
 
 
-                    Intent intent = new Intent(getActivity(),ListActivity.class);
-                    startActivity(intent);
+                   /* Intent intent = new Intent(getActivity(),ListActiv.class);
+                    startActivity(intent);*/
+
+            Intent intent = new Intent(getActivity(),MultiColumnActivity.class);
+            startActivity(intent);
             Log.w("Ski_c", "Ski_c show list");
 
 

@@ -1,11 +1,9 @@
 package com.example.ski_4;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -37,7 +35,7 @@ public class ShowList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_show_list, null);
+        View view = inflater.inflate(R.layout.activity_show_list_position, null);
     /*view.setBackgroundColor(Color.CYAN);
     TextView tvPage = (TextView) view.findViewById(R.id.tvPage);
     tvPage.setText("Page " + pageNumber);

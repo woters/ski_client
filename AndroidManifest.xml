@@ -19,7 +19,8 @@
         <activity android:name=".Container_Buy"></activity>
         <activity android:name=".Check"></activity>
         <activity android:name=".Info"></activity>
-        <activity android:name=".ListActivity"></activity>
+        <activity android:name=".MultiColumnActivity"></activity>
+        <activity android:name=".ListPosition"></activity>
 
 
         <activity            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
