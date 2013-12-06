@@ -62,7 +62,10 @@ public class Check extends Activity {
             }
         };
         t.start();
-        Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
+        /*Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();*/
+            Intent intent = new Intent(Check.this, Skipass_info.class);
+//intent.putExtra("runner", Constants.ACTIVITY_SELL);
+            startActivity(intent);
         }
     }
 

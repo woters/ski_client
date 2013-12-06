@@ -1,37 +1,35 @@
 package com.example.ski_4;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 /**
- * Created by Alyosha on 04.12.13.
+ * Created by Alyosha on 06.12.13.
  */
-public class ListPosition extends Activity {
-
+public class Skipass_info extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_list_position);
+        setContentView(R.layout.skipass_info);
         TextView NameInput = (TextView) findViewById(R.id.NameInput);
-        NameInput.setText(String.valueOf(MultiColumnActivity.listpos));
+        NameInput.setText("");
 
         TextView PhoneInput = (TextView) findViewById(R.id.PhoneInput);
-        PhoneInput.setText("+380662404040");
-}
+        PhoneInput.setText("");
+    }
     @Override
     protected void onResume() {
         super.onResume();
     }
 
-    public void GoToMain(View view) {
+    /*public void GoToMain(View view) {
         this.finish();
 //Intent intent = new Intent(this, MainActivity.class);
 //startActivity(intent);
     }
-
+*/
     public void GoBack(View view) {
         this.finish();
 

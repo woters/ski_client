@@ -28,6 +28,7 @@ public class MultiColumnActivity extends Activity
 {
 
     private ArrayList<HashMap> list;
+    public static int listpos;
     public void onCreate(Bundle savedInstanceState)
 
     {
@@ -39,10 +40,12 @@ public class MultiColumnActivity extends Activity
         listviewAdapter adapter = new listviewAdapter(this, list);
         lview.setAdapter(adapter);
 
+
         lview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Log.d("Ski_c", "itemClick: position = " + position);
+                listpos = position;
 
                 Intent intent = new Intent(MultiColumnActivity.this, ListPosition.class);
 //intent.putExtra("runner", Constants.ACTIVITY_SELL);
@@ -63,18 +66,28 @@ public class MultiColumnActivity extends Activity
         list = new ArrayList<HashMap>();
         HashMap temp = new HashMap();
 
+        for (int i=0; i<list.size(); i++){
+
+
+        /*temp.put(FIRST_COLUMN,"Colored Notebooks");
+        temp.put(SECOND_COLUMN, String.valueOf(listpos));
+      *//*  temp.put(THIRD_COLUMN, "Rs. 200");
+        temp.put(FOURTH_COLUMN, "Per Unit");*//*
+        list.add(temp);*/
+        }
+
         temp.put(FIRST_COLUMN,"Colored Notebooks");
-        temp.put(SECOND_COLUMN, "By NavNeet");
+        temp.put(SECOND_COLUMN, String.valueOf(listpos));
       /*  temp.put(THIRD_COLUMN, "Rs. 200");
         temp.put(FOURTH_COLUMN, "Per Unit");*/
         list.add(temp);
 
 
-        HashMap temp1 = new HashMap();
+       /* HashMap temp1 = new HashMap();
         temp1.put(FIRST_COLUMN,"Diaries");
         temp1.put(SECOND_COLUMN, "By Amee Products");
-        /*temp1.put(THIRD_COLUMN, "Rs. 400");
-        temp1.put(FOURTH_COLUMN, "Per Unit");*/
+        *//*temp1.put(THIRD_COLUMN, "Rs. 400");
+        temp1.put(FOURTH_COLUMN, "Per Unit");*//*
 
         list.add(temp1);
 
@@ -83,8 +96,8 @@ public class MultiColumnActivity extends Activity
         HashMap temp2 = new HashMap();
         temp2.put(FIRST_COLUMN,"Note Books and Stationery");
         temp2.put(SECOND_COLUMN, "By National Products");
-       /* temp2.put(THIRD_COLUMN, "Rs. 600");
-        temp2.put(FOURTH_COLUMN, "Per Unit");*/
+       *//* temp2.put(THIRD_COLUMN, "Rs. 600");
+        temp2.put(FOURTH_COLUMN, "Per Unit");*//*
 
         list.add(temp2);
 
@@ -92,8 +105,8 @@ public class MultiColumnActivity extends Activity
         HashMap temp3 = new HashMap();
         temp3.put(FIRST_COLUMN,"Corporate Diaries");
         temp3.put(SECOND_COLUMN, "By Devarsh Prakashan");
-        /*temp3.put(THIRD_COLUMN, "Rs. 800");
-        temp3.put(FOURTH_COLUMN, "Per Unit");*/
+        *//*temp3.put(THIRD_COLUMN, "Rs. 800");
+        temp3.put(FOURTH_COLUMN, "Per Unit");*//*
 
         list.add(temp3);
 
@@ -102,10 +115,10 @@ public class MultiColumnActivity extends Activity
         HashMap temp4 = new HashMap();
         temp4.put(FIRST_COLUMN,"Writing Pad");
         temp4.put(SECOND_COLUMN, "By TechnoTalaktive Pvt. Ltd.");
-        /*temp4.put(THIRD_COLUMN, "Rs. 100");
-        temp4.put(FOURTH_COLUMN, "Per Unit");*/
+        *//*temp4.put(THIRD_COLUMN, "Rs. 100");
+        temp4.put(FOURTH_COLUMN, "Per Unit");*//*
 
-        list.add(temp4);
+        list.add(temp4);*/
 
     }
 
