@@ -2,6 +2,7 @@ package com.example.ski_4;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -12,6 +13,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -19,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -29,6 +34,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class SendData extends AsyncTask<String, Void, String> {
+
+    public List<String> Name;
 
     @Override
     protected String doInBackground(String... params) {
@@ -47,6 +54,7 @@ public class SendData extends AsyncTask<String, Void, String> {
     }
 
     public SendData () {
+
     }
 
     public void requestURL()
@@ -61,7 +69,7 @@ public class SendData extends AsyncTask<String, Void, String> {
         //int val = getIntent().getIntExtra("runner", -1);
         switch (Constants.ACTIVITY){
         case 0:
-        post = new HttpPost("http://54.244.158.65:8080/ski2/buy");
+        post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
             nameValuePairs.add(new BasicNameValuePair("date1", date1));
@@ -69,7 +77,7 @@ public class SendData extends AsyncTask<String, Void, String> {
             Log.w("Ski_c", "Ski_c info added to buy");
         break;
         case 1:
-        post = new HttpPost("http://54.244.158.65:8080/ski2/sell");
+        post = new HttpPost("http://54.203.248.89:8080/ski2/sell");
             price = EnterPrice.getPrice();
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
@@ -86,11 +94,11 @@ public class SendData extends AsyncTask<String, Void, String> {
             /*nameValuePairs.add(new BasicNameValuePair("number", number));*/
         break;
             case 2:
-                post = new HttpPost("http://54.244.158.65:8080/ski2/");
+                post = new HttpPost("http://54.203.248.89:8080/ski2/");
                 number = Check.getNumber();
                 nameValuePairs.add(new BasicNameValuePair("number", number));
                 break;
-        default:     post = new HttpPost("http://54.244.158.65:8080/ski2/buy");
+        default:     post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
             date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
             date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
             nameValuePairs.add(new BasicNameValuePair("date1", date1));
@@ -103,15 +111,63 @@ public class SendData extends AsyncTask<String, Void, String> {
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = client.execute(post);
             Log.w("Ski_c", "Ski_c info sent");
+            switch (Constants.ACTIVITY){
+                case 0:
             Log.v("response code", response.getStatusLine().getStatusCode() + "");
-      //      HttpEntity entity = response.getEntity();
+            HttpEntity entity = response.getEntity();
+
+            String token1 = null;
+            String token2 = null;
+
+
+
+            if (entity != null) {
+                String retSrc = EntityUtils.toString(entity);
+                // parsing JSON
+                Log.w("Ski_c JSON retSrc", retSrc);
+                JSONArray array = new JSONArray();
+                JSONObject main=new JSONObject(retSrc);
+                array = main.getJSONArray("AvaleiblePasses");
+                /*JSONObject result = new JSONObject(retSrc); //Convert String to JSON Object*/
+                Log.w("Ski_c  JSONArray ", array.toString());
+                for (int i=0; i<array.length();i++){
+
+                JSONObject obj = new JSONObject();
+                obj=array.getJSONObject(i);
+               // JSONArray tokenList = obj.getJSONArray("AvaleiblePasses");
+              //  JSONObject oj = tokenList.getJSONObject(0);
+                Log.w("Ski_c", "received info from database");
+                 token1 = obj.getString("Name");
+                Log.w("Ski_c", token1);
+                 token2 = obj.getString("Phone");
+                Log.w("Ski_c", token2);
+                }
+
+                /*Map jsonJavaRootObject = new Gson().fromJson(retSrc, Map.class) ;
+                token1 =   jsonJavaRootObject.get()
+*/
+
+
+            }
+            else  {
+
+                Log.w("Ski_c", "entity = null");
+            }
             /*
 
             while (response.getParams()) {
                 writer.println("<p>Name: " + rs.getString("Name") + "</p>");
                 writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
             }     */
-
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    //возвращаем по номеру скипасса
+                    break;
+                default:
+                    break;
+            }
 
 
      //       String responseText = EntityUtils.toString(entity);
@@ -126,7 +182,12 @@ public class SendData extends AsyncTask<String, Void, String> {
             Log.w("Ski_c", "Ski_c IOException");
             System.out.println("General Ski_c I/O exception: " + e.getMessage());
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.w("Ski_c", "JSONException");
+            System.out.println("General Ski_c JSONException: " + e.getMessage());
         }
+
     }
 
 

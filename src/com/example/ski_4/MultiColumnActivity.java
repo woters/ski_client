@@ -64,7 +64,7 @@ public class MultiColumnActivity extends Activity
 
 
         list = new ArrayList<HashMap>();
-        HashMap temp = new HashMap();
+
 
         for (int i=0; i<list.size(); i++){
 
@@ -76,11 +76,21 @@ public class MultiColumnActivity extends Activity
         list.add(temp);*/
         }
 
+
+        HashMap temp = new HashMap();
         temp.put(FIRST_COLUMN,"Colored Notebooks");
         temp.put(SECOND_COLUMN, String.valueOf(listpos));
       /*  temp.put(THIRD_COLUMN, "Rs. 200");
         temp.put(FOURTH_COLUMN, "Per Unit");*/
         list.add(temp);
+
+
+        /*HashMap temp1 = new HashMap();
+        temp1.put(FIRST_COLUMN,"Colored Notebooks");
+        temp1.put(SECOND_COLUMN, String.valueOf(listpos));
+      *//*  temp.put(THIRD_COLUMN, "Rs. 200");
+        temp.put(FOURTH_COLUMN, "Per Unit");*//*
+        list.add(temp1);*/
 
 
        /* HashMap temp1 = new HashMap();
