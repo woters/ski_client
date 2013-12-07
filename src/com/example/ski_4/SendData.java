@@ -1,5 +1,7 @@
 package com.example.ski_4;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import com.google.gson.Gson;
@@ -25,6 +27,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import static android.support.v4.app.ActivityCompat.startActivity;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,8 +38,15 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class SendData extends AsyncTask<String, Void, String> {
+    private Activity activity;
 
-    public List<String> Name;
+    /*private   String[] Names;
+    private   String[] Prices;
+*/
+    /*public String[] getStr() {
+   return Names ;
+
+    }*/
 
     @Override
     protected String doInBackground(String... params) {
@@ -45,6 +56,12 @@ public class SendData extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        /*Intent intent_name = new Intent();
+        intent_name.setClass(SendData(),MultiColumnActivity.class);
+        startActivity(intent_name);*/
+
+        /*activity.startActivity(new Intent(activity, MultiColumnActivity.class));
+        Log.w("Ski_c", "Ski_c show list");*/
         // execution of result of Long time consuming operation
     }
 
@@ -138,10 +155,23 @@ public class SendData extends AsyncTask<String, Void, String> {
               //  JSONObject oj = tokenList.getJSONObject(0);
                 Log.w("Ski_c", "received info from database");
                  token1 = obj.getString("Name");
+                    Constants.Names.add(i,token1);
+
                 Log.w("Ski_c", token1);
                  token2 = obj.getString("Phone");
+                    Constants.Prices.add(i, token2);
+                    Log.w("Ski_c",Constants.Prices.get(i).toString() );
                 Log.w("Ski_c", token2);
                 }
+
+
+
+               /* Intent intent = new Intent(getActivity(),MultiColumnActivity.class);
+                startActivity(intent);
+
+                SendData.startActivity(new Intent(SendData, MultiColumnActivity.class));*/
+                /*Log.w("Ski_c", "Ski_c show list");*/
+
 
                 /*Map jsonJavaRootObject = new Gson().fromJson(retSrc, Map.class) ;
                 token1 =   jsonJavaRootObject.get()

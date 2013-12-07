@@ -63,26 +63,33 @@ public class MultiColumnActivity extends Activity
     private void populateList() {
 
 
-        list = new ArrayList<HashMap>();
 
 
-        for (int i=0; i<list.size(); i++){
+       /* String[] Names1 = SendData.getStr();*/
+
+        Log.w("Ski_c adding to Hashmap size =", String.valueOf(Constants.Names.size()));
+        for (int i=0; i<Constants.Names.size(); i++){
+            list = new ArrayList<HashMap>();
+
+            HashMap temp = new HashMap();
+            temp.put(FIRST_COLUMN, Constants.Names.get(i).toString());
+            Log.w("Ski_c adding to Hashmap",Constants.Prices.get(i).toString() );
+            temp.put(SECOND_COLUMN, Constants.Prices.get(i).toString());
+      /*  temp.put(THIRD_COLUMN, "Rs. 200");
+        temp.put(FOURTH_COLUMN, "Per Unit");*/
+            list.add(temp);
 
 
-        /*temp.put(FIRST_COLUMN,"Colored Notebooks");
+
+        }
+
+
+        /*HashMap temp = new HashMap();
+        temp.put(FIRST_COLUMN,"Colored Notebooks");
         temp.put(SECOND_COLUMN, String.valueOf(listpos));
       *//*  temp.put(THIRD_COLUMN, "Rs. 200");
         temp.put(FOURTH_COLUMN, "Per Unit");*//*
         list.add(temp);*/
-        }
-
-
-        HashMap temp = new HashMap();
-        temp.put(FIRST_COLUMN,"Colored Notebooks");
-        temp.put(SECOND_COLUMN, String.valueOf(listpos));
-      /*  temp.put(THIRD_COLUMN, "Rs. 200");
-        temp.put(FOURTH_COLUMN, "Per Unit");*/
-        list.add(temp);
 
 
         /*HashMap temp1 = new HashMap();

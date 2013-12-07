@@ -1,5 +1,6 @@
 package com.example.ski_4;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,10 @@ public class Constants {
     public static final String SECOND_COLUMN = "Second";
     public static final String THIRD_COLUMN = "Third";
     public static final String FOURTH_COLUMN = "Fourth";
+
+    public static ArrayList<String> Names = new ArrayList<String>();
+    public static ArrayList<String> Prices = new ArrayList<String>();
+    public static int Tread = 0;
 
 
 

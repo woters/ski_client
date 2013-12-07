@@ -1,3 +1,4 @@
+
 package com.example.ski_4;
 
 import android.content.Intent;
@@ -23,6 +24,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
     private TabsAdapter tabsAdapter;
     ViewPager vp;
     static DatePicker datePicker2;
+
   
   static ChooseDateEnd newInstance(int page) {
 	  ChooseDateEnd pageFragment = new ChooseDateEnd();
@@ -146,20 +148,26 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                     }
                 };
                 t.start();
+
+
             }
             else{
                 /*Log.e(this.getClass().getName(),"Error empty vp");*/
             }
 
 
+                Intent intent = new Intent(getActivity(),MultiColumnActivity.class);
+                startActivity(intent);
+
+
+                Log.w("Ski_c", "Ski_c show list");
+
 
 
                    /* Intent intent = new Intent(getActivity(),ListActiv.class);
                     startActivity(intent);*/
 
-            Intent intent = new Intent(getActivity(),MultiColumnActivity.class);
-            startActivity(intent);
-            Log.w("Ski_c", "Ski_c show list");
+
 
 
 
