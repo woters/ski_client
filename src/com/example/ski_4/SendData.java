@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import android.app.Activity;
 
 import static android.support.v4.app.ActivityCompat.startActivity;
 
@@ -63,6 +64,16 @@ public class SendData extends AsyncTask<String, Void, String> {
         /*activity.startActivity(new Intent(activity, MultiColumnActivity.class));
         Log.w("Ski_c", "Ski_c show list");*/
         // execution of result of Long time consuming operation
+        super.onPostExecute(result);
+        mCurrentActivity.startActivity(new Intent(mCurrentActivity, MultiColumnActivity.class ));
+
+    }
+
+
+
+    private Activity mCurrentActivity = null;
+    public Activity getCurrentActivity(){
+        return mCurrentActivity;
     }
 
     @Override
@@ -166,29 +177,12 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
 
-               /* Intent intent = new Intent(getActivity(),MultiColumnActivity.class);
-                startActivity(intent);
-
-                SendData.startActivity(new Intent(SendData, MultiColumnActivity.class));*/
-                /*Log.w("Ski_c", "Ski_c show list");*/
-
-
-                /*Map jsonJavaRootObject = new Gson().fromJson(retSrc, Map.class) ;
-                token1 =   jsonJavaRootObject.get()
-*/
-
-
             }
             else  {
 
                 Log.w("Ski_c", "entity = null");
             }
-            /*
 
-            while (response.getParams()) {
-                writer.println("<p>Name: " + rs.getString("Name") + "</p>");
-                writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
-            }     */
                     break;
                 case 1:
                     break;

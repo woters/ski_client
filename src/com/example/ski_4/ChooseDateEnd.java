@@ -161,8 +161,6 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
             }
 
 
-                Intent intent = new Intent(getActivity(),MultiColumnActivity.class);
-                startActivity(intent);
 
 
                 Log.w("Ski_c", "Ski_c show list");
@@ -171,10 +169,6 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
 
                    /* Intent intent = new Intent(getActivity(),ListActiv.class);
                     startActivity(intent);*/
-
-
-
-
 
     }  ;
 
