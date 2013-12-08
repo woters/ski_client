@@ -106,6 +106,7 @@
                 android:src="@drawable/buttonvkselector"
 
                 />
+
         <ImageButton
                 android:id="@+id/btn_i"
                 android:layout_weight="1"
@@ -133,7 +134,7 @@
 
     </LinearLayout>
 
-    <com.google.ads.AdView
+    <!--<com.google.ads.AdView
             android:id="@+id/adView"
 
             android:layout_weight="1"
@@ -142,7 +143,7 @@
             android:layout_gravity="bottom"
             ads:adSize="BANNER"
             ads:adUnitId="@string/admob_publisher_id"
-            ads:loadAdOnCreate="true" />
+            ads:loadAdOnCreate="true" />-->
 
 
 </LinearLayout>

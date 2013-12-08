@@ -1,6 +1,7 @@
 package com.example.ski_4;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -40,6 +41,7 @@ import static android.support.v4.app.ActivityCompat.startActivity;
  */
 public class SendData extends AsyncTask<String, Void, String> {
     private Activity activity;
+    ProgressDialog dialog = new ProgressDialog(getCurrentActivity());
 
     /*private   String[] Names;
     private   String[] Prices;
@@ -48,6 +50,16 @@ public class SendData extends AsyncTask<String, Void, String> {
    return Names ;
 
     }*/
+
+    @Override
+    protected void onPreExecute() {
+        // Things to be done before execution of long running operation. For example showing ProgessDialog
+        dialog.setTitle("Loading...");
+        dialog.setMessage("Please wait.");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -65,8 +77,16 @@ public class SendData extends AsyncTask<String, Void, String> {
         Log.w("Ski_c", "Ski_c show list");*/
         // execution of result of Long time consuming operation
         super.onPostExecute(result);
-        mCurrentActivity.startActivity(new Intent(mCurrentActivity, MultiColumnActivity.class ));
+        mCurrentActivity.startActivity(new Intent(mCurrentActivity, MultiColumnActivity.class));
 
+        dialog.dismiss();
+
+    }
+
+    @Override
+    protected void onCancelled() {
+        dialog.dismiss();
+        super.onCancelled();
     }
 
 
@@ -76,11 +96,7 @@ public class SendData extends AsyncTask<String, Void, String> {
         return mCurrentActivity;
     }
 
-    @Override
-    protected void onPreExecute() {
-        // Things to be done before execution of long running operation. For example showing ProgessDialog
-    }
-
+ 
     public SendData () {
 
     }

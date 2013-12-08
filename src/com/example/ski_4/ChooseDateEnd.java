@@ -157,13 +157,13 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
 
             }
             else{
-                /*Log.e(this.getClass().getName(),"Error empty vp");*/
+                Log.e(this.getClass().getName(),"Error empty vp");
             }
 
 
 
 
-                Log.w("Ski_c", "Ski_c show list");
+                Log.w("Ski_c choosedateend", "Ski_c show list after thread");
 
 
 
