@@ -1,6 +1,7 @@
 
 package com.example.ski_4;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -24,6 +25,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
     private TabsAdapter tabsAdapter;
     ViewPager vp;
     static DatePicker datePicker2;
+    ProgressDialog progressBar;
 
   
   static ChooseDateEnd newInstance(int page) {
@@ -137,9 +139,12 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
         public void onClick(View v) {
 
 
+
+
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem()+1, true);
+
 
                 Thread t = new Thread(){
                     public void run(){
@@ -172,6 +177,8 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
 
 
     }  ;
+
+
 
 
     };

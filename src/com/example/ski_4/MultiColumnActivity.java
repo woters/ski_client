@@ -66,12 +66,13 @@ public class MultiColumnActivity extends Activity
 
 
        /* String[] Names1 = SendData.getStr();*/
+        HashMap temp = new HashMap();
 
         Log.w("Ski_c adding to Hashmap size =", String.valueOf(Constants.Names.size()));
         for (int i=0; i<Constants.Names.size(); i++){
             list = new ArrayList<HashMap>();
 
-            HashMap temp = new HashMap();
+
             temp.put(FIRST_COLUMN, Constants.Names.get(i).toString());
             Log.w("Ski_c adding to Hashmap",Constants.Prices.get(i).toString() );
             temp.put(SECOND_COLUMN, Constants.Prices.get(i).toString());
@@ -100,42 +101,19 @@ public class MultiColumnActivity extends Activity
         list.add(temp1);*/
 
 
-       /* HashMap temp1 = new HashMap();
-        temp1.put(FIRST_COLUMN,"Diaries");
-        temp1.put(SECOND_COLUMN, "By Amee Products");
-        *//*temp1.put(THIRD_COLUMN, "Rs. 400");
-        temp1.put(FOURTH_COLUMN, "Per Unit");*//*
-
-        list.add(temp1);
 
 
 
-        HashMap temp2 = new HashMap();
+       /* HashMap temp2 = new HashMap();
         temp2.put(FIRST_COLUMN,"Note Books and Stationery");
         temp2.put(SECOND_COLUMN, "By National Products");
-       *//* temp2.put(THIRD_COLUMN, "Rs. 600");
-        temp2.put(FOURTH_COLUMN, "Per Unit");*//*
+       *//**//* temp2.put(THIRD_COLUMN, "Rs. 600");
+        temp2.put(FOURTH_COLUMN, "Per Unit");*//**//*
 
-        list.add(temp2);
-
-
-        HashMap temp3 = new HashMap();
-        temp3.put(FIRST_COLUMN,"Corporate Diaries");
-        temp3.put(SECOND_COLUMN, "By Devarsh Prakashan");
-        *//*temp3.put(THIRD_COLUMN, "Rs. 800");
-        temp3.put(FOURTH_COLUMN, "Per Unit");*//*
-
-        list.add(temp3);
+        list.add(temp2);*/
 
 
 
-        HashMap temp4 = new HashMap();
-        temp4.put(FIRST_COLUMN,"Writing Pad");
-        temp4.put(SECOND_COLUMN, "By TechnoTalaktive Pvt. Ltd.");
-        *//*temp4.put(THIRD_COLUMN, "Rs. 100");
-        temp4.put(FOURTH_COLUMN, "Per Unit");*//*
-
-        list.add(temp4);*/
 
     }
 
