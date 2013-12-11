@@ -41,7 +41,7 @@ import static android.support.v4.app.ActivityCompat.startActivity;
  */
 public class SendData extends AsyncTask<String, Void, String> {
     private Activity activity;
-    ProgressDialog dialog = new ProgressDialog(getCurrentActivity());
+//    ProgressDialog dialog = new ProgressDialog(getCurrentActivity());
 
     /*private   String[] Names;
     private   String[] Prices;
@@ -54,11 +54,11 @@ public class SendData extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         // Things to be done before execution of long running operation. For example showing ProgessDialog
-        dialog.setTitle("Loading...");
+        /*dialog.setTitle("Loading...");
         dialog.setMessage("Please wait.");
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
-        dialog.show();
+        dialog.show();*/
     }
 
     @Override
@@ -79,13 +79,13 @@ public class SendData extends AsyncTask<String, Void, String> {
         super.onPostExecute(result);
         mCurrentActivity.startActivity(new Intent(mCurrentActivity, MultiColumnActivity.class));
 
-        dialog.dismiss();
+        /*dialog.dismiss();*/
 
     }
 
     @Override
     protected void onCancelled() {
-        dialog.dismiss();
+        /*dialog.dismiss();*/
         super.onCancelled();
     }
 
