@@ -1,7 +1,6 @@
 
 package com.example.ski_4;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -16,90 +15,89 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
-  
-  static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
+
+    static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
     //TextView tvOut;
-  
-  static int pageNumber;
-  int backColor;
+
+    static int pageNumber;
+    int backColor;
     private TabsAdapter tabsAdapter;
     ViewPager vp;
     static DatePicker datePicker2;
-    ProgressDialog progressBar;
 
-  
-  static ChooseDateEnd newInstance(int page) {
-	  ChooseDateEnd pageFragment = new ChooseDateEnd();
-    Bundle arguments = new Bundle();
-    arguments.putInt(ARGUMENT_PAGE_NUMBER, page);
-    pageFragment.setArguments(arguments);
-    Log.w("ChooseDateEnd", "Fragment init");
-    return pageFragment;
-  }
-  
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    //pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
-    
-    //Random rnd = new Random();
-    //backColor = Color.argb(40, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-  }
-  
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.activity_choose_date_end, null);
+
+    static ChooseDateEnd newInstance(int page) {
+        ChooseDateEnd pageFragment = new ChooseDateEnd();
+        Bundle arguments = new Bundle();
+        arguments.putInt(ARGUMENT_PAGE_NUMBER, page);
+        pageFragment.setArguments(arguments);
+        Log.w("ChooseDateEnd", "Fragment init");
+        return pageFragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
+
+        //Random rnd = new Random();
+        //backColor = Color.argb(40, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_choose_date_end, null);
     /*view.setBackgroundColor(Color.CYAN);
     TextView tvPage = (TextView) view.findViewById(R.id.tvPage);
     tvPage.setText("Page " + pageNumber);
     tvPage.setBackgroundColor(backColor);*/
-    Log.w("ChooseDateEnd", "Generated view");
+        Log.w("ChooseDateEnd", "Generated view");
 
-      Button button1 = (Button) view.findViewById(R.id.button1);
-      button1.setOnClickListener(lsn1);
+        Button button1 = (Button) view.findViewById(R.id.button1);
+        button1.setOnClickListener(lsn1);
 
-      Button button2 = (Button) view.findViewById(R.id.button2);
-      button2.setOnClickListener(lsn2);
-
-
+        Button button2 = (Button) view.findViewById(R.id.button2);
+        button2.setOnClickListener(lsn2);
 
 
-      switch (Constants.ACTIVITY){
-          case 1:
-
-              button2.setOnClickListener(new OnClickListener() {
-                  public void onClick(View view) {
-
-                      Thread t = new Thread(){
-                          public void run(){
-                              new SendData().execute("");
-                              Log.w("Ski_c", "Ski_c execute senddata");
-                          }
-                      };
-                      t.start();
-                      //this.finish();
-                      getActivity().finish();
-                      Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
-                      Log.w("Ski_c", "Ski_c pushed to send");
-                  }
-              });
-              //tvOut.setText("Done");
-
-              break;
-          case 0:
-
-              button2.setOnClickListener(lsn2);
-
-              break;
-      }
 
 
-      datePicker2 = (DatePicker) view.findViewById(R.id.datePicker2);
+        switch (Constants.ACTIVITY){
+            case 1:
+
+                button2.setOnClickListener(new OnClickListener() {
+                    public void onClick(View view) {
+
+                        Thread t = new Thread(){
+                            public void run(){
+                                new SendData(getActivity()).execute("");
+                                Log.w("Ski_c", "Ski_c execute senddata");
+                            }
+                        };
+                        t.start();
+                        //this.finish();
+                        getActivity().finish();
+                        Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
+                        Log.w("Ski_c", "Ski_c pushed to send");
+                    }
+                });
+                //tvOut.setText("Done");
+
+                break;
+            case 0:
+
+                button2.setOnClickListener(lsn2);
+
+                break;
+        }
 
 
-      return view;
-  }
+        datePicker2 = (DatePicker) view.findViewById(R.id.datePicker2);
+
+
+        return view;
+    }
 
     public static  String getDayFromDatePicker2(){
 
@@ -130,7 +128,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 vp.setCurrentItem(vp.getCurrentItem()-1, true);
             }
             else{
-               /* Log.e(this.getClass().getName(),"Error empty vp");*/
+                Log.e(this.getClass().getName(),"Error empty vp");
             }        }
     }  ;
 
@@ -139,16 +137,13 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
         public void onClick(View v) {
 
 
-
-
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem()+1, true);
 
-
                 Thread t = new Thread(){
                     public void run(){
-                        new SendData().execute("");
+                        new SendData(getActivity()).execute("");
                         Log.w("Ski_c", "Ski_c execute senddata");
                     }
                 };
@@ -157,22 +152,20 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
 
             }
             else{
-                Log.e(this.getClass().getName(),"Error empty vp");
+                /*Log.e(this.getClass().getName(),"Error empty vp");*/
             }
 
 
 
 
-                Log.w("Ski_c choosedateend", "Ski_c show list after thread");
+            Log.w("Ski_c", "Ski_c show list");
 
 
 
                    /* Intent intent = new Intent(getActivity(),ListActiv.class);
                     startActivity(intent);*/
 
-    }  ;
-
-
+        }  ;
 
 
     };

@@ -58,7 +58,7 @@ public class Check extends Activity {
         else {
         Thread t = new Thread(){
             public void run(){
-                new SendData().execute("");
+                new SendData(Check.this).execute("");
             }
         };
         t.start();

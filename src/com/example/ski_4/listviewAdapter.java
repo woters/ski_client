@@ -37,6 +37,7 @@ public class listviewAdapter extends BaseAdapter
         this.activity = activity;
         this.list = list;
 
+
     }
 
 
@@ -90,7 +91,7 @@ public class listviewAdapter extends BaseAdapter
             holder.txtSecond = (TextView) convertView.findViewById(R.id.SecondText);
             /*holder.txtThird = (TextView) convertView.findViewById(R.id.ThirdText);
             holder.txtFourth = (TextView) convertView.findViewById(R.id.FourthText);*/
-                                                                                                     convertView.setTag(holder);
+            convertView.setTag(holder);
 
         }
 
