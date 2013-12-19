@@ -47,6 +47,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:inputType="textNoSuggestions"
                     />
 
         </TableRow>
@@ -68,6 +69,7 @@
                 android:text="Medium Text"
                 android:autoLink="phone"
                 android:editable="true"
+                android:inputType="textNoSuggestions"
                 />
 
 
@@ -89,6 +91,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:inputType="textNoSuggestions"
                     />
 
             <TextView
@@ -118,6 +121,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:editable="true"
+                android:inputType="textNoSuggestions"
                 />
 
 
@@ -139,6 +143,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:inputType="textNoSuggestions"
                     />
 
 
@@ -160,6 +165,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:inputType="textNoSuggestions"
                     />
 
 

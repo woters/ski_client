@@ -62,23 +62,56 @@ public class MultiColumnActivity extends Activity
 
     }
 
+    public static int getPos(){
+        return listpos;
+    }
+
+    public static String getPrice(){
+        return pr;
+    }
+    public static String getPhone(){
+        return ph;
+    }
+
+    public static String getName(){
+        return n;
+    }
+
+    public static String getDate1(){
+        return d1;
+    }
+
+    public static String getDate2(){
+        return d2;
+    }
+
+    private static String pr = null;
+    private static String ph = null;
+    private static String n = null;
+    private static String d1 = null;
+    private static String d2 = null;
 
 
     private void populateList() {
 
 
+        HashMap temp = new HashMap();
+        list = new ArrayList<HashMap>();
+        Log.w("Ski_c adding to Hashmap size =", String.valueOf(SendData.arraylength));
+        for (int i=0; i<SendData.arraylength; i++){
 
 
-       /* String[] Names1 = SendData.getStr();*/
 
-        Log.w("Ski_c adding to Hashmap size =", String.valueOf(Constants.Names.size()));
-        for (int i=0; i<Constants.Names.size(); i++){
-            list = new ArrayList<HashMap>();
 
-            HashMap temp = new HashMap();
             temp.put(FIRST_COLUMN, Constants.Names.get(i).toString());
             Log.w("Ski_c adding to Hashmap",Constants.Prices.get(i).toString() );
             temp.put(SECOND_COLUMN, Constants.Prices.get(i).toString());
+            pr=Constants.Prices.get(i).toString();
+            ph=Constants.Phones.get(i).toString();
+            n=Constants.Names.get(i).toString();
+            d1=Constants.Date1.get(i).toString();
+            d2=Constants.Date2.get(i).toString();
+
       /*  temp.put(THIRD_COLUMN, "Rs. 200");
         temp.put(FOURTH_COLUMN, "Per Unit");*/
             list.add(temp);

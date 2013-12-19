@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Ski-pass Information:"
+                    android:text="Information:"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </TableRow>
@@ -32,77 +32,6 @@
 
         <TableRow>
 
-            <TextView
-                    android:id="@+id/Name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Name "
-                    />
-
-            <TextView
-                    android:id="@+id/NameInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:editable="true"
-                    />
-
-        </TableRow>
-        <TableRow>
-            <TextView
-                    android:id="@+id/Phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-
-                    android:text="Phone "
-                    />
-
-            <TextView
-                    android:id="@+id/PhoneInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:autoLink="phone"
-                    android:editable="true"
-                    />
-
-
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                    android:id="@+id/Price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Price "
-                    />
-
-            <TextView
-                    android:id="@+id/PriceInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:editable="true"
-                    />
-
-            <TextView
-                    android:id="@+id/uah"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text=" UAH"
-                    />
-
-
-        </TableRow>
-
-        <TableRow>
             <TextView
                     android:id="@+id/Number"
                     android:layout_width="wrap_content"
@@ -118,6 +47,28 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:inputType="textNoSuggestions"
+                    />
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                    android:id="@+id/Days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+
+                    android:text="Days "
+                    />
+
+            <TextView
+                    android:id="@+id/DaysInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Medium Text"
+                    android:editable="true"
+                    android:inputType="textNoSuggestions"
                     />
 
 
@@ -125,45 +76,46 @@
 
         <TableRow>
             <TextView
-                    android:id="@+id/Date1"
+                    android:id="@+id/SellDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Start Date "
+                    android:text="Sell Date "
                     />
 
             <TextView
-                    android:id="@+id/Date1Input"
+                    android:id="@+id/SellDateInput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:inputType="textNoSuggestions"
+                    android:gravity="left"
                     />
 
 
-        </TableRow>
 
+        </TableRow>
         <TableRow>
-            <TextView
-                    android:id="@+id/Date2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="End Date "
-                    />
+
+        <TableRow>  </TableRow>
+
 
             <TextView
-                    android:id="@+id/Date2Input"
+                    android:id="@+id/UsedInput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="Medium TextMedium TextMedium TextMedium TextMedium Text"
                     android:editable="true"
-                    />
+                    android:inputType="textNoSuggestions"
+                    android:layout_gravity="left" android:layout_column="0" android:layout_span="0"/>
 
 
         </TableRow>
+
+
         <TableRow></TableRow>
         <TableRow>
             <Button

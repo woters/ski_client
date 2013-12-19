@@ -22,6 +22,9 @@ public class Constants {
 
     public static ArrayList<String> Names = new ArrayList<String>();
     public static ArrayList<String> Prices = new ArrayList<String>();
+    public static ArrayList<String> Phones = new ArrayList<String>();
+    public static ArrayList<String> Date1 = new ArrayList<String>();
+    public static ArrayList<String> Date2 = new ArrayList<String>();
     public static int Tread = 0;
 
 

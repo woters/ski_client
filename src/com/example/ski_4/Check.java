@@ -58,14 +58,14 @@ public class Check extends Activity {
         else {
         Thread t = new Thread(){
             public void run(){
-                new SendData(Check.this).execute("");
+                new SendDataCheck(Check.this).execute("");
             }
         };
         t.start();
         /*Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();*/
-            Intent intent = new Intent(Check.this, Skipass_info.class);
+            /*Intent intent = new Intent(Check.this, Skipass_info.class);
 //intent.putExtra("runner", Constants.ACTIVITY_SELL);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 
@@ -74,4 +74,6 @@ public class Check extends Activity {
 public void GoBack(View view) {
         this.finish();
     }
+
+
 }

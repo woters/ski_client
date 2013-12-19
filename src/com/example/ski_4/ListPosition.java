@@ -16,10 +16,20 @@ public class ListPosition extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_list_position);
         TextView NameInput = (TextView) findViewById(R.id.NameInput);
-        NameInput.setText(String.valueOf(MultiColumnActivity.listpos));
+        int i = MultiColumnActivity.getPos();
+        NameInput.setText(MultiColumnActivity.getName());
 
         TextView PhoneInput = (TextView) findViewById(R.id.PhoneInput);
-        PhoneInput.setText("+380662404040");
+        PhoneInput.setText(MultiColumnActivity.getPhone());
+
+        TextView PriceInput = (TextView) findViewById(R.id.PriceInput);
+        PriceInput.setText(MultiColumnActivity.getPrice());
+
+        TextView Date1Input = (TextView) findViewById(R.id.Date1Input);
+        Date1Input.setText(MultiColumnActivity.getDate1());
+
+        TextView Date2Input = (TextView) findViewById(R.id.Date2Input);
+        Date2Input.setText(MultiColumnActivity.getDate2());
 }
     @Override
     protected void onResume() {

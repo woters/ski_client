@@ -13,11 +13,23 @@ public class Skipass_info extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.skipass_info);
-        TextView NameInput = (TextView) findViewById(R.id.NameInput);
+        /*TextView NameInput = (TextView) findViewById(R.id.NameInput);
         NameInput.setText("");
 
         TextView PhoneInput = (TextView) findViewById(R.id.PhoneInput);
-        PhoneInput.setText("");
+        PhoneInput.setText("");*/
+
+        TextView NumberInput = (TextView) findViewById(R.id.NumberInput);
+        NumberInput.setText(SendDataCheck.GetNumber());
+
+        TextView DaysInput = (TextView) findViewById(R.id.DaysInput);
+        DaysInput.setText(SendDataCheck.GetDays());
+
+        TextView SellDateInput = (TextView) findViewById(R.id.SellDateInput);
+        SellDateInput.setText(SendDataCheck.GetSellDate());
+
+        TextView UsedInput = (TextView) findViewById(R.id.UsedInput);
+        UsedInput.setText(SendDataCheck.GetUsedInput());
     }
     @Override
     protected void onResume() {
