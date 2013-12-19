@@ -2,6 +2,7 @@ package com.example.ski_4;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,7 +30,9 @@ public class Skipass_info extends Activity {
         SellDateInput.setText(SendDataCheck.GetSellDate());
 
         TextView UsedInput = (TextView) findViewById(R.id.UsedInput);
+        UsedInput.setMovementMethod(new ScrollingMovementMethod());
         UsedInput.setText(SendDataCheck.GetUsedInput());
+
     }
     @Override
     protected void onResume() {
