@@ -12,6 +12,9 @@ import static com.example.ski_4.Constants.FOURTH_COLUMN;*/
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -95,7 +98,11 @@ public class MultiColumnActivity extends Activity
     private void populateList() {
 
 
-        HashMap temp = new HashMap();
+        //HashMap temp = new HashMap();
+
+        //List<Map<String, String>> listOfTemp = new ArrayList<Map<String, String>>(SendData.arraylength);
+        List<HashMap> listOfTemp = new ArrayList<HashMap>(SendData.arraylength);
+
         list = new ArrayList<HashMap>();
         Log.w("Ski_c adding to Hashmap size =", String.valueOf(SendData.arraylength));
         for (int i=0; i<SendData.arraylength; i++){
@@ -103,18 +110,19 @@ public class MultiColumnActivity extends Activity
 
 
 
-            temp.put(FIRST_COLUMN, Constants.Names.get(i).toString());
+            //temp.put(FIRST_COLUMN, Constants.Names.get(i).toString());
+            listOfTemp.get(i).put(FIRST_COLUMN, Constants.Names.get(i).toString());
             Log.w("Ski_c adding to Hashmap",Constants.Prices.get(i).toString() );
-            temp.put(SECOND_COLUMN, Constants.Prices.get(i).toString());
+            //temp.put(SECOND_COLUMN, Constants.Prices.get(i).toString());
+            listOfTemp.get(i).put(SECOND_COLUMN, Constants.Prices.get(i).toString());
             pr=Constants.Prices.get(i).toString();
             ph=Constants.Phones.get(i).toString();
             n=Constants.Names.get(i).toString();
             d1=Constants.Date1.get(i).toString();
             d2=Constants.Date2.get(i).toString();
 
-      /*  temp.put(THIRD_COLUMN, "Rs. 200");
-        temp.put(FOURTH_COLUMN, "Per Unit");*/
-            list.add(temp);
+            //list.add(temp);
+            list.add((HashMap) listOfTemp.get(i));
 
 
 
