@@ -43,9 +43,8 @@ import static android.support.v4.app.ActivityCompat.startActivity;
  */
 public class SendData extends AsyncTask<String, Void, String> {
 
-    public static int arraylength;
-
-
+    private Context context;
+    ProgressDialog dialog;
     /*private   String[] Names;
     private   String[] Prices;
 */
@@ -56,27 +55,18 @@ public class SendData extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
+
         requestURL();
+        //Looper.loop();
         return null;
     }
 
     @Override
     protected void onPreExecute() {
 
-        Looper.prepare();
+        //Looper.prepare();
         //Looper.loop();
 
-         dialog = new ProgressDialog(this.context);
-
-
-        Log.w("Ski_c", "Dialog 1 started");
-
-        dialog.setTitle("Loading...");
-        dialog.setMessage("Please wait.");
-        dialog.setIndeterminate(true);
-        dialog.setCancelable(false);
-        dialog.show();
-        Log.w("Ski_c", "Dialog 1 is showing");
 
 
     }
@@ -101,8 +91,9 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
         super.onPostExecute(result);
-        dialog.dismiss();
         Log.w("Ski_c", "Dialog dismissed");
+
+     //   dialog.dismiss();
         context.startActivity(new Intent(context, MultiColumnActivity.class ));
 
 
@@ -124,8 +115,7 @@ public class SendData extends AsyncTask<String, Void, String> {
       public Activity getCurrentActivity(){
           return mCurrentActivity;
       }  */
-    private Context context;
-    ProgressDialog dialog;
+
 
    /* public static void CloseDialog(){
 
@@ -140,14 +130,6 @@ public class SendData extends AsyncTask<String, Void, String> {
 
     }
 
-    private void clearCnst(){
-       Constants.Names.clear();
-        Constants.Prices.clear();
-        Constants.Phones.clear();
-        Constants.Date1.clear();
-        Constants.Date2.clear();
-    }
-
     public void requestURL()
     {
         String idbuyt = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
@@ -158,8 +140,6 @@ public class SendData extends AsyncTask<String, Void, String> {
         HttpPost post;
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
         //int val = getIntent().getIntExtra("runner", -1);
-
-         clearCnst();
         switch (Constants.ACTIVITY){
             case 0:
                 post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
@@ -175,7 +155,6 @@ public class SendData extends AsyncTask<String, Void, String> {
                 date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
                 date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
                 phone = EnterName.getPhone();
-                Log.w("Ski_c phone entered ", EnterName.getPhone());
                 name = EnterName.getName();
                 number = Check_Fr.getNumber();
                 //nameValuePairs.add(new BasicNameValuePair("idBuyT", idbuyt));
@@ -212,10 +191,6 @@ public class SendData extends AsyncTask<String, Void, String> {
 
                     String token1 = null;
                     String token2 = null;
-                    String token3 = null;
-                    String token4 = null;
-                    String token5 = null;
-
 
 
 
@@ -228,7 +203,6 @@ public class SendData extends AsyncTask<String, Void, String> {
                         array = main.getJSONArray("AvaleiblePasses");
                 /*JSONObject result = new JSONObject(retSrc); //Convert String to JSON Object*/
                         Log.w("Ski_c  JSONArray ", array.toString());
-                        arraylength=  array.length();
                         for (int i=0; i<array.length();i++){
 
                             JSONObject obj = new JSONObject();
@@ -241,18 +215,9 @@ public class SendData extends AsyncTask<String, Void, String> {
 
                             Log.w("Ski_c", token1);
                             token2 = obj.getString("Phone");
-                            Constants.Phones.add(i, token2);
-                            Log.w("Ski_c",Constants.Phones.get(i).toString() );
+                            Constants.Prices.add(i, token2);
+                            Log.w("Ski_c",Constants.Prices.get(i).toString() );
                             Log.w("Ski_c", token2);
-
-                            token3 = obj.getString("price");
-                            Constants.Prices.add(i, token3);
-
-                            token4 = obj.getString("Date1");
-                            Constants.Date1.add(i, token4);
-
-                            token5 = obj.getString("Date2");
-                            Constants.Date2.add(i, token5);
                         }
 
 
@@ -293,7 +258,6 @@ public class SendData extends AsyncTask<String, Void, String> {
         }
 
     }
-
 
 
 

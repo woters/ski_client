@@ -1,6 +1,7 @@
 
 package com.example.ski_4;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -131,6 +132,14 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 Log.e(this.getClass().getName(),"Error empty vp");
             }        }
     }  ;
+    ProgressDialog dialog;
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(dialog!=null&&dialog.isShowing())
+            dialog.dismiss();
+    }
 
     private View.OnClickListener lsn2=new View.OnClickListener() {
         @Override
@@ -139,6 +148,19 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
 
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
+
+                dialog = new ProgressDialog(getActivity());
+
+                Log.w("Ski_c", "Dialog 1 started");
+
+                dialog.setTitle("LOADING...");
+                dialog.setMessage("WAIT.");
+                dialog.setIndeterminate(true);
+                dialog.setCancelable(false);
+                dialog.show();
+                Log.w("Ski_c", "Dialog 1 is showing");
+
+
                 vp.setCurrentItem(vp.getCurrentItem()+1, true);
 
                 Thread t = new Thread(){
