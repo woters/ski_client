@@ -21,7 +21,7 @@ public class VkLoginActivity extends Activity {
     private static final String TAG = "Kate.LoginActivity";
 
     WebView webview;
-    public static String API_ID="2904017"; //поменять
+    public static String API_ID = "2904017"; //поменять
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class VkLoginActivity extends Activity {
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.removeAllCookie();
 
-        String url=VkAuth.getUrl(API_ID, VkAuth.getSettings());
+        String url = VkAuth.getUrl(API_ID, VkAuth.getSettings());
         webview.loadUrl(url);
     }
 
@@ -55,14 +55,13 @@ public class VkLoginActivity extends Activity {
 
     private void parseUrl(String url) {
         try {
-            if(url==null)
+            if (url == null)
                 return;
             Log.i(TAG, "url=" + url);
-            if(url.startsWith(VkAuth.redirect_url))
-            {
-                if(!url.contains("error=")){
-                    String[] auth=VkAuth.parseRedirectUrl(url);
-                    Intent intent=new Intent();
+            if (url.startsWith(VkAuth.redirect_url)) {
+                if (!url.contains("error=")) {
+                    String[] auth = VkAuth.parseRedirectUrl(url);
+                    Intent intent = new Intent();
                     intent.putExtra("token", auth[0]);
                     intent.putExtra("user_id", Long.parseLong(auth[1]));
                     setResult(Activity.RESULT_OK, intent);

@@ -30,7 +30,8 @@ public class ListPosition extends Activity {
 
         TextView Date2Input = (TextView) findViewById(R.id.Date2Input);
         Date2Input.setText(MultiColumnActivity.getDate2());
-}
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

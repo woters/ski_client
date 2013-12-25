@@ -27,12 +27,10 @@ public class Check extends Activity {
     static EditText editTextN;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_check);
-
+        setContentView(R.layout.activity_check);
 
 
         editTextN = (EditText) findViewById(R.id.editTextN);
@@ -41,27 +39,25 @@ public class Check extends Activity {
     }
 
 
-
-    public static String getNumber(){
+    public static String getNumber() {
 
         String number = editTextN.getText().toString();
-         return number;
+        return number;
 
 
     }
 
     public void GoNext(View view) {
 
-        if (editTextN.getText().toString().length() ==0) {
-            Toast.makeText(Check.this, "Your ski-pass number is empty" , Toast.LENGTH_LONG).show();
-        }
-        else {
-        Thread t = new Thread(){
-            public void run(){
-                new SendDataCheck(Check.this).execute("");
-            }
-        };
-        t.start();
+        if (editTextN.getText().toString().length() == 0) {
+            Toast.makeText(Check.this, "Your ski-pass number is empty", Toast.LENGTH_LONG).show();
+        } else {
+            Thread t = new Thread() {
+                public void run() {
+                    new SendDataCheck(Check.this).execute("");
+                }
+            };
+            t.start();
         /*Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();*/
             /*Intent intent = new Intent(Check.this, Skipass_info.class);
 //intent.putExtra("runner", Constants.ACTIVITY_SELL);
@@ -70,8 +66,7 @@ public class Check extends Activity {
     }
 
 
-
-public void GoBack(View view) {
+    public void GoBack(View view) {
         this.finish();
     }
 

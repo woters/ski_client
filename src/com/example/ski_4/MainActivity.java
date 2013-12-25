@@ -23,21 +23,17 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 
-
-
 public class MainActivity extends Activity {
 
-    private final int REQUEST_LOGIN=1;
+    private final int REQUEST_LOGIN = 1;
 
     ImageButton authorizeButton;
     Button logoutButton;
     Button postButton;
     EditText messageEditText;
 
-    VkAccount account=new VkAccount();
+    VkAccount account = new VkAccount();
     Api api;
-
-
 
 
     @Override
@@ -62,33 +58,27 @@ public class MainActivity extends Activity {
                 setupUI();
 
 
-
                 //Если сессия есть создаём API для обращения к серверу
-                if(account.access_token!=null)
-                    api=new Api(account.access_token, VkLoginActivity.API_ID);
+                if (account.access_token != null)
+                    api = new Api(account.access_token, VkLoginActivity.API_ID);
             }
         });
-
-
 
 
     }
 
 
-
-
-
     public void GoToBuy(View view) {
         Intent intent = new Intent(this, Container_Buy.class);
         //intent.putExtra("runner", Constants.ACTIVITY_BUY);
-        Constants.ACTIVITY=0;
+        Constants.ACTIVITY = 0;
         startActivity(intent);
     }
 
     public void GoToSell(View view) {
         Intent intent = new Intent(this, Container_Sell.class);
         //intent.putExtra("runner", Constants.ACTIVITY_SELL);
-        Constants.ACTIVITY=1;
+        Constants.ACTIVITY = 1;
         startActivity(intent);
         //	ft.replace(R.id.your_placehodler, new YourFragment());
         //ft.commit();
@@ -97,7 +87,7 @@ public class MainActivity extends Activity {
     public void GoToCheck(View view) {
         Intent intent = new Intent(this, Check.class);
         //intent.putExtra("runner", Constants.ACTIVITY_SELL);
-        Constants.ACTIVITY=2;
+        Constants.ACTIVITY = 2;
 
         startActivity(intent);
         //	ft.replace(R.id.your_placehodler, new YourFragment());
@@ -112,8 +102,6 @@ public class MainActivity extends Activity {
 // ft.replace(R.id.your_placehodler, new YourFragment());
 //ft.commit();
     }
-
-
 
 
     // Your Facebook APP ID
@@ -143,7 +131,7 @@ public class MainActivity extends Activity {
 
     /**
      * Function to login into facebook
-     * */
+     */
     public void loginToFacebook() {
 
         mPrefs = getPreferences(MODE_PRIVATE);
@@ -165,7 +153,7 @@ public class MainActivity extends Activity {
 
         if (!facebook.isSessionValid()) {
             facebook.authorize(this,
-                    new String[] { "email", "publish_stream" },
+                    new String[]{"email", "publish_stream"},
                     new Facebook.DialogListener() {
 
                         @Override
@@ -214,21 +202,19 @@ public class MainActivity extends Activity {
         if (requestCode == REQUEST_LOGIN) {
             if (resultCode == RESULT_OK) {
                 //авторизовались успешно
-                account.access_token=data.getStringExtra("token");
-                account.user_id=data.getLongExtra("user_id", 0);
+                account.access_token = data.getStringExtra("token");
+                account.user_id = data.getLongExtra("user_id", 0);
                 account.save(MainActivity.this);
-                api=new Api(account.access_token, VkLoginActivity.API_ID);
+                api = new Api(account.access_token, VkLoginActivity.API_ID);
 
             }
         }
     }
 
 
-
-
     /**
      * Get Profile information by making request to Facebook Graph API
-     * */
+     */
     public void getProfileInformation() {
         mAsyncRunner.request("me", new AsyncFacebookRunner.RequestListener() {
             @Override
@@ -282,7 +268,7 @@ public class MainActivity extends Activity {
 
     /**
      * Function to post to facebook wall
-     * */
+     */
     public void postToWall() {
         // post on user's wall.
         facebook.dialog(this, "feed", new Facebook.DialogListener() {
@@ -308,7 +294,7 @@ public class MainActivity extends Activity {
 
     /**
      * Function to show Access Tokens
-     * */
+     */
     public void showAccessTokens() {
         String access_token = facebook.getAccessToken();
 
@@ -318,7 +304,7 @@ public class MainActivity extends Activity {
 
     /**
      * Function to Logout user from Facebook
-     * */
+     */
     public void logoutFromFacebook() {
         mAsyncRunner.logout(this, new AsyncFacebookRunner.RequestListener() {
             @Override
@@ -360,7 +346,7 @@ public class MainActivity extends Activity {
     }
 
     private void setupUI() {
-        authorizeButton=(ImageButton)findViewById(R.id.btn_vk);
+     //   authorizeButton = (ImageButton) findViewById(R.id.btn_vk);
         /*logoutButton=(Button)findViewById(R.id.logout);
         postButton=(Button)findViewById(R.id.post);
         messageEditText=(EditText)findViewById(R.id.message);*/
@@ -369,7 +355,7 @@ public class MainActivity extends Activity {
         postButton.setOnClickListener(postClick);*/
     }
 
-    private View.OnClickListener authorizeClick=new View.OnClickListener(){
+    private View.OnClickListener authorizeClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             startLoginActivity();
@@ -381,7 +367,6 @@ public class MainActivity extends Activity {
         intent.setClass(this, VkLoginActivity.class);
         startActivityForResult(intent, REQUEST_LOGIN);
     }
-
 
 
 }

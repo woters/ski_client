@@ -40,13 +40,13 @@ public class Container_Buy extends Activity {
                 ChooseDateEnd.class, null);
         /*mTabsAdapter.addTab(actionBar.newTab().setText("List"),
                 ShowList.class, null);*/
-       // mTabsAdapter.setChildrenAdapterReference();
+        // mTabsAdapter.setChildrenAdapterReference();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-    //    mTabsAdapter.setChildrenAdapterReference();
+        //    mTabsAdapter.setChildrenAdapterReference();
 
     }
 

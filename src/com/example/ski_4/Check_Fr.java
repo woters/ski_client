@@ -7,6 +7,7 @@ package com.example.ski_4;
  * Time: 20:33
  * To change this template use File | Settings | File Templates.
  */
+
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -18,7 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
+public class Check_Fr extends Fragment implements ICallBackFragmentAdapter {
 
     static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
 
@@ -69,24 +70,24 @@ public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
         return view;
     }
 
-    public static String getNumber(){
+    public static String getNumber() {
         String number = editTextN.getText().toString();
         return number;
     }
 
-    private View.OnClickListener lsn1=new View.OnClickListener() {
+    private View.OnClickListener lsn1 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
-                vp.setCurrentItem(vp.getCurrentItem()-1, true);
-            }
-            else{
+                vp.setCurrentItem(vp.getCurrentItem() - 1, true);
+            } else {
                 /*Log.e(this.getClass().getName(),"Error empty vp");*/
-            }        }
-    }  ;
+            }
+        }
+    };
 
-    private View.OnClickListener lsn2=new View.OnClickListener() {
+    private View.OnClickListener lsn2 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
@@ -94,12 +95,11 @@ public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem() + 1, true);
-            }
-            else{
+            } else {
                 /*Log.e(this.getClass().getName(),"Error empty vp");*/
             }
         }
-    }  ;
+    };
 
     @Override
     public TabsAdapter getTabsAdapter() {
@@ -109,6 +109,6 @@ public class Check_Fr extends Fragment implements ICallBackFragmentAdapter{
     @Override
     public void setTabsAdapter(TabsAdapter adapter) {
         this.tabsAdapter = adapter;
-        this.vp=tabsAdapter.getViewPager();
+        this.vp = tabsAdapter.getViewPager();
     }
 }

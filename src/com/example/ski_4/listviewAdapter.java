@@ -18,6 +18,7 @@ import static com.example.ski_4.Constants.FOURTH_COLUMN;*/
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-public class listviewAdapter extends BaseAdapter
-{
+public class listviewAdapter extends BaseAdapter {
 
     public ArrayList<HashMap> list;
     Activity activity;
@@ -74,13 +74,12 @@ public class listviewAdapter extends BaseAdapter
     }
 
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         // TODO Auto-generated method stub
         ViewHolder holder;
-        LayoutInflater inflater =  activity.getLayoutInflater();
+        LayoutInflater inflater = activity.getLayoutInflater();
 
         if (convertView == null)
 
@@ -93,14 +92,11 @@ public class listviewAdapter extends BaseAdapter
             holder.txtFourth = (TextView) convertView.findViewById(R.id.FourthText);*/
             convertView.setTag(holder);
 
-        }
-
-        else
+        } else
 
         {
             holder = (ViewHolder) convertView.getTag();
         }
-
 
 
         HashMap map = list.get(position);
@@ -114,7 +110,6 @@ public class listviewAdapter extends BaseAdapter
         return convertView;
 
     }
-
 
 
 }

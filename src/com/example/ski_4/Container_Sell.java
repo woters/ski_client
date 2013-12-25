@@ -7,6 +7,7 @@ package com.example.ski_4;
  * Time: 12:46
  * To change this template use File | Settings | File Templates.
  */
+
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.view.Menu;
 public class Container_Sell extends Activity {
     ViewPager vp;
     TabsAdapter mTabsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,6 @@ public class Container_Sell extends Activity {
         vp = new ViewPager(this);
         vp.setId(1);
         setContentView(vp);
-
 
 
         mTabsAdapter = new TabsAdapter(this, vp);

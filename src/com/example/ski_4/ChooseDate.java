@@ -39,7 +39,7 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.w(this.getClass().getName(),"Creating11")    ;
+        Log.w(this.getClass().getName(), "Creating11");
 //    pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
 
         //Random rnd = new Random();
@@ -58,7 +58,7 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
 
         Button button1 = (Button) view.findViewById(R.id.button1);
 
-        switch (Constants.ACTIVITY){
+        switch (Constants.ACTIVITY) {
             case 0:
                 button1.setOnClickListener(lsn1);
                 break;
@@ -71,7 +71,6 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
         }
 
 
-
         Button button2 = (Button) view.findViewById(R.id.button2);
         button2.setOnClickListener(lsn2);
 
@@ -81,55 +80,56 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
     }
 
 
-    public static  String getDayFromDatePicker1(){
+    public static String getDayFromDatePicker1() {
 
         String day = Integer.toString(datePicker1.getDayOfMonth());
 
         return day;
     }
 
-    public static String getMonthFromDatePicker1(){
-        String month = Integer.toString(datePicker1.getMonth()+1);
+    public static String getMonthFromDatePicker1() {
+        String month = Integer.toString(datePicker1.getMonth() + 1);
 
         return month;
     }
 
-    public static String getYearFromDatePicker1(){
-        String year =  Integer.toString(datePicker1.getYear());
+    public static String getYearFromDatePicker1() {
+        String year = Integer.toString(datePicker1.getYear());
 
         return year;
     }
 
-    private View.OnClickListener lsn1=new OnClickListener() {
+    private View.OnClickListener lsn1 = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            getActivity().finish() ;
+            getActivity().finish();
         }
     };
 
-    private View.OnClickListener lsn2=new OnClickListener() {
+    private View.OnClickListener lsn2 = new OnClickListener() {
         @Override
         public void onClick(View v) {
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
-                vp.setCurrentItem(vp.getCurrentItem()+1, true);
+                vp.setCurrentItem(vp.getCurrentItem() + 1, true);
+            } else {
+                Log.e(this.getClass().getName(), "Error empty vp");
             }
-            else{
-                Log.e(this.getClass().getName(),"Error empty vp");
-            }        }
-    }  ;
+        }
+    };
 
-    private View.OnClickListener lsn3=new View.OnClickListener() {
+    private View.OnClickListener lsn3 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
-                vp.setCurrentItem(vp.getCurrentItem()-1, true);
+                vp.setCurrentItem(vp.getCurrentItem() - 1, true);
+            } else {
+                Log.e(this.getClass().getName(), "Error empty vp");
             }
-            else{
-                Log.e(this.getClass().getName(),"Error empty vp");
-            }        }
-    }  ;
+        }
+    };
+
     @Override
     public TabsAdapter getTabsAdapter() {
         return tabsAdapter;
@@ -138,7 +138,7 @@ public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {
     @Override
     public void setTabsAdapter(TabsAdapter tabsAdapter) {
         this.tabsAdapter = tabsAdapter;
-        this.vp=tabsAdapter.getViewPager();
-        Log.w("Fragment","Adding tabsAdapter"+ tabsAdapter);
+        this.vp = tabsAdapter.getViewPager();
+        Log.w("Fragment", "Adding tabsAdapter" + tabsAdapter);
     }
 }

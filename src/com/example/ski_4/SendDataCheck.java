@@ -61,29 +61,22 @@ public class SendDataCheck extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
 
 
-
-
     }
 
     @Override
     protected void onPostExecute(String result) {
 
 
-
         super.onPostExecute(result);
 
-        context.startActivity(new Intent(context, Skipass_info.class ));
-
-
-
-
+        context.startActivity(new Intent(context, Skipass_info.class));
 
 
     }
 
     @Override
     protected void onCancelled() {
-       super.onCancelled();
+        super.onCancelled();
     }
 
 
@@ -93,28 +86,27 @@ public class SendDataCheck extends AsyncTask<String, Void, String> {
 
     public SendDataCheck(Context cxt) {
         super();
-        this.context=cxt;
+        this.context = cxt;
 
     }
 
-    public void requestURL()
-    {
+    public void requestURL() {
 
 
         Document doc;
         try {
             // need http protocol
-            doc = Jsoup.connect("http://tickets.bukovel.com/?NumTicket="+Check.getNumber()).get();
-            Log.w("Ski_c Number = ", Check.getNumber() );
+            doc = Jsoup.connect("http://tickets.bukovel.com/?NumTicket=" + Check.getNumber()).get();
+            Log.w("Ski_c Number = ", Check.getNumber());
             String str = doc.body().text();
             System.out.println(str);
-            for( Element element : doc.select("strong") )    // Select all 'p'-Tags and loop over them
+            for (Element element : doc.select("strong"))    // Select all 'p'-Tags and loop over them
             {
-                if( element.hasText() )                 // Check if the element has text (since there are some empty too)
+                if (element.hasText())                 // Check if the element has text (since there are some empty too)
                 {
                     System.out.println(element.text()); // print the element's text
                     ls.add(element.text());
-                    Log.w("Ski_c element.text():",element.text() );
+                    Log.w("Ski_c element.text():", element.text());
                 }
             }
 
@@ -125,31 +117,26 @@ public class SendDataCheck extends AsyncTask<String, Void, String> {
 
     }
 
-    public static String GetNumber(){
+    public static String GetNumber() {
 
-        if (ls.size()== 0) return null;
+        if (ls.size() == 0) return null;
         else return ls.get(3);
     }
 
-    public static String GetDays(){
-        if (ls.size()== 0) return null;
+    public static String GetDays() {
+        if (ls.size() == 0) return null;
         return ls.get(1);
     }
 
-    public static String GetSellDate(){
-        if (ls.size()== 0) return null;
+    public static String GetSellDate() {
+        if (ls.size() == 0) return null;
         return ls.get(2);
     }
 
-    public static String GetUsedInput(){
-        if (ls.size()== 0) return null;
+    public static String GetUsedInput() {
+        if (ls.size() == 0) return null;
         return ls.get(4);
     }
-
-
-
-
-
 
 
 }

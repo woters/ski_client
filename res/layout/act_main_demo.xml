@@ -64,7 +64,7 @@
                     tools:context=".MainActivity"
                     android:orientation="horizontal" >
 
-        <ImageButton
+        <!--<ImageButton
                 android:id="@+id/btn_fb"
                 android:layout_weight="1"
 
@@ -82,12 +82,12 @@
                 android:padding="0dp"
                 android:src="@drawable/buttonfbselector"
 
-                />
+                />     -->
 
 
 
 
-        <Button
+     <!--   <Button
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -102,7 +102,7 @@
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:text="@string/Buy"
-                android:onClick="GoToBuy" />
+                android:onClick="GoToBuy" />      -->
 
 
 

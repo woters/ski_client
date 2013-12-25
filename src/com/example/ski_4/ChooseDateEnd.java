@@ -15,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
+public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter {
 
     static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
     //TextView tvOut;
@@ -62,16 +62,14 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
         button2.setOnClickListener(lsn2);
 
 
-
-
-        switch (Constants.ACTIVITY){
+        switch (Constants.ACTIVITY) {
             case 1:
 
                 button2.setOnClickListener(new OnClickListener() {
                     public void onClick(View view) {
 
-                        Thread t = new Thread(){
-                            public void run(){
+                        Thread t = new Thread() {
+                            public void run() {
                                 new SendData(getActivity()).execute("");
                                 Log.w("Ski_c", "Ski_c execute senddata");
                             }
@@ -100,48 +98,47 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
         return view;
     }
 
-    public static  String getDayFromDatePicker2(){
+    public static String getDayFromDatePicker2() {
 
         String day = Integer.toString(datePicker2.getDayOfMonth());
 
         return day;
     }
 
-    public static String getMonthFromDatePicker2(){
-        String month = Integer.toString(datePicker2.getMonth()+1);
+    public static String getMonthFromDatePicker2() {
+        String month = Integer.toString(datePicker2.getMonth() + 1);
 
         return month;
     }
 
-    public static String getYearFromDatePicker2(){
-        String year =  Integer.toString(datePicker2.getYear());
+    public static String getYearFromDatePicker2() {
+        String year = Integer.toString(datePicker2.getYear());
 
         return year;
     }
 
 
-
-    private View.OnClickListener lsn1=new View.OnClickListener() {
+    private View.OnClickListener lsn1 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
-                vp.setCurrentItem(vp.getCurrentItem()-1, true);
+                vp.setCurrentItem(vp.getCurrentItem() - 1, true);
+            } else {
+                Log.e(this.getClass().getName(), "Error empty vp");
             }
-            else{
-                Log.e(this.getClass().getName(),"Error empty vp");
-            }        }
-    }  ;
+        }
+    };
     ProgressDialog dialog;
 
     @Override
     public void onPause() {
         super.onPause();
-        if(dialog!=null&&dialog.isShowing())
+        if (dialog != null && dialog.isShowing())
             dialog.dismiss();
     }
 
-    private View.OnClickListener lsn2=new View.OnClickListener() {
+    private View.OnClickListener lsn2 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
@@ -161,10 +158,10 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 Log.w("Ski_c", "Dialog 1 is showing");
 
 
-                vp.setCurrentItem(vp.getCurrentItem()+1, true);
+                vp.setCurrentItem(vp.getCurrentItem() + 1, true);
 
-                Thread t = new Thread(){
-                    public void run(){
+                Thread t = new Thread() {
+                    public void run() {
                         new SendData(getActivity()).execute("");
                         Log.w("Ski_c", "Ski_c execute senddata");
                     }
@@ -172,12 +169,9 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                 t.start();
 
 
-            }
-            else{
+            } else {
                 /*Log.e(this.getClass().getName(),"Error empty vp");*/
             }
-
-
 
 
             Log.w("Ski_c", "Ski_c show list");
@@ -187,7 +181,9 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
                    /* Intent intent = new Intent(getActivity(),ListActiv.class);
                     startActivity(intent);*/
 
-        }  ;
+        }
+
+        ;
 
 
     };
@@ -200,7 +196,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter{
     @Override
     public void setTabsAdapter(TabsAdapter adapter) {
         this.tabsAdapter = adapter;
-        this.vp=tabsAdapter.getViewPager();
+        this.vp = tabsAdapter.getViewPager();
     }
 }
 

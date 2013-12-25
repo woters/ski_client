@@ -9,5 +9,6 @@ package com.example.ski_4;
  */
 public interface ICallBackFragmentAdapter {
     public TabsAdapter getTabsAdapter();
+
     public void setTabsAdapter(TabsAdapter adapter);
 }

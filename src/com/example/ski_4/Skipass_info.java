@@ -34,6 +34,7 @@ public class Skipass_info extends Activity {
         UsedInput.setText(SendDataCheck.GetUsedInput());
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();

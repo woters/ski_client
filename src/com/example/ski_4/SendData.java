@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+
 import android.app.Activity;
 
 import static android.support.v4.app.ActivityCompat.startActivity;
@@ -43,62 +44,39 @@ import static android.support.v4.app.ActivityCompat.startActivity;
  */
 public class SendData extends AsyncTask<String, Void, String> {
 
+    public static int arraylength;
+
     private Context context;
     ProgressDialog dialog;
-    /*private   String[] Names;
-    private   String[] Prices;
-*/
-    /*public String[] getStr() {
-   return Names ;
 
-    }*/
+    private void clearCnst(){
+               Constants.Names.clear();
+                Constants.Prices.clear();
+                Constants.Phones.clear();
+                Constants.Date1.clear();
+                Constants.Date2.clear();
+            }
+
 
     @Override
     protected String doInBackground(String... params) {
 
         requestURL();
-        //Looper.loop();
         return null;
     }
 
     @Override
     protected void onPreExecute() {
-
-        //Looper.prepare();
-        //Looper.loop();
-
-
-
     }
 
     @Override
     protected void onPostExecute(String result) {
-        /*Intent intent_name = new Intent();
-        intent_name.setClass(SendData(),MultiColumnActivity.class);
-        startActivity(intent_name);*/
-
-        /*activity.startActivity(new Intent(activity, MultiColumnActivity.class));
-        Log.w("Ski_c", "Ski_c show list");*/
-        // execution of result of Long time consuming operation
-
-
-        /*dialog.setTitle("Loading...");
-        dialog.setMessage("Please wait.");
-        Log.w("Ski_c", "Dialog 2 started");
-        dialog.setIndeterminate(true);
-        dialog.setCancelable(false);
-        dialog.show();*/
 
 
         super.onPostExecute(result);
         Log.w("Ski_c", "Dialog dismissed");
 
-     //   dialog.dismiss();
-        context.startActivity(new Intent(context, MultiColumnActivity.class ));
-
-
-
-
+        context.startActivity(new Intent(context, MultiColumnActivity.class));
 
 
     }
@@ -111,40 +89,29 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
 
-    /*  private Activity mCurrentActivity = null;
-      public Activity getCurrentActivity(){
-          return mCurrentActivity;
-      }  */
-
-
-   /* public static void CloseDialog(){
-
-        dialog.dismiss();
-        Log.w("Ski_c", "Dialog dismissed");
-
-    }*/
-
-    public SendData (Context cxt) {
+   public SendData(Context cxt) {
         super();
-        this.context=cxt;
+        this.context = cxt;
 
     }
 
-    public void requestURL()
-    {
+    public void requestURL() {
+
+
+
         String idbuyt = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
         String price, date1, date2, phone, name, number;
 
-        HttpClient client=new DefaultHttpClient();
+        HttpClient client = new DefaultHttpClient();
         HttpPost post;
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-        //int val = getIntent().getIntExtra("runner", -1);
-        switch (Constants.ACTIVITY){
+        clearCnst();
+        switch (Constants.ACTIVITY) {
             case 0:
                 post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
-                date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
-                date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
+                date1 = ChooseDate.getYearFromDatePicker1() + "-" + ChooseDate.getMonthFromDatePicker1() + "-" + ChooseDate.getDayFromDatePicker1();
+                date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
                 nameValuePairs.add(new BasicNameValuePair("date2", date2));
                 Log.w("Ski_c", "Ski_c info added to buy");
@@ -152,8 +119,8 @@ public class SendData extends AsyncTask<String, Void, String> {
             case 1:
                 post = new HttpPost("http://54.203.248.89:8080/ski2/sell");
                 price = EnterPrice.getPrice();
-                date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
-                date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
+                date1 = ChooseDate.getYearFromDatePicker1() + "-" + ChooseDate.getMonthFromDatePicker1() + "-" + ChooseDate.getDayFromDatePicker1();
+                date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
                 phone = EnterName.getPhone();
                 name = EnterName.getName();
                 number = Check_Fr.getNumber();
@@ -171,9 +138,10 @@ public class SendData extends AsyncTask<String, Void, String> {
                 number = Check.getNumber();
                 nameValuePairs.add(new BasicNameValuePair("number", number));
                 break;
-            default:     post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
-                date1 =   ChooseDate.getYearFromDatePicker1()+"-"+ChooseDate.getMonthFromDatePicker1()+"-"+ChooseDate.getDayFromDatePicker1();
-                date2 =  ChooseDateEnd.getYearFromDatePicker2()+"-"+ChooseDateEnd.getMonthFromDatePicker2()+"-"+ChooseDateEnd.getDayFromDatePicker2();
+            default:
+                post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
+                date1 = ChooseDate.getYearFromDatePicker1() + "-" + ChooseDate.getMonthFromDatePicker1() + "-" + ChooseDate.getDayFromDatePicker1();
+                date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
                 nameValuePairs.add(new BasicNameValuePair("date2", date2));
                 break;
@@ -184,14 +152,16 @@ public class SendData extends AsyncTask<String, Void, String> {
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = client.execute(post);
             Log.w("Ski_c", "Ski_c info sent");
-            switch (Constants.ACTIVITY){
+            switch (Constants.ACTIVITY) {
                 case 0:
                     Log.v("response code", response.getStatusLine().getStatusCode() + "");
                     HttpEntity entity = response.getEntity();
 
                     String token1 = null;
                     String token2 = null;
-
+                    String token3 = null;
+                    String token4 = null;
+                    String token5 = null;
 
 
                     if (entity != null) {
@@ -199,31 +169,33 @@ public class SendData extends AsyncTask<String, Void, String> {
                         // parsing JSON
                         Log.w("Ski_c JSON retSrc", retSrc);
                         JSONArray array = new JSONArray();
-                        JSONObject main=new JSONObject(retSrc);
+                        JSONObject main = new JSONObject(retSrc);
                         array = main.getJSONArray("AvaleiblePasses");
-                /*JSONObject result = new JSONObject(retSrc); //Convert String to JSON Object*/
                         Log.w("Ski_c  JSONArray ", array.toString());
-                        for (int i=0; i<array.length();i++){
+                        arraylength=  array.length();
+                        for (int i = 0; i < array.length(); i++) {
 
                             JSONObject obj = new JSONObject();
-                            obj=array.getJSONObject(i);
-                            // JSONArray tokenList = obj.getJSONArray("AvaleiblePasses");
-                            //  JSONObject oj = tokenList.getJSONObject(0);
+                            obj = array.getJSONObject(i);
                             Log.w("Ski_c", "received info from database");
                             token1 = obj.getString("Name");
-                            Constants.Names.add(i,token1);
+                            Constants.Names.add(i, token1);
 
                             Log.w("Ski_c", token1);
                             token2 = obj.getString("Phone");
-                            Constants.Prices.add(i, token2);
-                            Log.w("Ski_c",Constants.Prices.get(i).toString() );
+                            Constants.Phones.add(i, token2);
+                            Log.w("Ski_c",Constants.Phones.get(i).toString() );
                             Log.w("Ski_c", token2);
+                            token3 = obj.getString("price");
+                            Constants.Prices.add(i, token3);
+                            token4 = obj.getString("Date1");
+                            Constants.Date1.add(i, token4);
+                            token5 = obj.getString("Date2");
+                            Constants.Date2.add(i, token5);
                         }
 
 
-
-                    }
-                    else  {
+                    } else {
 
                         Log.w("Ski_c", "entity = null");
                     }
@@ -258,12 +230,6 @@ public class SendData extends AsyncTask<String, Void, String> {
         }
 
     }
-
-
-
-
-
-
 
 
 }
