@@ -39,7 +39,7 @@ public class MultiColumnActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
         ListView lview = (ListView) findViewById(R.id.listview);
-//        populateList();      i don't know what this do
+        populateList();      //i don't know what this do      //now you know))
         listviewAdapter adapter;
         if (list != null)
             adapter = new listviewAdapter(this, list);
@@ -101,9 +101,12 @@ public class MultiColumnActivity extends Activity
 
         List<HashMap> listOfTemp = new ArrayList<HashMap>(SendData.arraylength);
 
+
         list = new ArrayList<HashMap>();
         Log.w("Ski_c adding to Hashmap size =", String.valueOf(SendData.arraylength));
         for (int i = 0; i < SendData.arraylength; i++) {
+
+            Log.w("Ski_c listOfTemp size =", String.valueOf(listOfTemp.size()));
 
             listOfTemp.get(i).put(FIRST_COLUMN, Constants.Names.get(i).toString());
             Log.w("Ski_c adding to Hashmap", Constants.Prices.get(i).toString());

@@ -192,6 +192,7 @@ public class SendData extends AsyncTask<String, Void, String> {
                             Constants.Date1.add(i, token4);
                             token5 = obj.getString("Date2");
                             Constants.Date2.add(i, token5);
+                            Log.w("Ski_c", " info added to Constants");
                         }
 
 
