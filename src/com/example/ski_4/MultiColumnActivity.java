@@ -99,26 +99,34 @@ public class MultiColumnActivity extends Activity
     private void populateList() {
 
 
-        List<HashMap> listOfTemp = new ArrayList<HashMap>(SendData.arraylength);
-
+    //    List<HashMap> listOfTemp = new ArrayList<HashMap>(SendData.arraylength);
+        HashMap<String, String> listOfTemp = new HashMap<String, String>();
+        Intent intent = getIntent();
+        ArrayList<String> name = intent.getStringArrayListExtra("name");
+        ArrayList<String> price = intent.getStringArrayListExtra("price");
+        ArrayList<String> phone = intent.getStringArrayListExtra("phone");
+        ArrayList<String> date1 = intent.getStringArrayListExtra("date1");
+        ArrayList<String> date2 = intent.getStringArrayListExtra("date2");
 
         list = new ArrayList<HashMap>();
         Log.w("Ski_c adding to Hashmap size =", String.valueOf(SendData.arraylength));
         for (int i = 0; i < SendData.arraylength; i++) {
 
-            Log.w("Ski_c listOfTemp size =", String.valueOf(listOfTemp.size()));
+            Log.w("Ski_c name1 =", name.get(i));   // works fine till here
+            Log.w("Ski_c price", price.get(i));
+            Log.w("Ski_c date1", date1.get(i));
+            Log.w("Ski_c date2", date2.get(i));
+            listOfTemp.put(FIRST_COLUMN, name.get(i));
 
-            listOfTemp.get(i).put(FIRST_COLUMN, Constants.Names.get(i).toString());
-            Log.w("Ski_c adding to Hashmap", Constants.Prices.get(i).toString());
-            listOfTemp.get(i).put(SECOND_COLUMN, Constants.Prices.get(i).toString());
-            pr = Constants.Prices.get(i).toString();
-            ph = Constants.Phones.get(i).toString();
-            n = Constants.Names.get(i).toString();
-            d1 = Constants.Date1.get(i).toString();
-            d2 = Constants.Date2.get(i).toString();
+            listOfTemp.put(SECOND_COLUMN, price.get(i));
+            pr = price.get(i);
+            ph = phone.get(i);
+            n = name.get(i);
+            d1 = date1.get(i);
+            d2 = date2.get(i);
 
-            list.add((HashMap) listOfTemp.get(i));
-
+         //   list.add((HashMap) listOfTemp.get(i));
+            list.add(listOfTemp);
 
         }
 
