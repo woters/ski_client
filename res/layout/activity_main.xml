@@ -109,7 +109,7 @@
 
                 />
 
-        <ImageButton
+        <!--<ImageButton
                 android:id="@+id/btn_i"
                 android:layout_weight="1"
 
@@ -128,7 +128,7 @@
                 android:src="@drawable/buttoniselector"
                 android:onClick="GoToInfo"
 
-                />
+                />           -->
 
 
 
