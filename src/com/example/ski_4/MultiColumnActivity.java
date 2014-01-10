@@ -94,11 +94,7 @@ public class MultiColumnActivity extends Activity
         return d2.get(pos);
     }
 
-   /* private static String pr = null;
-    private static String ph = null;
-    private static String n = null;
-    private static String d1 = null;
-    private static String d2 = null;*/
+
 
     private static ArrayList<String> pr ;
     private static ArrayList<String> ph ;
@@ -131,19 +127,10 @@ public class MultiColumnActivity extends Activity
 
             Log.w("Ski_c name1 =", name.get(i));   // works fine till here
             Log.w("Ski_c price", price.get(i));
-            //Log.w("Ski_c date1", date1.get(i));
-           // Log.w("Ski_c date2", date2.get(i));
+
             listOfTemp1.add(name.get(i));
 
             listOfTemp2.add(price.get(i));
-            /*pr = price.get(i);
-            ph = phone.get(i);
-            n = name.get(i);
-            d1 = date1.get(i);
-            d2 = date2.get(i);*/
-
-         //   list.add((HashMap) listOfTemp.get(i));
-
 
         }
 
