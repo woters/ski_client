@@ -41,6 +41,8 @@ public class Container_Buy extends Activity {
         /*mTabsAdapter.addTab(actionBar.newTab().setText("List"),
                 ShowList.class, null);*/
         // mTabsAdapter.setChildrenAdapterReference();
+
+
     }
 
     @Override

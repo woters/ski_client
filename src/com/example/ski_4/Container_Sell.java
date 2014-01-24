@@ -37,8 +37,8 @@ public class Container_Sell extends Activity {
                 EnterName.class, null);
         mTabsAdapter.addTab(actionBar.newTab().setText("Price"),
                 EnterPrice.class, null);
-        mTabsAdapter.addTab(actionBar.newTab().setText("Number"),
-                Check_Fr.class, null);
+        /*mTabsAdapter.addTab(actionBar.newTab().setText("Number"),
+                Check_Fr.class, null);*/
         mTabsAdapter.addTab(actionBar.newTab().setText("Date"),
                 ChooseDate.class, null);
         mTabsAdapter.addTab(actionBar.newTab().setText("Date End"),

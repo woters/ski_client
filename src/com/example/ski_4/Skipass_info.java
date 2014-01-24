@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 /**
  * Created by Alyosha on 06.12.13.
@@ -32,6 +34,10 @@ public class Skipass_info extends Activity {
         TextView UsedInput = (TextView) findViewById(R.id.UsedInput);
         UsedInput.setMovementMethod(new ScrollingMovementMethod());
         UsedInput.setText(SendDataCheck.GetUsedInput());
+
+        AdView adView = (AdView)this.findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 

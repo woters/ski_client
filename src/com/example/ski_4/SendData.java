@@ -1,13 +1,10 @@
 package com.example.ski_4;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Looper;
 import android.util.Log;
-import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -28,11 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-
-import android.app.Activity;
-
-import static android.support.v4.app.ActivityCompat.startActivity;
 
 
 /**
@@ -45,6 +37,12 @@ import static android.support.v4.app.ActivityCompat.startActivity;
 public class SendData extends AsyncTask<String, Void, String> {
 
     public static int arraylength;
+
+    private ArrayList<String> name1;
+    private ArrayList<String> phone1;
+    private ArrayList<String> price1;
+    private ArrayList<String> date11;
+    private ArrayList<String> date21;
 
     private Context context;
     ProgressDialog dialog;
@@ -75,8 +73,13 @@ public class SendData extends AsyncTask<String, Void, String> {
 
         super.onPostExecute(result);
         Log.w("Ski_c", "Dialog dismissed");
-
-        context.startActivity(new Intent(context, MultiColumnActivity.class));
+        Intent intent = new Intent(context, MultiColumnActivity.class);
+        intent.putExtra("name",name1);
+        intent.putExtra("price",price1);
+        intent.putExtra("phone",phone1);
+        intent.putExtra("date1",date11);
+        intent.putExtra("date2",date21);
+        context.startActivity(intent);
 
 
     }
@@ -173,24 +176,34 @@ public class SendData extends AsyncTask<String, Void, String> {
                         array = main.getJSONArray("AvaleiblePasses");
                         Log.w("Ski_c  JSONArray ", array.toString());
                         arraylength=  array.length();
+                        name1 = new ArrayList<String>();
+                        phone1 = new ArrayList<String>();
+                        price1 = new ArrayList<String>();
+                        date11 = new ArrayList<String>();
+                        date21 = new ArrayList<String>();
                         for (int i = 0; i < array.length(); i++) {
 
                             JSONObject obj = new JSONObject();
                             obj = array.getJSONObject(i);
                             Log.w("Ski_c", "received info from database");
                             token1 = obj.getString("Name");
+                            name1.add(token1);
                             Constants.Names.add(i, token1);
 
                             Log.w("Ski_c", token1);
                             token2 = obj.getString("Phone");
+                            phone1.add(token2);
                             Constants.Phones.add(i, token2);
-                            Log.w("Ski_c",Constants.Phones.get(i).toString() );
+                            Log.w("Ski_c", Constants.Phones.get(i).toString());
                             Log.w("Ski_c", token2);
                             token3 = obj.getString("price");
+                            price1.add(token3);
                             Constants.Prices.add(i, token3);
                             token4 = obj.getString("Date1");
+                            date11.add(token4);
                             Constants.Date1.add(i, token4);
                             token5 = obj.getString("Date2");
+                            date21.add(token5);
                             Constants.Date2.add(i, token5);
                             Log.w("Ski_c", " info added to Constants");
                         }

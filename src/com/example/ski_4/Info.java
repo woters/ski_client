@@ -3,6 +3,8 @@ package com.example.ski_4;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +21,10 @@ public class Info extends Activity {
 //Intent intent = getIntent();
 
         setContentView(R.layout.activity_info);
+
+        AdView adView = (AdView)this.findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 
