@@ -126,14 +126,7 @@
                     android:text="@string/hello" />
         </TableRow>-->
 
-        <com.google.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/admob_publisher_id"
-                ads:loadAdOnCreate="true" />
+
 
     </TableLayout>
 
