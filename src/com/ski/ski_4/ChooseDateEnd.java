@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter {
@@ -24,7 +25,9 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
     private TabsAdapter tabsAdapter;
     ViewPager vp;
     static DatePicker datePicker2;
-    /*static DatePicker datePicker3;*/
+    static EditText editText;
+
+    //static DatePicker datePicker3;
 
 
     static ChooseDateEnd newInstance(int page) {
@@ -65,8 +68,24 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
         switch (Constants.ACTIVITY) {
             case 1:
 
+
+
                 button2.setOnClickListener(new OnClickListener() {
                     public void onClick(View view) {
+
+                        if (((Integer.parseInt(ChooseDate.getYearFromDatePicker1()) >= Integer.parseInt(getYearFromDatePicker2())) && (Integer.parseInt(ChooseDate.getMonthFromDatePicker1()) >= Integer.parseInt(getMonthFromDatePicker2())) && (Integer.parseInt(ChooseDate.getDayFromDatePicker1()) > Integer.parseInt(getDayFromDatePicker2())))|| ((Integer.parseInt(ChooseDate.getYearFromDatePicker1()) >= Integer.parseInt(getYearFromDatePicker2())) && (Integer.parseInt(ChooseDate.getMonthFromDatePicker1()) > Integer.parseInt(getMonthFromDatePicker2())))||(Integer.parseInt(ChooseDate.getYearFromDatePicker1()) > Integer.parseInt(getYearFromDatePicker2()))){
+
+                            Toast.makeText(getActivity(), "Your End Date is before Your Start Date", Toast.LENGTH_LONG).show();
+                            Log.w("Ski_c", "wrong date");
+
+                        } else{
+
+                        if (EnterName.getName().length() == 0 || EnterName.getPhone().length() == 0||EnterPrice.getPrice().length() == 0) {
+                            Toast.makeText(getActivity(), "Your Name, Phone or Price is empty", Toast.LENGTH_LONG).show();
+
+                        }    else{
+
+
 
                         Thread t = new Thread() {
                             public void run() {
@@ -80,6 +99,10 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                         Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
                         Log.w("Ski_c", "Ski_c pushed to send");
                     }
+
+                    }
+                    }
+
                 });
                 //tvOut.setText("Done");
 
@@ -92,9 +115,9 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
         }
 
 
-        /*datePicker3 = (DatePicker) view.findViewById(R.id.datePicker1);*/
+        //datePicker3 = (DatePicker) view.findViewById(R.id.datePicker1);
         datePicker2 = (DatePicker) view.findViewById(R.id.datePicker2);
-        /*datePicker2.setMinDate(datePicker3.getMaxDate());*/
+        //datePicker2.setMinDate(datePicker3.getDayFromDatePicker1()"/"datePicker3.getMonthFromDatePicker1()"/"datePicker3.getYearFromDatePicker1());
 
 
         return view;
@@ -123,12 +146,17 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
     private OnClickListener lsn1 = new OnClickListener() {
         @Override
         public void onClick(View v) {
+
+
+
+
             if (vp != null) {
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem() - 1, true);
             } else {
                 Log.e(this.getClass().getName(), "Error empty vp");
             }
+
         }
     };
     ProgressDialog dialog;
@@ -143,6 +171,23 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
     private OnClickListener lsn2 = new OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if (((Integer.parseInt(ChooseDate.getYearFromDatePicker1()) >= Integer.parseInt(getYearFromDatePicker2())) && (Integer.parseInt(ChooseDate.getMonthFromDatePicker1()) >= Integer.parseInt(getMonthFromDatePicker2())) && (Integer.parseInt(ChooseDate.getDayFromDatePicker1()) > Integer.parseInt(getDayFromDatePicker2())))|| ((Integer.parseInt(ChooseDate.getYearFromDatePicker1()) >= Integer.parseInt(getYearFromDatePicker2())) && (Integer.parseInt(ChooseDate.getMonthFromDatePicker1()) > Integer.parseInt(getMonthFromDatePicker2())))||(Integer.parseInt(ChooseDate.getYearFromDatePicker1()) > Integer.parseInt(getYearFromDatePicker2()))){
+
+                Toast.makeText(getActivity(), "Your End Date is before Your Start Date", Toast.LENGTH_LONG).show();
+                Log.w("Ski_c", "wrong date");
+
+                } else{
+
+            /*if (Constants.ACTIVITY==1){
+
+                if (EnterName.getName().length() == 0 || EnterName.getPhone().length() == 0||EnterPrice.getPrice().length() == 0) {
+                    Toast.makeText(getActivity(), "Your Name, Phone or Price is empty", Toast.LENGTH_LONG).show();
+
+                }
+            } else {*/
+
+
 
 
             if (vp != null) {
@@ -174,7 +219,8 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
             } else {
                 /*Log.e(this.getClass().getName(),"Error empty vp");*/
             }
-
+            }
+           // }
 
             Log.w("Ski_c", "Ski_c show list");
 

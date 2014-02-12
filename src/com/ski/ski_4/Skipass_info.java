@@ -22,8 +22,8 @@ public class Skipass_info extends Activity {
         TextView PhoneInput = (TextView) findViewById(R.id.PhoneInput);
         PhoneInput.setText("");*/
 
-        TextView NumberInput = (TextView) findViewById(R.id.NumberInput);
-        NumberInput.setText(SendDataCheck.GetNumber());
+        /*TextView NumberInput = (TextView) findViewById(R.id.NumberInput);
+        NumberInput.setText(SendDataCheck.GetNumber());*/
 
         TextView DaysInput = (TextView) findViewById(R.id.DaysInput);
         DaysInput.setText(SendDataCheck.GetDays());
