@@ -22,7 +22,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Information Page \n\nThis application was developed by \nKyslyi Roman and Voloshchenko Oleksii\nto help all Bukovel skiers and snowboarders ski more and chiaper\n\nWith the help of it you can sell or buy unfinished ski-pass\n\nOut website is coming soon"
+            android:text="Information Page \n\nThis application was developed by \nKyslyi Roman and Voloshchenko Oleksii\nto help all Bukovel skiers and snowboarders ski more and chiaper\n\nWith the help of it you can sell or buy unfinished ski-pass\n\nOur website is coming soon"
             android:id="@+id/textView" android:layout_gravity="center_vertical" android:layout_margin="10dp"/>
 
     <Button
