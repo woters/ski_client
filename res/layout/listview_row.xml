@@ -1,0 +1,74 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+
+        android:id="@+id/relativeLayout1"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:background="@color/dk_gray"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+
+            android:id="@+id/FirstText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="First"
+            android:textSize="20sp"
+            android:layout_weight="1" android:layout_marginLeft="10dp">
+
+    </TextView>
+
+    <TextView
+
+            android:id="@+id/SecondText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Second"
+            android:textSize="20sp"
+            android:layout_weight="1" android:layout_marginRight="10dp">
+
+    </TextView>
+
+
+
+
+=======
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+
+        android:id="@+id/relativeLayout1"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:background="@color/dk_gray"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+
+            android:id="@+id/FirstText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="First"
+            android:textSize="20sp"
+            android:layout_weight="1" android:layout_marginLeft="10dp">
+
+    </TextView>
+
+    <TextView
+
+            android:id="@+id/SecondText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Second"
+            android:textSize="20sp"
+            android:layout_weight="1" android:layout_marginRight="10dp">
+
+    </TextView>
+
+
+
+
+>>>>>>> 51c436cc7d1c0fc20e6aa37f629ef065797ff184
+</LinearLayout>
