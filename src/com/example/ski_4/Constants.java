@@ -1,7 +1,6 @@
 package com.example.ski_4;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

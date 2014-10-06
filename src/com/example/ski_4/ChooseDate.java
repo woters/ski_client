@@ -11,10 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.Calendar;
 
 
 public class ChooseDate extends Fragment implements ICallBackFragmentAdapter {

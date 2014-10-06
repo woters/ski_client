@@ -159,7 +159,7 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
         try {
-            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             HttpResponse response = client.execute(post);
             Log.w("Ski_c", "Ski_c info sent");
             switch (Constants.ACTIVITY) {

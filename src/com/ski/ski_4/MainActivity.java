@@ -48,6 +48,9 @@ public class MainActivity extends Activity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
+        startService(new Intent(BackgroundService.class.getName()));
+        Log.i("Ski_c", "Service from main activity try to create");
+
 
 
 

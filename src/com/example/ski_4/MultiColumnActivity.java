@@ -4,25 +4,19 @@ package com.example.ski_4;
  * Created by Alyosha on 04.12.13.
  */
 
-import static com.example.ski_4.Constants.FIRST_COLUMN;
-import static com.example.ski_4.Constants.SECOND_COLUMN;
-
 /*import static com.example.ski_4.Constants.THIRD_COLUMN;
 import static com.example.ski_4.Constants.FOURTH_COLUMN;*/
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import android.app.Activity;
+        import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
 
 public class MultiColumnActivity extends Activity

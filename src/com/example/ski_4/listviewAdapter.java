@@ -5,9 +5,6 @@ package com.example.ski_4;
  */
 
 
-import static com.example.ski_4.Constants.FIRST_COLUMN;
-import static com.example.ski_4.Constants.SECOND_COLUMN;
-
 /*import static com.example.ski_4.Constants.THIRD_COLUMN;
 import static com.example.ski_4.Constants.FOURTH_COLUMN;*/
 
@@ -17,12 +14,9 @@ import static com.example.ski_4.Constants.FOURTH_COLUMN;*/
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import android.app.Activity;
-import android.database.Cursor;
-import android.util.Log;
+        import android.app.Activity;
+        import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
