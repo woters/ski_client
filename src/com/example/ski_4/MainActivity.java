@@ -3,6 +3,7 @@ package com.example.ski_4;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.facebook.android.FacebookError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.perm.kate.api.Api;
+import com.ski.ski_4.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,6 +36,8 @@ public class MainActivity extends Activity {
     Button postButton;
     EditText messageEditText;
 
+    DbHelper mDbHelper;
+
     VkAccount account = new VkAccount();
     Api api;
 
@@ -47,6 +51,20 @@ public class MainActivity extends Activity {
         AdView adView = (AdView)this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+
+        //creating the local database
+        mDbHelper = new DbHelper(this);
+        try {
+            mDbHelper.createDataBase();
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
+        try {
+            mDbHelper.openDataBase();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
 
 
 
