@@ -3,8 +3,8 @@ package com.example.ski_4;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.SQLException;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StrictMode.enableDefaults();
 
 
         AdView adView = (AdView)this.findViewById(R.id.adView);
@@ -53,18 +54,21 @@ public class MainActivity extends Activity {
         adView.loadAd(adRequest);
 
 
-        //creating the local database
+        //creating the local database  if it doesn't exist
         mDbHelper = new DbHelper(this);
         try {
             mDbHelper.createDataBase();
+            Log.i("Ski_c", "created new database");
+
         } catch (IOException ioe) {
             throw new Error("Unable to create database");
         }
-        try {
+        /*try {
             mDbHelper.openDataBase();
+            Log.i("Ski_c", "the database is opened in readonly");
         } catch (SQLException sqle) {
             throw sqle;
-        }
+        }*/
 
 
 

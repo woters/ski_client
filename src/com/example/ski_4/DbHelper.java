@@ -5,11 +5,19 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by Alyosha on 07.10.2014.
@@ -44,6 +52,8 @@ public class DbHelper extends SQLiteOpenHelper {
         boolean dbExist = checkDataBase();
         if (dbExist) {
             // do nothing - database already exist
+            Log.i("Ski_c", "database already exist");
+
         } else {
 
             // By calling this method and empty database will be created into
@@ -56,7 +66,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
             try {
 
-                copyDataBase();
+                /*copyDataBase();*/
+                copyDb();
 
             } catch (IOException e) {
 
@@ -101,13 +112,19 @@ public class DbHelper extends SQLiteOpenHelper {
      * empty database in the system folder, from where it can be accessed and
      * handled. This is done by transfering bytestream.
      * */
-    private void copyDataBase() throws IOException {
+    /*private void copyDataBase() throws IOException {
 
         // Open your local db as the input stream
+        //
+        //Need to change input stream to servers db
+        //
         InputStream myInput = myContext.getAssets().open(DB_NAME);
+        //
+        //
+
 
         // Path to the just created empty db
-        String outFileName = /*DB_PATH + */DB_NAME;
+        String outFileName = *//*DB_PATH + *//*DB_NAME;
 
         // Open the empty db as the output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
@@ -124,6 +141,58 @@ public class DbHelper extends SQLiteOpenHelper {
         myOutput.close();
         myInput.close();
 
+        Log.i("Ski_c", "database is  copied");
+
+    }*/
+
+    public void copyDb() throws IOException {
+        String result = "";
+        InputStream isr = null;
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://your_ip_address/php_filename.php");// your ip address  and php file name here
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            isr = entity.getContent();
+        } catch (Exception e) {
+            Log.e("Ski_c", "Error in http connection " + e.toString());
+            /*tv.setText("Couldnt connect to database");*/
+        }
+//convert response to string
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(isr, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            isr.close();
+
+            result = sb.toString();
+        } catch (Exception e) {
+            Log.e("Ski_c", "Error  converting result " + e.toString());
+        }
+
+        //parse json data
+        try {
+            String s = "";
+            JSONArray jArray = new JSONArray(result);
+
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONObject json = jArray.getJSONObject(i);
+                s = s +
+                        "ID : " + json.getString("CITY_ID") + "\n" +
+
+                        "NAME : " + json.getString("CITY_NAME") + "\n\n";
+            }
+            Log.i("Ski_c s is", s);
+            /*tv.setText(s);*/
+
+        } catch (Exception e) {
+// TODO: handle exception
+            Log.e("Ski_c", "Error Parsing Data " + e.toString());
+        }
     }
 
     public void openDataBase() throws SQLException {
