@@ -11,13 +11,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 /**
  * Created by Alyosha on 07.10.2014.
@@ -27,9 +25,9 @@ public class DbHelper extends SQLiteOpenHelper {
     // The Android's default system path of your application database.
     /*private static String DB_PATH = "/data/data/com.example.sqltest/databases/";*/
 
-    private static String DB_NAME = "test.sqlite";
+    private static String DB_NAME = "Storage.db";
 
-    private SQLiteDatabase myDataBase;
+    private static SQLiteDatabase myDataBase;
 
     private final Context myContext;
 
@@ -68,6 +66,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 /*copyDataBase();*/
                 copyDb();
+                Log.i("Ski_c", " createDataBase() -> copyDb();");
+
 
             } catch (IOException e) {
 
@@ -154,11 +154,50 @@ public class DbHelper extends SQLiteOpenHelper {
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             isr = entity.getContent();
+
+            Log.i("Ski_c", " Connected to the server and got entity");
+
+            Log.i("Ski_c entity isr is ", String.valueOf(isr));
+
+
+            // Open this response as the input stream (read from)
+//            InputStream myInput = myContext.getAssets().open(DB_NAME);
+            InputStream myInput = isr;
+
+            // Path to the just created empty db
+            String outFileName = /*DB_PATH + */DB_NAME;
+
+            // Open the empty db as the output stream (write to)
+            OutputStream myOutput = new FileOutputStream(outFileName);
+
+            Log.i("Ski_c", " input and outpit streams are set");
+
+            // transfer bytes from the inputfile to the outputfile
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = myInput.read(buffer)) > 0) {
+                myOutput.write(buffer, 0, length);
+            }
+
+            Log.i("Ski_c output stream is ", String.valueOf(myOutput));
+
+            Log.i("Ski_c", " info is transfered");
+
+            // Close the streams
+            myOutput.flush();
+            myOutput.close();
+            myInput.close();
+
+
         } catch (Exception e) {
             Log.e("Ski_c", "Error in http connection " + e.toString());
             /*tv.setText("Couldnt connect to database");*/
         }
-//convert response to string
+
+
+
+
+/*//convert response to string
 
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(isr, "iso-8859-1"), 8);
@@ -182,17 +221,28 @@ public class DbHelper extends SQLiteOpenHelper {
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject json = jArray.getJSONObject(i);
                 s = s +
-                        "ID : " + json.getString("CITY_ID") + "\n" +
+                        "price : " + json.getString("price") + "\n" +
 
-                        "NAME : " + json.getString("CITY_NAME") + "\n\n";
+                        "date1 : " + json.getString("date1") + "\n" +
+
+                        "date2 : " + json.getString("date2") + "\n" +
+
+                        "phone : " + json.getString("phone") + "\n" +
+
+                        "name : " + json.getString("name") + "\n" +
+
+                        "number : " + json.getString("number") + "\n\n";
+                *//*db.insert();*//*
             }
             Log.i("Ski_c s is", s);
-            /*tv.setText(s);*/
+            *//*tv.setText(s);*//*
+
+
 
         } catch (Exception e) {
 // TODO: handle exception
             Log.e("Ski_c", "Error Parsing Data " + e.toString());
-        }
+        }*/
     }
 
     public void openDataBase() throws SQLException {
@@ -217,6 +267,9 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+        /*db.execSQL(Storage.SQL_CREATE_ENTRIES);
+        Log.i("Ski_c", " Table in the db is created");*/
+
     }
 
     @Override
@@ -224,10 +277,19 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    /*public static DbHelper getInstance() {
+        if (null == myDataBase) {
+
+            myDataBase = new DbHelper(c);
+        }
+        return myDataBase;
+    }*/
+}
+
 // Add your public helper methods to access and get content from the
 // database.
 // You could return cursors by doing "return myDataBase.query(....)" so it'd
 // be easy
 // to you to create adapters for your views.
 
-}
+
