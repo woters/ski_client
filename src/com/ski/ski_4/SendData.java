@@ -119,7 +119,7 @@ public class SendData extends AsyncTask<String, Void, String> {
         clearCnst();
         switch (Constants.ACTIVITY) {
             case 0:
-                post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
+                post = new HttpPost("http://54.72.24.156:8080/ski2/buy");
                 date1 = ChooseDate.getYearFromDatePicker1() + "-" + ChooseDate.getMonthFromDatePicker1() + "-" + ChooseDate.getDayFromDatePicker1();
                 date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
@@ -127,7 +127,7 @@ public class SendData extends AsyncTask<String, Void, String> {
                 Log.w("Ski_c", "Ski_c info added to buy");
                 break;
             case 1:
-                post = new HttpPost("http://54.203.248.89:8080/ski2/sell");
+                post = new HttpPost("http://54.72.24.156:8080/ski2/sell");
                 price = EnterPrice.getPrice();
                 date1 = ChooseDate.getYearFromDatePicker1() + "-" + ChooseDate.getMonthFromDatePicker1() + "-" + ChooseDate.getDayFromDatePicker1();
                 date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
@@ -144,12 +144,12 @@ public class SendData extends AsyncTask<String, Void, String> {
             /*nameValuePairs.add(new BasicNameValuePair("number", number));*/
                 break;
             case 2:
-                post = new HttpPost("http://54.203.248.89:8080/ski2/");
+                post = new HttpPost("http://54.72.24.156:8080/ski2/");
                 number = Check.getNumber();
                 nameValuePairs.add(new BasicNameValuePair("number", number));
                 break;
             default:
-                post = new HttpPost("http://54.203.248.89:8080/ski2/buy");
+                post = new HttpPost("http://54.72.24.156:8080/ski2/buy");
                 date1 = ChooseDate.getYearFromDatePicker1() + "-" + ChooseDate.getMonthFromDatePicker1() + "-" + ChooseDate.getDayFromDatePicker1();
                 date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
