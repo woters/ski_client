@@ -1,4 +1,4 @@
-package com.example.ski_4;
+package com.ski.ski_4;
 
 import android.content.Context;
 import android.database.SQLException;

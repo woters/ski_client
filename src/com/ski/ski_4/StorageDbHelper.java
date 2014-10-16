@@ -1,9 +1,8 @@
-package com.example.ski_4;
+package com.ski.ski_4;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.ski.ski_4.Storage;
 
 /**
  * Created by Alyosha on 07.10.2014.

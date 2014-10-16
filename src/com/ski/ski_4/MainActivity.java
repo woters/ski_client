@@ -34,6 +34,8 @@ public class MainActivity extends Activity {
     Button postButton;
     EditText messageEditText;
 
+    DbHelper mDbHelper;
+
     VkAccount account = new VkAccount();
     Api api;
 
@@ -50,6 +52,22 @@ public class MainActivity extends Activity {
 
         startService(new Intent(BackgroundService.class.getName()));
         Log.i("Ski_c", "Service from main activity try to create");
+
+        //creating the local database  if it doesn't exist
+        mDbHelper = new DbHelper(this);
+        try {
+            mDbHelper.createDataBase();
+            Log.i("Ski_c", "created new database");
+
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
+        /*try {
+            mDbHelper.openDataBase();
+            Log.i("Ski_c", "the database is opened in readonly");
+        } catch (SQLException sqle) {
+            throw sqle;
+        }*/
 
 
 
