@@ -97,7 +97,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                         //this.finish();
                         getActivity().finish();
                         Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
-                        Log.w("Ski_c", "Ski_c pushed to send");
+                        Log.w("Ski_c", "Ski_c pushed to send from ChooseDateEnd");
                     }
 
                     }

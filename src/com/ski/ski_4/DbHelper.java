@@ -66,7 +66,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 /*copyDataBase();*/
                 copyDb();
-                Log.i("Ski_c", " createDataBase() -> copyDb();");
+                Log.i("Ski_c", " createDataBase() -> copyDb(); DbHelper");
 
 
             } catch (IOException e) {
@@ -150,7 +150,7 @@ public class DbHelper extends SQLiteOpenHelper {
         InputStream isr = null;
         try {
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://your_ip_address/php_filename.php");// your ip address  and php file name here
+            HttpPost httppost = new HttpPost("http://54.72.24.156:8080/ski2/buy");// your ip address  and php file name here
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             isr = entity.getContent();

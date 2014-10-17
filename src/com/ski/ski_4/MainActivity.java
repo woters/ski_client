@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
         mDbHelper = new DbHelper(this);
         try {
             mDbHelper.createDataBase();
-            Log.i("Ski_c", "created new database");
+            Log.i("Ski_c MainActivity", "created new database");
 
         } catch (IOException ioe) {
             throw new Error("Unable to create database");

@@ -82,7 +82,8 @@ public class SendData extends AsyncTask<String, Void, String> {
         Log.w("Ski_c", "Dialog dismissed");
         Intent intent = new Intent(context, MultiColumnActivity.class);
         intent.putExtra("name",name1);
-        intent.putExtra("price",price1);
+        Log.i("Ski_c name pushed is", String.valueOf(name1));
+        intent.putExtra("price", price1);
         intent.putExtra("phone",phone1);
         intent.putExtra("date1",date11);
         intent.putExtra("date2",date21);
@@ -140,6 +141,7 @@ public class SendData extends AsyncTask<String, Void, String> {
                 nameValuePairs.add(new BasicNameValuePair("date2", date2));
                 nameValuePairs.add(new BasicNameValuePair("phone", phone));
                 nameValuePairs.add(new BasicNameValuePair("name", name));
+                Log.i("Ski_c name added is", String.valueOf(name));
                 Log.w("Ski_c", "Ski_c info added to sell");
             /*nameValuePairs.add(new BasicNameValuePair("number", number));*/
                 break;
@@ -184,6 +186,7 @@ public class SendData extends AsyncTask<String, Void, String> {
                         Log.w("Ski_c  JSONArray ", array.toString());
                         arraylength=  array.length();
                         name1 = new ArrayList<String>();
+                        Log.i("Ski_c for json is", String.valueOf(name1));
                         phone1 = new ArrayList<String>();
                         price1 = new ArrayList<String>();
                         date11 = new ArrayList<String>();
@@ -192,7 +195,7 @@ public class SendData extends AsyncTask<String, Void, String> {
 
                             JSONObject obj = new JSONObject();
                             obj = array.getJSONObject(i);
-                            Log.w("Ski_c", "received info from database");
+                            /*Log.w("Ski_c", "received info from database");*/
                             token1 = obj.getString("Name");
                             name1.add(token1);
                             Constants.Names.add(i, token1);
@@ -235,18 +238,18 @@ public class SendData extends AsyncTask<String, Void, String> {
             //       String responseText = EntityUtils.toString(entity);
             //       System.out.println(responseText);
         } catch (UnsupportedEncodingException e) {
-            Log.w("Ski_c", "Ski_c UnsupportedEncodingException");
+            Log.w("Ski_c 1", "Ski_c UnsupportedEncodingException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (ClientProtocolException e) {
-            Log.w("Ski_c", "Ski_c ClientProtocolException");
+            Log.w("Ski_c 2", "Ski_c ClientProtocolException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
-            Log.w("Ski_c", "Ski_c IOException");
+            Log.w("Ski_c 3", "Ski_c IOException");
             System.out.println("General Ski_c I/O exception: " + e.getMessage());
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.w("Ski_c", "JSONException");
+            Log.w("Ski_c 4", "JSONException");
             System.out.println("General Ski_c JSONException: " + e.getMessage());
         }
 
