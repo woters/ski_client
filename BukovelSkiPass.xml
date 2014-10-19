@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ski_client" default="all">
+  
+  
+  <property file="BukovelSkiPass.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.android_2.2_platform" value="${jdk.home.android_2.2_platform}/../Program Files (x86)/Java/jdk1.7.0_03/bin"/>
+  <path id="jdk.classpath.android_2.2_platform">
+    <fileset dir="${jdk.home.android_2.2_platform}">
+      <include name="platforms/android-8/android.jar"/>
+      <include name="platforms/android-8/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="jdk.bin.android_2.1_platform" value="${jdk.home.android_2.1_platform}/../../Java/jdk1.7.0_03/bin"/>
+  <path id="jdk.classpath.android_2.1_platform">
+    <fileset dir="${jdk.home.android_2.1_platform}">
+      <include name="platforms/android-7/android.jar"/>
+      <include name="platforms/android-7/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="jdk.bin.android_4.0.3_platform" value="${jdk.home.android_4.0.3_platform}/../Program Files (x86)/Java/jdk1.7.0_03/bin"/>
+  <path id="jdk.classpath.android_4.0.3_platform">
+    <fileset dir="${jdk.home.android_4.0.3_platform}">
+      <include name="platforms/android-15/android.jar"/>
+      <include name="platforms/android-15/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.android_4.0.3_platform}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.android_4.0.3_platform}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.android_4.0.3_platform"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.com_facebook_android.classpath">
+    <pathelement location="${basedir}/../../../../../../Android/facebook-facebook-android-sdk-c58af0b/facebook/bin/com_facebook_android.jar"/>
+  </path>
+  
+  <path id="library.google-play-services.classpath">
+    <pathelement location="${basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+  </path>
+  
+  <path id="library.gson-2.2.4.classpath">
+    <pathelement location="${basedir}/../../../../../../Android/google-gson-2.2.4-release/google-gson-2.2.4/gson-2.2.4.jar"/>
+  </path>
+  
+  <path id="library.jsoup-1.7.3.classpath">
+    <pathelement location="${basedir}/../../../../../../Android/jsoup-1.7.3.jar"/>
+  </path>
+  
+  <path id="library.v13.classpath">
+    <fileset dir="${basedir}/../../../../../../Android/extras/android/support/v13">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module AndroidVkSdk -->
+  
+  <dirname property="module.androidvksdk.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.androidvksdk" value="${jdk.home.android_2.1_platform}"/>
+  <property name="module.jdk.bin.androidvksdk" value="${jdk.bin.android_2.1_platform}"/>
+  <property name="module.jdk.classpath.androidvksdk" value="jdk.classpath.android_2.1_platform"/>
+  
+  <property name="compiler.args.androidvksdk" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="androidvksdk.output.dir" value="${module.androidvksdk.basedir}/out/production/AndroidVkSdk"/>
+  <property name="androidvksdk.testoutput.dir" value="${module.androidvksdk.basedir}/out/test/AndroidVkSdk"/>
+  
+  <path id="androidvksdk.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="androidvksdk.module.production.classpath">
+    <path refid="${module.jdk.classpath.androidvksdk}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  <path id="androidvksdk.runtime.production.module.classpath">
+    <pathelement location="${androidvksdk.output.dir}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  <path id="androidvksdk.module.classpath">
+    <path refid="${module.jdk.classpath.androidvksdk}"/>
+    <pathelement location="${androidvksdk.output.dir}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  <path id="androidvksdk.runtime.module.classpath">
+    <pathelement location="${androidvksdk.testoutput.dir}"/>
+    <pathelement location="${androidvksdk.output.dir}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.androidvksdk">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.androidvksdk">
+    <patternset refid="excluded.from.module.androidvksdk"/>
+  </patternset>
+  
+  <path id="androidvksdk.module.sourcepath">
+    <dirset dir="${module.androidvksdk.basedir}/../../../../../../Android/VKontakte-SDK-master/Android-VKontakte-SDK-master/AndroidVkSdk">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.androidvksdk" depends="compile.module.androidvksdk.production,compile.module.androidvksdk.tests" description="Compile module AndroidVkSdk"/>
+  
+  <target name="compile.module.androidvksdk.production" depends="register.custom.compilers" description="Compile module AndroidVkSdk; production classes">
+    <mkdir dir="${androidvksdk.output.dir}"/>
+    <javac2 destdir="${androidvksdk.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidvksdk}/javac">
+      <compilerarg line="${compiler.args.androidvksdk}"/>
+      <bootclasspath refid="androidvksdk.module.bootclasspath"/>
+      <classpath refid="androidvksdk.module.production.classpath"/>
+      <src refid="androidvksdk.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androidvksdk"/>
+    </javac2>
+    
+    <copy todir="${androidvksdk.output.dir}">
+      <fileset dir="${module.androidvksdk.basedir}/../../../../../../Android/VKontakte-SDK-master/Android-VKontakte-SDK-master/AndroidVkSdk/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.androidvksdk.basedir}/../../../../../../Android/VKontakte-SDK-master/Android-VKontakte-SDK-master/AndroidVkSdk/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.androidvksdk.tests" depends="register.custom.compilers,compile.module.androidvksdk.production" description="compile module AndroidVkSdk; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.androidvksdk" description="cleanup module">
+    <delete dir="${androidvksdk.output.dir}"/>
+    <delete dir="${androidvksdk.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module google-play-services_lib -->
+  
+  <dirname property="module.google-play-services_lib.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.google-play-services_lib" value="${jdk.home.android_2.2_platform}"/>
+  <property name="module.jdk.bin.google-play-services_lib" value="${jdk.bin.android_2.2_platform}"/>
+  <property name="module.jdk.classpath.google-play-services_lib" value="jdk.classpath.android_2.2_platform"/>
+  
+  <property name="compiler.args.google-play-services_lib" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="google-play-services_lib.output.dir" value="${module.google-play-services_lib.basedir}/out/production/google-play-services_lib"/>
+  <property name="google-play-services_lib.testoutput.dir" value="${module.google-play-services_lib.basedir}/out/test/google-play-services_lib"/>
+  
+  <path id="google-play-services_lib.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="google-play-services_lib.module.production.classpath">
+    <path refid="${module.jdk.classpath.google-play-services_lib}"/>
+    <path refid="library.google-play-services.classpath"/>
+  </path>
+  
+  <path id="google-play-services_lib.runtime.production.module.classpath">
+    <pathelement location="${google-play-services_lib.output.dir}"/>
+    <path refid="library.google-play-services.classpath"/>
+  </path>
+  
+  <path id="google-play-services_lib.module.classpath">
+    <path refid="${module.jdk.classpath.google-play-services_lib}"/>
+    <pathelement location="${google-play-services_lib.output.dir}"/>
+    <path refid="library.google-play-services.classpath"/>
+  </path>
+  
+  <path id="google-play-services_lib.runtime.module.classpath">
+    <pathelement location="${google-play-services_lib.testoutput.dir}"/>
+    <pathelement location="${google-play-services_lib.output.dir}"/>
+    <path refid="library.google-play-services.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.google-play-services_lib">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.google-play-services_lib">
+    <patternset refid="excluded.from.module.google-play-services_lib"/>
+  </patternset>
+  
+  <path id="google-play-services_lib.module.sourcepath">
+    <dirset dir="${module.google-play-services_lib.basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib">
+      <include name="gen"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.google-play-services_lib" depends="compile.module.google-play-services_lib.production,compile.module.google-play-services_lib.tests" description="Compile module google-play-services_lib"/>
+  
+  <target name="compile.module.google-play-services_lib.production" depends="register.custom.compilers" description="Compile module google-play-services_lib; production classes">
+    <mkdir dir="${google-play-services_lib.output.dir}"/>
+    <javac2 destdir="${google-play-services_lib.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.google-play-services_lib}/javac">
+      <compilerarg line="${compiler.args.google-play-services_lib}"/>
+      <bootclasspath refid="google-play-services_lib.module.bootclasspath"/>
+      <classpath refid="google-play-services_lib.module.production.classpath"/>
+      <src refid="google-play-services_lib.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.google-play-services_lib"/>
+    </javac2>
+    
+    <copy todir="${google-play-services_lib.output.dir}">
+      <fileset dir="${module.google-play-services_lib.basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.google-play-services_lib.basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.google-play-services_lib.tests" depends="register.custom.compilers,compile.module.google-play-services_lib.production" description="compile module google-play-services_lib; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.google-play-services_lib" description="cleanup module">
+    <delete dir="${google-play-services_lib.output.dir}"/>
+    <delete dir="${google-play-services_lib.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module ski_client -->
+  
+  <dirname property="module.ski_client.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.ski_client" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ski_client" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ski_client" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ski_client" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="ski_client.output.dir" value="${module.ski_client.basedir}/out/production/ski_client"/>
+  <property name="ski_client.testoutput.dir" value="${module.ski_client.basedir}/out/test/ski_client"/>
+  
+  <path id="ski_client.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ski_client.module.production.classpath">
+    <path refid="${module.jdk.classpath.ski_client}"/>
+    <pathelement location="${google-play-services_lib.output.dir}"/>
+    <pathelement location="${basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+    <pathelement location="${androidvksdk.output.dir}"/>
+    <path refid="library.jsoup-1.7.3.classpath"/>
+    <path refid="library.com_facebook_android.classpath"/>
+    <path refid="library.v13.classpath"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  <path id="ski_client.runtime.production.module.classpath">
+    <path refid="google-play-services_lib.runtime.production.module.classpath"/>
+    <pathelement location="${basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+    <path refid="androidvksdk.runtime.production.module.classpath"/>
+    <path refid="library.jsoup-1.7.3.classpath"/>
+    <path refid="library.com_facebook_android.classpath"/>
+    <path refid="library.v13.classpath"/>
+    <pathelement location="${ski_client.output.dir}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  <path id="ski_client.module.classpath">
+    <path refid="${module.jdk.classpath.ski_client}"/>
+    <pathelement location="${google-play-services_lib.testoutput.dir}"/>
+    <pathelement location="${google-play-services_lib.output.dir}"/>
+    <pathelement location="${basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+    <pathelement location="${androidvksdk.testoutput.dir}"/>
+    <pathelement location="${androidvksdk.output.dir}"/>
+    <path refid="library.jsoup-1.7.3.classpath"/>
+    <path refid="library.com_facebook_android.classpath"/>
+    <path refid="library.v13.classpath"/>
+    <pathelement location="${ski_client.output.dir}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  <path id="ski_client.runtime.module.classpath">
+    <path refid="google-play-services_lib.runtime.module.classpath"/>
+    <pathelement location="${basedir}/../../../../../../Android/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar"/>
+    <path refid="androidvksdk.runtime.module.classpath"/>
+    <path refid="library.jsoup-1.7.3.classpath"/>
+    <path refid="library.com_facebook_android.classpath"/>
+    <path refid="library.v13.classpath"/>
+    <pathelement location="${ski_client.testoutput.dir}"/>
+    <pathelement location="${ski_client.output.dir}"/>
+    <path refid="library.gson-2.2.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ski_client">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ski_client">
+    <patternset refid="excluded.from.module.ski_client"/>
+  </patternset>
+  
+  <path id="ski_client.module.sourcepath">
+    <dirset dir="${module.ski_client.basedir}">
+      <include name="gen"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ski_client" depends="compile.module.ski_client.production,compile.module.ski_client.tests" description="Compile module ski_client"/>
+  
+  <target name="compile.module.ski_client.production" depends="register.custom.compilers,compile.module.google-play-services_lib,compile.module.androidvksdk" description="Compile module ski_client; production classes">
+    <mkdir dir="${ski_client.output.dir}"/>
+    <javac2 destdir="${ski_client.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ski_client}/javac">
+      <compilerarg line="${compiler.args.ski_client}"/>
+      <bootclasspath refid="ski_client.module.bootclasspath"/>
+      <classpath refid="ski_client.module.production.classpath"/>
+      <src refid="ski_client.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ski_client"/>
+    </javac2>
+    
+    <copy todir="${ski_client.output.dir}">
+      <fileset dir="${module.ski_client.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.ski_client.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ski_client.tests" depends="register.custom.compilers,compile.module.ski_client.production" description="compile module ski_client; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.ski_client" description="cleanup module">
+    <delete dir="${ski_client.output.dir}"/>
+    <delete dir="${ski_client.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.androidvksdk, clean.module.google-play-services_lib, clean.module.ski_client" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.androidvksdk, compile.module.google-play-services_lib, compile.module.ski_client" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

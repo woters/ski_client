@@ -82,9 +82,10 @@ public class SendData extends AsyncTask<String, Void, String> {
         Log.w("Ski_c", "Dialog dismissed");
         Intent intent = new Intent(context, MultiColumnActivity.class);
         intent.putExtra("name",name1);
-        Log.i("Ski_c name pushed is", String.valueOf(name1));
+        Log.i("Ski_c name to display pushed is", String.valueOf(name1));
         intent.putExtra("price", price1);
         intent.putExtra("phone",phone1);
+        Log.i("Ski_c phone to display pushed is", String.valueOf(phone1));
         intent.putExtra("date1",date11);
         intent.putExtra("date2",date21);
         context.startActivity(intent);
@@ -140,6 +141,7 @@ public class SendData extends AsyncTask<String, Void, String> {
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
                 nameValuePairs.add(new BasicNameValuePair("date2", date2));
                 nameValuePairs.add(new BasicNameValuePair("phone", phone));
+                Log.i("Ski_c phone added is", String.valueOf(phone));
                 nameValuePairs.add(new BasicNameValuePair("name", name));
                 Log.i("Ski_c name added is", String.valueOf(name));
                 Log.w("Ski_c", "Ski_c info added to sell");
@@ -174,6 +176,8 @@ public class SendData extends AsyncTask<String, Void, String> {
                     String token3 = null;
                     String token4 = null;
                     String token5 = null;
+
+                    Log.i("Ski_c received entity is", String.valueOf(entity));
 
 
                     if (entity != null) {

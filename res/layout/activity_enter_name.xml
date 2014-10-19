@@ -81,7 +81,7 @@
             android:layout_span="2"
             android:layout_weight="1"
             android:ems="10"
-            android:hint = "0501111111"
+            android:hint = "0503332211"
             android:inputType="phone" />
         
         </TableRow>

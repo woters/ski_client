@@ -155,9 +155,9 @@ public class DbHelper extends SQLiteOpenHelper {
             HttpEntity entity = response.getEntity();
             isr = entity.getContent();
 
-            Log.i("Ski_c", " Connected to the server and got entity");
+            Log.i("Ski_c db", " Connected to the server and got entity");
 
-            Log.i("Ski_c entity isr is ", String.valueOf(isr));
+            Log.i("Ski_c db entity isr is ", String.valueOf(isr));
 
 
             // Open this response as the input stream (read from)
@@ -170,7 +170,7 @@ public class DbHelper extends SQLiteOpenHelper {
             // Open the empty db as the output stream (write to)
             OutputStream myOutput = new FileOutputStream(outFileName);
 
-            Log.i("Ski_c", " input and outpit streams are set");
+            Log.i("Ski_c db", " input and outpit streams are set");
 
             // transfer bytes from the inputfile to the outputfile
             byte[] buffer = new byte[1024];
@@ -179,9 +179,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 myOutput.write(buffer, 0, length);
             }
 
-            Log.i("Ski_c output stream is ", String.valueOf(myOutput));
+            Log.i("Ski_c db output stream is ", String.valueOf(myOutput));
 
-            Log.i("Ski_c", " info is transfered");
+            Log.i("Ski_c db", " info is transfered");
 
             // Close the streams
             myOutput.flush();
@@ -190,7 +190,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
         } catch (Exception e) {
-            Log.e("Ski_c", "Error in http connection " + e.toString());
+            Log.e("Ski_c db", "Error in http connection " + e.toString());
             /*tv.setText("Couldnt connect to database");*/
         }
 

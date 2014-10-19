@@ -60,7 +60,7 @@
                     android:text="Medium Text"
                     android:editable="true"
                     android:inputType="textNoSuggestions"
-                    />
+                    android:layout_column="4"/>
 
         </TableRow>
         <TableRow>
@@ -82,7 +82,7 @@
                 android:autoLink="phone"
                 android:editable="true"
                 android:inputType="textNoSuggestions"
-                />
+                android:clickable="true" android:layout_column="4"/>
 
 
     </TableRow>
@@ -104,7 +104,7 @@
                     android:text="Medium Text"
                     android:editable="true"
                     android:inputType="textNoSuggestions"
-                    />
+                    android:layout_column="4"/>
 
             <TextView
                     android:id="@+id/uah"
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=" UAH"
-                    />
+                    android:gravity="left" android:layout_column="5"/>
 
 
         </TableRow>
@@ -156,7 +156,7 @@
                     android:text="Medium Text"
                     android:editable="true"
                     android:inputType="textNoSuggestions"
-                    />
+                    android:layout_column="4"/>
 
 
         </TableRow>
@@ -178,7 +178,7 @@
                     android:text="Medium Text"
                     android:editable="true"
                     android:inputType="textNoSuggestions"
-                    />
+                    android:layout_column="4"/>
 
 
         </TableRow>
@@ -193,6 +193,21 @@
 
                     android:text="@string/Back"
                     android:onClick="GoBack" />
+        <!--</TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">-->
+            <!--<Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_column="1" android:layout_gravity="bottom|right" android:text="On Main"
+                    android:onClick="GoToMain"/>-->
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
         </TableRow>
     </TableLayout>
 

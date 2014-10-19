@@ -20,6 +20,7 @@
     <string name="Finish">Finish</string>
     <string name="hello">Hello</string>
     <string name="Back">Back</string>
+    <!--<string name="On_Main">On Main</string>-->
     <string name="title_activity_go_to_enter_name">GoToEnterName</string>
     <string name="Name">Enter Your Name</string>
     <string name="Phone">Enter Your Phone</string>
