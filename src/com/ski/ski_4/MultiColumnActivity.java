@@ -144,6 +144,10 @@ public class MultiColumnActivity extends Activity
 
     public void GoBack(View view) {
         this.finish();
+        Intent intent = new Intent(this, MainActivity.class);
+//intent.putExtra("runner", Constants.ACTIVITY_SELL);
+
+        startActivity(intent);
     }
 
 }

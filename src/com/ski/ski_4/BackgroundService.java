@@ -24,6 +24,7 @@ public class BackgroundService extends Service {
         @Override
         public void run() {
             Log.i("Ski_c BcS", "Timer task doing work");
+            showNotification();
         }
     };
 
@@ -39,10 +40,10 @@ public class BackgroundService extends Service {
         super.onCreate();
         Log.i("Ski_c BcS", "Service creating");
 
-        timer = new Timer("TweetCollectorTimer");
-        timer.schedule(updateTask, 1000L, 60 * 10000L);
+        timer = new Timer();
+        timer.schedule(updateTask, (long) Math.pow(2.16,7));
 
-        showNotification();
+
     }
 
     private void showNotification() {
@@ -62,7 +63,7 @@ public class BackgroundService extends Service {
                 .setContentText("Press to check available offers!")
                 .setContentIntent(pi)
                 .setLights(0xff0000ff, 5000, 5000)
-                /*.setAutoCancel(true)*/
+                .setAutoCancel(true)
                 /*.setNumber(++numMessages)*/
                 .build();
 
@@ -92,7 +93,7 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("Ski_c", "Service destroying");
+        Log.i("Ski_c BcS", "Service destroying");
 
         timer.cancel();
         timer = null;

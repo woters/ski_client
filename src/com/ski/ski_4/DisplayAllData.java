@@ -1,7 +1,6 @@
 package com.ski.ski_4;
 
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -21,8 +20,8 @@ public class DisplayAllData  extends Activity {
         /*setContentView(R.layout.activity_main);*/
         Log.i("Ski_c DAD", "try DisplayHelper.receiveEntity()");
 
-        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.cancel(0);
+        /*NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.cancel(0);*/
         try {
 
             Log.i("Ski_c DAD", "inside of try DisplayHelper.receiveEntity()");
