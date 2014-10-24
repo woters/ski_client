@@ -39,9 +39,13 @@ public class MultiColumnActivity extends Activity
         populateList();      //i don't know what this do      //now you know))
         listviewAdapter adapter;
         if (list != null)
-            adapter = new listviewAdapter(this, listOfTemp1, listOfTemp2);
-        else
+        {adapter = new listviewAdapter(this, listOfTemp1, listOfTemp2);
+            Log.i("Ski_c MCA ", "adapter = new listviewAdapter(this, listOfTemp1, listOfTemp2");
+            Log.i("Ski_c MCA listOfTemp1 is ", String.valueOf(listOfTemp1));}
+        else {
             adapter = new listviewAdapter(this, new ArrayList<String>(), new ArrayList<String>());
+            Log.i("Ski_c MCA ", "adapter = new listviewAdapter(this, new ArrayList<String>(), new ArrayList<String>(");
+        }
 
 
         lview.setAdapter(adapter);
@@ -51,7 +55,7 @@ public class MultiColumnActivity extends Activity
         lview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Log.d("Ski_c", "itemClick: position = " + position);
+                Log.d("Ski_c MCA", "itemClick: position = " + position);
                 listpos = position;
 
                 Intent intent = new Intent(MultiColumnActivity.this, ListPosition.class);
@@ -84,9 +88,7 @@ public class MultiColumnActivity extends Activity
         return d1.get(pos);
     }
 
-    public static String getDate2(int pos) {
-        return d2.get(pos);
-    }
+    public static String getDate2(int pos) { return d2.get(pos); }
 
 
 
@@ -107,13 +109,21 @@ public class MultiColumnActivity extends Activity
 
 
         Intent intent = getIntent();
+
+        /*Log.i("Ski_c MCA intent is ", String.valueOf(intent));*/
         ArrayList<String> name = intent.getStringArrayListExtra("name");
         ArrayList<String> price = intent.getStringArrayListExtra("price");
         n = intent.getStringArrayListExtra("name");
+        Log.i("Ski_c MCA n is ", String.valueOf(n));
         pr =  intent.getStringArrayListExtra("price");
+        Log.i("Ski_c MCA pr is ", String.valueOf(pr));
         ph = intent.getStringArrayListExtra("phone");
+        Log.i("Ski_c MCA ph is ", String.valueOf(ph));
         d1 = intent.getStringArrayListExtra("date1");
+        Log.i("Ski_c MCA d1 is ", String.valueOf(d1));
         d2 = intent.getStringArrayListExtra("date2");
+
+        Log.i("Ski_c MCA d2 is ", String.valueOf(d2));
 
         list = new ArrayList<HashMap>();
         Log.w("Ski_c adding to Hashmap size =", String.valueOf(SendData.arraylength));

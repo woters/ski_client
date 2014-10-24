@@ -95,7 +95,8 @@ public class listviewAdapter extends BaseAdapter {
         String list_s = list_second.get(position);
         txt_first.setText(list_f);
         txt_second.setText(list_s);
-        Log.w("Ski_c coloumn",list_f );
+        Log.w("Ski_c lvA coloumn",list_f );
+        Log.w("Ski_c lvA constants date2 array is ", String.valueOf(Constants.Date2));
         return convertView;
 
     }

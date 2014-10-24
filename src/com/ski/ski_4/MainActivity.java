@@ -2,27 +2,15 @@ package com.ski.ski_4;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
-import com.facebook.android.AsyncFacebookRunner;
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
-import com.facebook.android.FacebookError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.perm.kate.api.Api;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 
 public class MainActivity extends Activity {
@@ -46,57 +34,37 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        AdView adView = (AdView)this.findViewById(R.id.adView);
+        AdView adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
         startService(new Intent(BackgroundService.class.getName()));
         Log.i("Ski_c", "Service from main activity try to create");
+    }
+
 
         //creating the local database  if it doesn't exist
-        mDbHelper = new DbHelper(this);
+        /*DbHelper db = new DbHelper(this);
+        Log.i("Ski_c MainActivity", "DbHelper db = new DbHelper(this)");
+
+        Log.i("Ski_c MainActivity", "db.getWritableDatabase();");
+        db.getWritableDatabase();
+
+        Log.i("Ski_c MainActivity", "passed db.getWritableDatabase() / want to be returned from db by this time");
+
+        Log.i("Ski_c MainActivity", "db.openDataBase();");
+        db.openDataBase();
+
+        Log.i("Ski_c MainActivity", " db.receiveEntity();");
         try {
-            mDbHelper.createDataBase();
-            Log.i("Ski_c MainActivity", "created new database");
-
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
+            db.receiveEntity();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        /*try {
-            mDbHelper.openDataBase();
-            Log.i("Ski_c", "the database is opened in readonly");
-        } catch (SQLException sqle) {
-            throw sqle;
-        }*/
+
+        Log.i("Ski_c MainActivity", " db.displayFromResult();");*/
 
 
-
-
-        btnFbLogin = (ImageButton) findViewById(R.id.btn_fb);
-
-        mAsyncRunner = new AsyncFacebookRunner(facebook);
-
-        /**
-         * Login button Click event
-         * */
-        btnFbLogin.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Log.d("Image Button", "button Clicked");
-                loginToFacebook();
-
-                setupUI();
-
-
-                //Если сессия есть создаём API для обращения к серверу
-                if (account.access_token != null)
-                    api = new Api(account.access_token, VkLoginActivity.API_ID);
-            }
-        });
-
-
-    }
 
 
     public void GoToBuy(View view) {
@@ -135,7 +103,34 @@ public class MainActivity extends Activity {
     }
 
 
-    // Your Facebook APP ID
+    /* btnFbLogin = (ImageButton) findViewById(R.id.btn_fb);
+
+        mAsyncRunner = new AsyncFacebookRunner(facebook);
+
+        *//**
+     * Login button Click event
+     * *//*
+        btnFbLogin.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.d("Image Button", "button Clicked");
+                loginToFacebook();
+
+                setupUI();
+
+
+                //Если сессия есть создаём API для обращения к серверу
+                if (account.access_token != null)
+                    api = new Api(account.access_token, VkLoginActivity.API_ID);
+            }
+        });
+
+
+    */
+
+
+    /*// Your Facebook APP ID
     private static String APP_ID = "308180782571605"; // Replace with your App ID
 
     // Instance of Facebook Class
@@ -148,7 +143,7 @@ public class MainActivity extends Activity {
     ImageButton btnFbLogin;
 
 
-   /* @Override
+   *//* @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -158,11 +153,11 @@ public class MainActivity extends Activity {
 
 
 
-    }*/
+    }*//*
 
-    /**
+    *//**
      * Function to login into facebook
-     */
+     *//*
     public void loginToFacebook() {
 
         mPrefs = getPreferences(MODE_PRIVATE);
@@ -243,9 +238,9 @@ public class MainActivity extends Activity {
     }
 
 
-    /**
+    *//**
      * Get Profile information by making request to Facebook Graph API
-     */
+     *//*
     public void getProfileInformation() {
         mAsyncRunner.request("me", new AsyncFacebookRunner.RequestListener() {
             @Override
@@ -297,9 +292,9 @@ public class MainActivity extends Activity {
         });
     }
 
-    /**
+    *//**
      * Function to post to facebook wall
-     */
+     *//*
     public void postToWall() {
         // post on user's wall.
         facebook.dialog(this, "feed", new Facebook.DialogListener() {
@@ -323,9 +318,9 @@ public class MainActivity extends Activity {
 
     }
 
-    /**
+    *//**
      * Function to show Access Tokens
-     */
+     *//*
     public void showAccessTokens() {
         String access_token = facebook.getAccessToken();
 
@@ -333,9 +328,9 @@ public class MainActivity extends Activity {
                 "Access Token: " + access_token, Toast.LENGTH_LONG).show();
     }
 
-    /**
+    *//**
      * Function to Logout user from Facebook
-     */
+     *//*
     public void logoutFromFacebook() {
         mAsyncRunner.logout(this, new AsyncFacebookRunner.RequestListener() {
             @Override
@@ -378,12 +373,12 @@ public class MainActivity extends Activity {
 
     private void setupUI() {
      //   authorizeButton = (ImageButton) findViewById(R.id.btn_vk);
-        /*logoutButton=(Button)findViewById(R.id.logout);
+        *//*logoutButton=(Button)findViewById(R.id.logout);
         postButton=(Button)findViewById(R.id.post);
-        messageEditText=(EditText)findViewById(R.id.message);*/
+        messageEditText=(EditText)findViewById(R.id.message);*//*
         authorizeButton.setOnClickListener(authorizeClick);
-        /*logoutButton.setOnClickListener(logoutClick);
-        postButton.setOnClickListener(postClick);*/
+        *//*logoutButton.setOnClickListener(logoutClick);
+        postButton.setOnClickListener(postClick);*//*
     }
 
     private View.OnClickListener authorizeClick = new View.OnClickListener() {
@@ -397,7 +392,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, VkLoginActivity.class);
         startActivityForResult(intent, REQUEST_LOGIN);
-    }
+    }*/
 
 
 }

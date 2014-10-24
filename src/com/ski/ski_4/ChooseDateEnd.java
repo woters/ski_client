@@ -1,4 +1,3 @@
-
 package com.ski.ski_4;
 
 import android.app.Fragment;
@@ -80,27 +79,27 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
                         } else{
 
-                        if (EnterName.getName().length() == 0 || EnterName.getPhone().length() == 0||EnterPrice.getPrice().length() == 0) {
-                            Toast.makeText(getActivity(), "Your Name, Phone or Price is empty", Toast.LENGTH_LONG).show();
+                            if (EnterName.getName().length() == 0 || EnterName.getPhone().length() == 0||EnterPrice.getPrice().length() == 0) {
+                                Toast.makeText(getActivity(), "Your Name, Phone or Price is empty", Toast.LENGTH_LONG).show();
 
-                        }    else{
+                            }    else{
 
 
 
-                        Thread t = new Thread() {
-                            public void run() {
-                                new SendData(getActivity()).execute("");
-                                Log.w("Ski_c", "Ski_c execute senddata");
+                                Thread t = new Thread() {
+                                    public void run() {
+                                        new SendData(getActivity()).execute("");
+                                        Log.w("Ski_c", "Ski_c execute senddata");
+                                    }
+                                };
+                                t.start();
+                                //this.finish();
+                                getActivity().finish();
+                                Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
+                                Log.w("Ski_c", "Ski_c pushed to send from ChooseDateEnd");
                             }
-                        };
-                        t.start();
-                        //this.finish();
-                        getActivity().finish();
-                        Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
-                        Log.w("Ski_c", "Ski_c pushed to send from ChooseDateEnd");
-                    }
 
-                    }
+                        }
                     }
 
                 });
@@ -154,7 +153,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem() - 1, true);
             } else {
-                Log.e(this.getClass().getName(), "Error empty vp");
+                Log.e(/*this.getClass().getName()*/"Ski_c CDE", "Error empty vp");
             }
 
         }
@@ -177,7 +176,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                 Toast.makeText(getActivity(), "Your End Date is before Your Start Date", Toast.LENGTH_LONG).show();
                 Log.w("Ski_c", "wrong date");
 
-                } else{
+            } else{
 
             /*if (Constants.ACTIVITY==1){
 
@@ -190,39 +189,39 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
 
 
-            if (vp != null) {
-                // = tabsAdapter.getViewPager();
+                if (vp != null) {
+                    // = tabsAdapter.getViewPager();
 
-                dialog = new ProgressDialog(getActivity());
+                    dialog = new ProgressDialog(getActivity());
 
-                Log.w("Ski_c", "Dialog 1 started");
+                    Log.w("Ski_c", "Dialog 1 started");
 
-                dialog.setTitle("LOADING...");
-                dialog.setMessage("WAIT.");
-                dialog.setIndeterminate(true);
-                dialog.setCancelable(false);
-                dialog.show();
-                Log.w("Ski_c", "Dialog 1 is showing");
-
-
-                vp.setCurrentItem(vp.getCurrentItem() + 1, true);
-
-                Thread t = new Thread() {
-                    public void run() {
-                        new SendData(getActivity()).execute("");
-                        Log.w("Ski_c", "Ski_c execute senddata");
-                    }
-                };
-                t.start();
+                    dialog.setTitle("LOADING...");
+                    dialog.setMessage("WAIT.");
+                    dialog.setIndeterminate(true);
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    Log.w("Ski_c CDE ", "Dialog 1 is showing");
 
 
-            } else {
+                    vp.setCurrentItem(vp.getCurrentItem() + 1, true);
+
+                    Thread t = new Thread() {
+                        public void run() {
+                            new SendData(getActivity()).execute("");
+                            Log.w("Ski_c CDE ", "Ski_c execute senddata");
+                        }
+                    };
+                    t.start();
+
+
+                } else {
                 /*Log.e(this.getClass().getName(),"Error empty vp");*/
+                }
             }
-            }
-           // }
+            // }
 
-            Log.w("Ski_c", "Ski_c show list");
+            Log.w("Ski_c CDE ", "Ski_c show list");
 
 
 
@@ -247,4 +246,3 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
         this.vp = tabsAdapter.getViewPager();
     }
 }
-

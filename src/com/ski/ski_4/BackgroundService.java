@@ -23,7 +23,7 @@ public class BackgroundService extends Service {
     private TimerTask updateTask = new TimerTask() {
         @Override
         public void run() {
-            Log.i("Ski_c", "Timer task doing work");
+            Log.i("Ski_c BcS", "Timer task doing work");
         }
     };
 
@@ -37,16 +37,20 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i("Ski_c", "Service creating");
+        Log.i("Ski_c BcS", "Service creating");
 
         timer = new Timer("TweetCollectorTimer");
         timer.schedule(updateTask, 1000L, 60 * 10000L);
+
+        showNotification();
     }
 
     private void showNotification() {
 
+        Log.i("Ski_c BcS", "showNotification");
 
-        Intent resultIntent = new Intent(this, Skipass_info.class);
+        Intent resultIntent = new Intent(this, DisplayAllData.class);
+        Log.i("Ski_c BcS", " new Intent(this, DisplayAllData.class)");
         PendingIntent pi = TaskStackBuilder.create(this)
                 .addParentStack(MainActivity.class)
                 .addNextIntent(resultIntent)
@@ -55,9 +59,10 @@ public class BackgroundService extends Service {
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("Bukovel ski-pass is on sale!")
-                .setContentText("Press to check the new offer!")
+                .setContentText("Press to check available offers!")
                 .setContentIntent(pi)
                 .setLights(0xff0000ff, 5000, 5000)
+                /*.setAutoCancel(true)*/
                 /*.setNumber(++numMessages)*/
                 .build();
 

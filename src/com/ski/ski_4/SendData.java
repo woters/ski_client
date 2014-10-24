@@ -48,12 +48,12 @@ public class SendData extends AsyncTask<String, Void, String> {
     ProgressDialog dialog;
 
     private void clearCnst(){
-               Constants.Names.clear();
-                Constants.Prices.clear();
-                Constants.Phones.clear();
-                Constants.Date1.clear();
-                Constants.Date2.clear();
-            }
+        Constants.Names.clear();
+        Constants.Prices.clear();
+        Constants.Phones.clear();
+        Constants.Date1.clear();
+        Constants.Date2.clear();
+    }
 
 
     @Override
@@ -82,10 +82,10 @@ public class SendData extends AsyncTask<String, Void, String> {
         Log.w("Ski_c", "Dialog dismissed");
         Intent intent = new Intent(context, MultiColumnActivity.class);
         intent.putExtra("name",name1);
-        Log.i("Ski_c name to display pushed is", String.valueOf(name1));
+        Log.i("Ski_c name to displayFromResult pushed is", String.valueOf(name1));
         intent.putExtra("price", price1);
         intent.putExtra("phone",phone1);
-        Log.i("Ski_c phone to display pushed is", String.valueOf(phone1));
+        Log.i("Ski_c phone to displayFromResult pushed is", String.valueOf(phone1));
         intent.putExtra("date1",date11);
         intent.putExtra("date2",date21);
         context.startActivity(intent);
@@ -101,7 +101,7 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
 
-   public SendData(Context cxt) {
+    public SendData(Context cxt) {
         super();
         this.context = cxt;
 
