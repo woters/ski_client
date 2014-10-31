@@ -35,6 +35,8 @@
     <string name="finish">Press Finish to proceed</string>
 
     <string name="admob_publisher_id">ca-app-pub-2675276645478382/6853291552</string>
+    <string name="facebook_app_id">840808699304675</string>
+
 
     <string name="btn_en">English</string>
     <string name="btn_ru">Russian</string>

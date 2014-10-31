@@ -89,14 +89,19 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                                 Thread t = new Thread() {
                                     public void run() {
                                         new SendData(getActivity()).execute("");
-                                        Log.w("Ski_c", "Ski_c execute senddata");
+                                        Log.w("Ski_c", "CDE execute senddata");
                                     }
                                 };
                                 t.start();
                                 //this.finish();
+                                /*Log.i("Ski_c CDE getActivity() is ", String.valueOf(getActivity()));*/
                                 getActivity().finish();
-                                Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
-                                Log.w("Ski_c", "Ski_c pushed to send from ChooseDateEnd");
+
+                                /*if*/
+                                /*Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
+                                Log.w("Ski_c", "CDE pushed to send from ChooseDateEnd");*/
+                                Log.i("Ski_c CDE  ", "here in CDE");
+
                             }
 
                         }
@@ -199,7 +204,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                     dialog.setTitle("LOADING...");
                     dialog.setMessage("WAIT.");
                     dialog.setIndeterminate(true);
-                    dialog.setCancelable(false);
+                    dialog.setCancelable(true);
                     dialog.show();
                     Log.w("Ski_c CDE ", "Dialog 1 is showing");
 

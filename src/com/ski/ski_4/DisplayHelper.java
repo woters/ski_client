@@ -3,6 +3,7 @@ package com.ski.ski_4;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -179,7 +180,8 @@ public class DisplayHelper {
         } catch (JSONException e) {
             e.printStackTrace();
             Log.w("Ski_c Dh", "JSONException");
-            System.out.println("General Ski_c JSONException: " + e.getMessage());
+            System.out.println("General Ski_c Dh JSONException: " + e.getMessage());
+            Toast.makeText(context, "No internet connection or the service is temporary unavailable", Toast.LENGTH_LONG).show();
         }
 
         Log.i("Ski_c dh ", "Intent intent = new Intent(myContext, MultiColumnActivity.class)");

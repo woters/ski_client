@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -37,6 +38,8 @@ import java.util.List;
 public class SendData extends AsyncTask<String, Void, String> {
 
     public static int arraylength;
+
+    private String Error = null;
 
     private ArrayList<String> name1;
     private ArrayList<String> phone1;
@@ -77,24 +80,47 @@ public class SendData extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
+        Log.w("Ski_c sd ", "onPostExecute()");
 
-        super.onPostExecute(result);
-        Log.w("Ski_c", "Dialog dismissed");
-        Intent intent = new Intent(context, MultiColumnActivity.class);
-        intent.putExtra("name",name1);
-        Log.i("Ski_c name to displayFromResult pushed is", String.valueOf(name1));
-        intent.putExtra("price", price1);
-        intent.putExtra("phone",phone1);
-        Log.i("Ski_c phone to displayFromResult pushed is", String.valueOf(phone1));
-        intent.putExtra("date1",date11);
-        intent.putExtra("date2",date21);
-        context.startActivity(intent);
+        if (Error == "3") Toast.makeText(context, "No internet connection", Toast.LENGTH_LONG).show();
+        else if (Error == "4") Toast.makeText(context, "Service is temporary unavailable", Toast.LENGTH_LONG).show();
+
+        switch (Constants.ACTIVITY) {
+            case 1:
+
+
+                super.onPostExecute(result);
+                Log.w("Ski_c sd ", "Dialog dismissed");
+                Intent intent = new Intent(context, MultiColumnActivity.class);
+                intent.putExtra("name", name1);
+                Log.i("Ski_c sd name to displayFromResult pushed is", String.valueOf(name1));
+
+                if (name1==null)
+                Toast.makeText(context, "Service is temporary unavailable, your ad wasn't saved", Toast.LENGTH_LONG).show();
+                else Toast.makeText(context, "Your information is added", Toast.LENGTH_LONG).show();
+
+                intent.putExtra("price", price1);
+                intent.putExtra("phone", phone1);
+                Log.i("Ski_c sd phone to displayFromResult pushed is", String.valueOf(phone1));
+                intent.putExtra("date1", date11);
+                intent.putExtra("date2", date21);
+                Log.i("Ski_c sd startActivity ", String.valueOf(intent));
+                /*context.startActivity(intent);*/
+                break;
+
+            case 0:
+                break;
+            default:
+                break;
+        }
+
 
 
     }
 
     @Override
     protected void onCancelled() {
+        Log.w("Ski_c sd ", "onCancelled()");
         dialog.dismiss();
         super.onCancelled();
     }
@@ -119,6 +145,8 @@ public class SendData extends AsyncTask<String, Void, String> {
         HttpPost post;
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
         clearCnst();
+
+        Log.i("Ski_c SD Constants.ACTIVITY is", String.valueOf(Constants.ACTIVITY));
         switch (Constants.ACTIVITY) {
             case 0:
                 post = new HttpPost("http://54.72.24.156:8080/ski2/buy");
@@ -126,7 +154,7 @@ public class SendData extends AsyncTask<String, Void, String> {
                 date2 = ChooseDateEnd.getYearFromDatePicker2() + "-" + ChooseDateEnd.getMonthFromDatePicker2() + "-" + ChooseDateEnd.getDayFromDatePicker2();
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
                 nameValuePairs.add(new BasicNameValuePair("date2", date2));
-                Log.w("Ski_c", "Ski_c info added to buy");
+                Log.w("Ski_c sd ", "info added to buy");
                 break;
             case 1:
                 post = new HttpPost("http://54.72.24.156:8080/ski2/sell");
@@ -141,10 +169,11 @@ public class SendData extends AsyncTask<String, Void, String> {
                 nameValuePairs.add(new BasicNameValuePair("date1", date1));
                 nameValuePairs.add(new BasicNameValuePair("date2", date2));
                 nameValuePairs.add(new BasicNameValuePair("phone", phone));
-                Log.i("Ski_c phone added is", String.valueOf(phone));
+                Log.i("Ski_c sd phone added is", String.valueOf(phone));
                 nameValuePairs.add(new BasicNameValuePair("name", name));
-                Log.i("Ski_c name added is", String.valueOf(name));
-                Log.w("Ski_c", "Ski_c info added to sell");
+                Log.i("Ski_c sd name added is", String.valueOf(name));
+                Log.w("Ski_c", "sd info added to sell");
+
             /*nameValuePairs.add(new BasicNameValuePair("number", number));*/
                 break;
             case 2:
@@ -163,9 +192,13 @@ public class SendData extends AsyncTask<String, Void, String> {
 
 
         try {
+            Log.i("Ski_c sd already in ", "post.setEntity");
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             HttpResponse response = client.execute(post);
-            Log.w("Ski_c", "Ski_c info sent");
+            int StatusCode = response.getStatusLine().getStatusCode();    //200 is bad?
+            Log.w("Ski_c sd StatusCode is ", String.valueOf(StatusCode));
+
+            Log.w("Ski_c ", "sd info sent");
             switch (Constants.ACTIVITY) {
                 case 0:
                     Log.v("response code", response.getStatusLine().getStatusCode() + "");
@@ -177,20 +210,20 @@ public class SendData extends AsyncTask<String, Void, String> {
                     String token4 = null;
                     String token5 = null;
 
-                    Log.i("Ski_c received entity is", String.valueOf(entity));
+                    Log.i("Ski_c sd received entity is", String.valueOf(entity));
 
 
                     if (entity != null) {
                         String retSrc = EntityUtils.toString(entity);
                         // parsing JSON
-                        Log.w("Ski_c JSON retSrc", retSrc);
+                        Log.w("Ski_c sd JSON retSrc", retSrc);
                         JSONArray array = new JSONArray();
                         JSONObject main = new JSONObject(retSrc);
                         array = main.getJSONArray("AvaleiblePasses");
-                        Log.w("Ski_c  JSONArray ", array.toString());
+                        Log.w("Ski_c sd JSONArray ", array.toString());
                         arraylength=  array.length();
                         name1 = new ArrayList<String>();
-                        Log.i("Ski_c for json is", String.valueOf(name1));
+                        Log.i("Ski_c sd for json is", String.valueOf(name1));
                         phone1 = new ArrayList<String>();
                         price1 = new ArrayList<String>();
                         date11 = new ArrayList<String>();
@@ -204,12 +237,12 @@ public class SendData extends AsyncTask<String, Void, String> {
                             name1.add(token1);
                             Constants.Names.add(i, token1);
 
-                            Log.w("Ski_c", token1);
+                            Log.w("Ski_c sd token1 is ", token1);
                             token2 = obj.getString("Phone");
                             phone1.add(token2);
                             Constants.Phones.add(i, token2);
-                            Log.w("Ski_c", Constants.Phones.get(i).toString());
-                            Log.w("Ski_c", token2);
+                            Log.w("Ski_c sd Constants.Phones.get(i).toString() is ", Constants.Phones.get(i).toString());
+                            Log.w("Ski_c sd token2 is ", token2);
                             token3 = obj.getString("price");
                             price1.add(token3);
                             Constants.Prices.add(i, token3);
@@ -219,13 +252,13 @@ public class SendData extends AsyncTask<String, Void, String> {
                             token5 = obj.getString("Date2");
                             date21.add(token5);
                             Constants.Date2.add(i, token5);
-                            Log.w("Ski_c", " info added to Constants");
+                            Log.w("Ski_c sd", " info added to Constants");
                         }
 
 
                     } else {
 
-                        Log.w("Ski_c", "entity = null");
+                        Log.w("Ski_c sd ", "entity = null");
                     }
 
                     break;
@@ -242,18 +275,25 @@ public class SendData extends AsyncTask<String, Void, String> {
             //       String responseText = EntityUtils.toString(entity);
             //       System.out.println(responseText);
         } catch (UnsupportedEncodingException e) {
+
             Log.w("Ski_c 1", "Ski_c UnsupportedEncodingException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (ClientProtocolException e) {
             Log.w("Ski_c 2", "Ski_c ClientProtocolException");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
-            Log.w("Ski_c 3", "Ski_c IOException");
+            Log.w("Ski_c SD 3", "Ski_c IOException");
+            Log.w("Ski_c SD context is ", String.valueOf(context));
+
+            Error = "3";
+
+
             System.out.println("General Ski_c I/O exception: " + e.getMessage());
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.w("Ski_c 4", "JSONException");
+            Log.w("Ski_c SD 4", "JSONException");
+            Error = "4";
             System.out.println("General Ski_c JSONException: " + e.getMessage());
         }
 
