@@ -85,7 +85,7 @@ public class SendData extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        Log.w("Ski_c sd onPostExecute() Error = ", Error);
+        Log.w("Ski_c sd", " in onPostExecute()");
 
         if (Error == "3") {
             Toast.makeText(context, "No internet connection, please check your settings", Toast.LENGTH_LONG).show();
@@ -96,7 +96,7 @@ public class SendData extends AsyncTask<String, Void, String> {
         }
         else if (Error == "4") {
 
-            Toast.makeText(context, "Bukovel ski-pass Service is temporary unavailable", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Bukovel ski-pass service is temporary unavailable", Toast.LENGTH_LONG).show();
             /*Intent intent = new Intent(context, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);*/
