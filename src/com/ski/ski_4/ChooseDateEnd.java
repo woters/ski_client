@@ -86,6 +86,8 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
 
 
+
+
                                 Thread t = new Thread() {
                                     public void run() {
                                         new SendData(getActivity()).execute("");
@@ -97,10 +99,22 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                                 /*Log.i("Ski_c CDE getActivity() is ", String.valueOf(getActivity()));*/
                                 getActivity().finish();
 
+
                                 /*if*/
                                 /*Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
                                 Log.w("Ski_c", "CDE pushed to send from ChooseDateEnd");*/
                                 Log.i("Ski_c CDE  ", "here in CDE");
+
+                               /* dialog = new ProgressDialog(getActivity()); //this dialog has never worked
+
+                                Log.i("Ski_c cde ", "Dialog 2 started");
+
+                                dialog.setTitle("YOUR DATA IS BEING PROCEED...");
+                                dialog.setMessage("WAIT.");
+                                dialog.setIndeterminate(true);
+                                dialog.setCancelable(true);
+                                dialog.show();
+                                Log.i("Ski_c CDE ", "Dialog 2 is showing");*/
 
                             }
 
@@ -155,6 +169,11 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
 
             if (vp != null) {
+
+
+
+
+
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem() - 1, true);
             } else {
@@ -199,7 +218,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
                     dialog = new ProgressDialog(getActivity());
 
-                    Log.w("Ski_c", "Dialog 1 started");
+                    Log.w("Ski_c cde ", "Dialog 1 started");
 
                     dialog.setTitle("LOADING...");
                     dialog.setMessage("WAIT.");

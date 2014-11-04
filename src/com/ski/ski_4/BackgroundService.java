@@ -51,6 +51,8 @@ public class BackgroundService extends Service {
                     Log.i("Ski_c BcS SharedPreferences index is ", String.valueOf(PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)));
 
                     PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).edit().putInt("index", checkIndex()).commit();
+
+                    Log.i("Ski_c BcS new SharedPreferences index is ", String.valueOf(PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)));
                     showNotification();
                 }
             } catch (IOException e) {

@@ -1,9 +1,12 @@
 package com.ski.ski_4;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 import org.apache.http.HttpEntity;
@@ -36,6 +39,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class SendData extends AsyncTask<String, Void, String> {
+
+    NotificationManager nm1;
 
     public static int arraylength;
 
@@ -80,13 +85,45 @@ public class SendData extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        Log.w("Ski_c sd ", "onPostExecute()");
+        Log.w("Ski_c sd onPostExecute() Error = ", Error);
 
-        if (Error == "3") Toast.makeText(context, "No internet connection", Toast.LENGTH_LONG).show();
-        else if (Error == "4") Toast.makeText(context, "Service is temporary unavailable", Toast.LENGTH_LONG).show();
+        if (Error == "3") {
+            Toast.makeText(context, "No internet connection, please check your settings", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+
+        }
+        else if (Error == "4") {
+
+            Toast.makeText(context, "Bukovel ski-pass Service is temporary unavailable", Toast.LENGTH_LONG).show();
+            /*Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);*/
+
+        }
+
+        else if (Error == "5") {
+
+
+
+                Log.i("Ski_c sd ", "showNotification()");
+
+                showNotification();
+
+
+            Log.i("Ski_c sd ", "after showNotification()");
+            Toast.makeText(context, "Bukovel ski-pass Service is temporary unavailable", Toast.LENGTH_LONG).show();
+            /*Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);*/
+
+        }
+
+        else
 
         switch (Constants.ACTIVITY) {
-            case 1:
+            case 0:
 
 
                 super.onPostExecute(result);
@@ -95,9 +132,9 @@ public class SendData extends AsyncTask<String, Void, String> {
                 intent.putExtra("name", name1);
                 Log.i("Ski_c sd name to displayFromResult pushed is", String.valueOf(name1));
 
-                if (name1==null)
+                /*if (name1==null)
                 Toast.makeText(context, "Service is temporary unavailable, your ad wasn't saved", Toast.LENGTH_LONG).show();
-                else Toast.makeText(context, "Your information is added", Toast.LENGTH_LONG).show();
+                else Toast.makeText(context, "Your information is added", Toast.LENGTH_LONG).show();*/
 
                 intent.putExtra("price", price1);
                 intent.putExtra("phone", phone1);
@@ -105,13 +142,20 @@ public class SendData extends AsyncTask<String, Void, String> {
                 intent.putExtra("date1", date11);
                 intent.putExtra("date2", date21);
                 Log.i("Ski_c sd startActivity ", String.valueOf(intent));
-                /*context.startActivity(intent);*/
+                context.startActivity(intent);
                 break;
 
-            case 0:
+            case 1:
+                super.onPostExecute(result);
+                Log.w("Ski_c sd ", "Dialog dismissed");
+                Toast.makeText(context, "Your data was stored successfully", Toast.LENGTH_LONG).show();
+                Intent intent0 = new Intent(context, MainActivity.class);
+                context.startActivity(intent0);
+                intent0.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 break;
             default:
                 break;
+
         }
 
 
@@ -130,6 +174,7 @@ public class SendData extends AsyncTask<String, Void, String> {
     public SendData(Context cxt) {
         super();
         this.context = cxt;
+        nm1 = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
     }
 
@@ -194,11 +239,31 @@ public class SendData extends AsyncTask<String, Void, String> {
         try {
             Log.i("Ski_c sd already in ", "post.setEntity");
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+            long startTime = System.currentTimeMillis();
+            Log.i("Ski_c sd startTime is ", String.valueOf(startTime));
             HttpResponse response = client.execute(post);
-            int StatusCode = response.getStatusLine().getStatusCode();    //200 is bad?
+            long stopTime = System.currentTimeMillis();
+            Log.i("Ski_c sd stopTime is ", String.valueOf(stopTime));
+            long executionTime = stopTime-startTime;
+            Log.i("Ski_c sd executionTime is ", String.valueOf(executionTime));
+
+            if (executionTime>60000) {
+
+                Error = "4";
+
+                if (Constants.ACTIVITY==1) {
+
+                    Error = "5";
+                    Log.i("Ski_c sd executionTime", " >60000");
+                }
+
+            }
+
+
+            int StatusCode = response.getStatusLine().getStatusCode();    //200 is bad or ok?
             Log.w("Ski_c sd StatusCode is ", String.valueOf(StatusCode));
 
-            Log.w("Ski_c ", "sd info sent");
+            Log.w("Ski_c sd", " info sent");
             switch (Constants.ACTIVITY) {
                 case 0:
                     Log.v("response code", response.getStatusLine().getStatusCode() + "");
@@ -296,6 +361,42 @@ public class SendData extends AsyncTask<String, Void, String> {
             Error = "4";
             System.out.println("General Ski_c JSONException: " + e.getMessage());
         }
+
+    }
+
+
+    private void showNotification() {
+
+        Log.i("Ski_c sd ", "inside showNotification");
+
+        /*Intent resultIntent = new Intent(context, MainActivity.class);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Log.i("Ski_c sd ", " new Intent(this, MainActivity.class)");
+        PendingIntent pi = TaskStackBuilder.create(context)
+                .addParentStack(SendData.class)
+                .addNextIntent(resultIntent)
+                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);*/
+
+        Notification notification = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("Your ski-pass was not saved!")
+                .setContentText("Internet connection was not established!")
+                /*.setContentIntent(pi)*/
+                .setLights(0xff0000ff, 5000, 5000)
+                .setAutoCancel(true)
+                /*.setNumber(++numMessages)*/
+                .build();
+
+
+
+
+                                  //= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+
+        Log.i("Ski_c sd ", " nm1.notify(0, notification");
+        nm1.notify(0, notification);
+
+
 
     }
 

@@ -12,7 +12,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
 
 public class Container_Buy extends Activity {
     private ViewPager vp;
@@ -51,11 +50,11 @@ public class Container_Buy extends Activity {
 
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.container, menu);
         return true;
-    }
+    }*/
 
 }
