@@ -44,6 +44,11 @@ public class BackgroundService extends Service {
         @Override
         public void run() {
             Log.i("Ski_c BcS", "Timer task doing work");
+
+            Constants.SERVICE=1;
+
+            Log.i("Ski_c BcS  Constants.SERVICE is ", String.valueOf(Constants.SERVICE));
+
             try {
 
                 if (checkIndex()>PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)){
@@ -139,12 +144,20 @@ public class BackgroundService extends Service {
         super.onCreate();
         Log.i("Ski_c BcS", "Service for timer creating");
 
+        Constants.SERVICE=1;
+
+        Log.i("Ski_c BcS Constants.SERVICE is ", String.valueOf(Constants.SERVICE));
+
+/*
         Log.i("Ski_c BcS SharedPreferences index is ", String.valueOf(MainActivity.index));
+*/
 
         Log.i("Ski_c BcS timer is scheduled every (ms) ", String.valueOf(TimeUnit.MINUTES.toMillis(60)));
 
+
+
         timer = new Timer();
-        timer.schedule(updateTask, 1000L, TimeUnit.MINUTES.toMillis(60));
+        timer.schedule(updateTask, TimeUnit.MINUTES.toMillis(60), TimeUnit.MINUTES.toMillis(60));
 
 
     }

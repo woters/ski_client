@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -149,6 +150,23 @@ public class MultiColumnActivity extends Activity
 //intent.putExtra("runner", Constants.ACTIVITY_SELL);
 
         startActivity(intent);
+    }
+
+    /*@Override
+    public void onBackPressed() {
+        // do something on back.
+        Log.w("Ski_c MCA", "onBackPressed()");
+        return;
+    }*/
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.i("Ski_c MCA", "moveTaskToBack(true);");
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

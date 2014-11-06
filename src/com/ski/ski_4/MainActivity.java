@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,11 +42,13 @@ public class MainActivity extends Activity {
 
 
 
-
+    /*public static boolean MAactive = false;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*MAactive=true;*/
 
         /*Constants.ACTIVITY  = 5;
         Log.i("Ski_c MA  Constants.ACTIVITY on creating is ", String.valueOf(Constants.ACTIVITY));*/
@@ -70,8 +73,17 @@ public class MainActivity extends Activity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
-        /*startService(new Intent(BackgroundService.class.getName()));
-        Log.i("Ski_c MA ", "Service try to create");*/
+        Log.i("Ski_c MA  Constants.SERVICE is ", String.valueOf(Constants.SERVICE));
+
+        if (Constants.SERVICE ==0) {
+
+            /*Constants.SERVICE=1;
+
+            Log.i("Ski_c BcS  Constants.SERVICE is ", String.valueOf(Constants.SERVICE));*/
+
+            startService(new Intent(BackgroundService.class.getName()));
+            Log.i("Ski_c MA ", "Service try to create");
+        }
 
         /*uiHelper = new UiLifecycleHelper(MainActivity.this, callback);
         uiHelper.onCreate(savedInstanceState);
@@ -89,6 +101,15 @@ public class MainActivity extends Activity {
         });*/
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.i("Ski_c MA", " moveTaskToBack(true);");
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
         //creating the local database  if it doesn't exist
         /*DbHelper db = new DbHelper(this);
