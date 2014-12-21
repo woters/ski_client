@@ -19,6 +19,7 @@
 
         <com.google.android.gms.ads.AdView
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
+
                 android:id="@+id/adView3"
 
 
@@ -36,6 +37,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Information:"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </TableRow>
@@ -49,6 +55,11 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Number "
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
                     />
 
             <TextView
@@ -58,6 +69,11 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
                     android:inputType="textNoSuggestions"
                     />
 
@@ -68,6 +84,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
 
                     android:text="Days "
                     />
@@ -79,6 +100,11 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:editable="true"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
                     android:inputType="textNoSuggestions"
                     />
 
@@ -92,6 +118,11 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Sell Date "
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
                     />
 
             <TextView
@@ -102,6 +133,11 @@
                     android:text="Medium Text"
                     android:editable="true"
                     android:inputType="textNoSuggestions"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
                     android:gravity="left"
                     />
 
@@ -121,6 +157,11 @@
                     android:text="Medium TextMedium TextMedium \n TextMedium TextMediumTextMedium \nTextMedium Text"
                     android:editable="true"
                     android:inputType="textNoSuggestions"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/dk_gray"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
 
                     android:maxLines="4"
                     android:scrollbars="horizontal"
@@ -143,7 +184,7 @@
                     android:layout_gravity="bottom|left"
 
                     android:text="@string/Back"
-                    android:onClick="GoBack" />
+                    android:onClick="GoBack" android:minWidth="90dp"/>
         </TableRow>
     </TableLayout>
 

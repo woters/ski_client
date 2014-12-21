@@ -13,6 +13,8 @@ public class Constants {
     public static final int ACTIVITY_BUY = 0;
     public static final int ACTIVITY_SELL = 1;
     public static int ACTIVITY = 0;
+    public static int SERVICE = 0;
+    public static int FB = 0;
 
     public static final String FIRST_COLUMN = "First";
     public static final String SECOND_COLUMN = "Second";

@@ -1,41 +1,63 @@
 package com.ski.ski_4;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.perm.kate.api.Api;
-
-/*import com.facebook.AppEventsLogger;
+import android.widget.Toast;
+import com.facebook.AppEventsLogger;
 import com.facebook.Session;
 import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;*/
+import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.LoginButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/*import com.perm.kate.api.Api;*/
 
 
 public class MainActivity extends Activity {
 
     private final int REQUEST_LOGIN = 1;
 
-    /*private LoginButton loginBtn;*/
+    private LoginButton loginBtn;
 
-    private ImageButton loginBtn;
+    private UiLifecycleHelper uiHelper;
+
+    /*private ImageButton loginBtn;*/
     Button logoutButton;
     Button postButton;
     EditText messageEditText;
 
     DbHelper mDbHelper;
 
-    VkAccount account = new VkAccount();
-    Api api;
+    /*VkAccount account = new VkAccount();
+    Api api;*/
 
     protected static int index;
+    protected static boolean service;
+
+    public static String userName = "";
+
+
+    static EditText editText1;
+    static EditText editText2;
 
 
 
@@ -47,6 +69,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        printKeyHash(this);
+
         /*Constants.ACTIVITY  = 5;
         Log.i("Ski_c MA  Constants.ACTIVITY on creating is ", String.valueOf(Constants.ACTIVITY));*/
 
@@ -55,7 +79,7 @@ public class MainActivity extends Activity {
         index = PreferenceManager.getDefaultSharedPreferences(this).getInt("index", 0);
 
 
-        Log.i("Ski_c MA before if SharedPreferences index is ", String.valueOf(index));
+        Log.i("Ski_c MA startup SharedPreferences index is ", String.valueOf(index));
 
         /*index++;
         PreferenceManager.getDefaultSharedPreferences(this).edit().putInt("index", index).commit();*/
@@ -73,21 +97,90 @@ public class MainActivity extends Activity {
         /*startService(new Intent(BackgroundService.class.getName()));
         Log.i("Ski_c MA ", "Service try to create");*/
 
-        /*uiHelper = new UiLifecycleHelper(MainActivity.this, callback);
+        //service = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("service", false);
+
+        //Log.i("Ski_c MA startup SharedPreferences service is ", String.valueOf(service));
+
+        /*Log.i("Ski_c MA  Constants.SERVICE is ", String.valueOf(Constants.SERVICE));*/
+
+        if (Constants.SERVICE ==0) {
+        /*if (service==false) {*/
+
+                    /*Constants.SERVICE=1;
+
+            Log.i("Ski_c BcS  Constants.SERVICE is ", String.valueOf(Constants.SERVICE));*/
+
+           startService(new Intent(BackgroundService.class.getName()));
+           Log.i("Ski_c MA ", "Service try to create");
+        }
+
+        uiHelper = new UiLifecycleHelper(MainActivity.this, callback);
         uiHelper.onCreate(savedInstanceState);
 
-        loginBtn = (LoginButton) findViewById(R.id.btn_fb);*/
-        /*loginBtn.setUserInfoChangedCallback(new LoginButton.UserInfoChangedCallback() {
+        if(isNetworkStatusAvialable (getApplicationContext())) {
+           // Toast.makeText(getApplicationContext(), "internet avialable", Toast.LENGTH_SHORT).show();
+        } else {
+
+            Log.i("Ski_c MA ", "Internet is not avialable");
+            Toast.makeText(getApplicationContext(), "Internet is not avialable", Toast.LENGTH_LONG).show();
+
+        }
+
+
+
+
+        loginBtn = (LoginButton) findViewById(R.id.btn_fb);
+        loginBtn.setUserInfoChangedCallback(new LoginButton.UserInfoChangedCallback() {
             @Override
             public void onUserInfoFetched(GraphUser user) {
                 if (user != null) {
-                    userName.setText("Hello, " + user.getName());
+                    /*userName.setText("Hello, " + user.getName());*/
+                    Log.i("Ski_c MA fb userName is ", user.getName());
+                    Toast.makeText(getApplicationContext(), "Welcome, "+user.getName(), Toast.LENGTH_LONG).show();
+                    userName = user.getName();
+                    Log.i("Ski_c MA fb isLoggedIn() is ", String.valueOf(isLoggedIn()));
+                    Constants.FB=1;
+
+
+
                 } else {
-                    userName.setText("You are not logged");
+                    /*userName.setText("You are not logged");*/
+                    Log.i("Ski_c MA fb", " You are not logged");
+                    Log.i("Ski_c MA fb isLoggedIn() is ", String.valueOf(isLoggedIn()));
                 }
             }
-        });*/
+        });
     }
+
+        @Override
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    Log.i("Ski_c MA", " moveTaskToBack(true);");
+                    moveTaskToBack(true);
+                    return true;
+                }
+                return super.onKeyDown(keyCode, event);
+        }
+
+    public static boolean isLoggedIn() {
+        Session session = Session.getActiveSession();
+        return (session != null && session.isOpened());
+    }
+
+    private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+        if (state.isOpened()) {
+            Log.i("Ski_c MA", " Fb Logged in...");
+        } else if (state.isClosed()) {
+            Log.i("Ski_c MA", " Fb Logged out...");
+        }
+    }
+
+    private Session.StatusCallback callback = new Session.StatusCallback() {
+        @Override
+        public void call(Session session, SessionState state, Exception exception) {
+            onSessionStateChange(session, state, exception);
+        }
+    };
 
 
         //creating the local database  if it doesn't exist
@@ -150,7 +243,7 @@ public class MainActivity extends Activity {
     }
 
 
-    /*@Override
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -170,27 +263,13 @@ public class MainActivity extends Activity {
         uiHelper.onPause();
     }
 
-    private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-        if (state.isOpened()) {
-            Log.i("Ski_c MA ", "Logged in...");
-        } else if (state.isClosed()) {
-            Log.i("Ski_c MA ", "Logged out...");
-        }
-    }
-
-    private Session.StatusCallback callback = new Session.StatusCallback() {
-        @Override
-        public void call(Session session, SessionState state, Exception exception) {
-            onSessionStateChange(session, state, exception);
-        }
-    };
-
-    private UiLifecycleHelper uiHelper;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         uiHelper.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     @Override
@@ -203,7 +282,55 @@ public class MainActivity extends Activity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         uiHelper.onSaveInstanceState(outState);
-    }*/
+    }
+
+    public static String printKeyHash(Activity context) {
+        PackageInfo packageInfo;
+        String key = null;
+        try {
+
+            //getting application package name, as defined in manifest
+            String packageName = context.getApplicationContext().getPackageName();
+
+            //Retriving package info
+            packageInfo = context.getPackageManager().getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+
+            Log.e("Ski_c MA Package Name=", context.getApplicationContext().getPackageName());
+
+            for (Signature signature : packageInfo.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                key = new String(Base64.encode(md.digest(), 0));
+
+                // String key = new String(Base64.encodeBytes(md.digest()));
+                Log.e("Ski_c MA Key Hash=", key);
+
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("Ski_c MA Name not found", e1.toString());
+        }
+
+        catch (NoSuchAlgorithmException e) {
+            Log.e("Ski_c MA No such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("Ski_c MA Exception", e.toString());
+        }
+
+        return key;
+    }
+
+    public static boolean isNetworkStatusAvialable (Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null)
+        {
+            NetworkInfo netInfos = connectivityManager.getActiveNetworkInfo();
+            if(netInfos != null)
+                if(netInfos.isConnected())
+                    return true;
+        }
+        return false;
+    }
 
 
 

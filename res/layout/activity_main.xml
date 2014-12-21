@@ -20,35 +20,48 @@
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5">
+                    android:layout_weight="1" android:layout_marginTop="0dp" android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp" android:layout_marginBottom="0dp">
 
 
-        <Button
+        <ImageButton
                 android:id="@+id/button2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="2"
-                android:text="@string/Sell"
-                android:onClick="GoToSell" />
+                android:scaleType="fitXY"
 
-        <Button
+                android:src="@drawable/buttonbuyselector"
+                android:onClick="GoToBuy"
+                android:padding="0dp" android:layout_marginBottom="0dp" android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp" android:layout_marginRight="5dp" android:cropToPadding="false"
+                android:adjustViewBounds="false"/>
+
+        <ImageButton
                 android:id="@+id/button1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:layout_gravity="top"
                 android:layout_weight="2"
-                android:text="@string/Buy"
-                android:onClick="GoToBuy" />
+                android:src="@drawable/buttonsellselector"
+                android:onClick="GoToSell" android:padding="0dp" android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                android:cropToPadding="false" android:adjustViewBounds="false"/>
 
-        <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+        <ImageButton
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="top"
+                android:scaleType="fitXY"
                 android:layout_weight="2"
-                android:text="@string/Check"
-                android:onClick="GoToCheck" />     #
+                android:src="@drawable/buttoncheckselector"
+                android:onClick="GoToCheck"
+                android:layout_marginBottom="0dp" android:padding="0dp" android:layout_marginTop="0dp"
+                android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:cropToPadding="false"
+                android:baselineAlignBottom="false" android:adjustViewBounds="false"/>     #
 
 
 
@@ -64,9 +77,37 @@
                     android:layout_height="wrap_content"
                     android:background="@color/dk_gray"
                     tools:context=".MainActivity"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal" android:layout_marginTop="0dp">
 
-        <ImageButton
+        <!--<com.facebook.widget.LoginButton
+                android:id="@+id/authButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                />-->
+
+        <com.facebook.widget.LoginButton
+                android:id="@+id/btn_fb"
+                android:layout_weight="1"
+
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_gravity="top"
+
+
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:padding="0dp"
+
+                android:visibility="visible"
+
+                android:layout_marginRight="3dp"/>
+
+        <!--<ImageButton
                 android:id="@+id/btn_fb"
                 android:layout_weight="1"
 
@@ -83,14 +124,14 @@
                 android:layout_marginTop="0dp"
                 android:padding="0dp"
                 android:src="@drawable/buttonfbselector"
-                android:visibility="invisible"
+                android:visibility="visible"
 
-                />
-
-
+                />-->
 
 
-        <ImageButton
+
+
+        <!--<ImageButton
                 android:id="@+id/btn_vk"
                 android:layout_weight="1"
 
@@ -109,7 +150,7 @@
                 android:src="@drawable/buttonvkselector"
                 android:visibility="invisible"
 
-                />
+                />-->
 
         <ImageButton
                 android:id="@+id/btn_i"
@@ -126,7 +167,7 @@
                 android:src="@drawable/buttoniselector"
                 android:onClick="GoToInfo"
 
-                android:layout_marginRight="5dp"/>
+                android:layout_marginBottom="1dp" android:layout_marginRight="5dp"/>
 
 
 
@@ -135,6 +176,7 @@
 
     <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
+
             android:id="@+id/adView"
 
 
@@ -143,7 +185,7 @@
             android:layout_gravity="bottom"
             ads:adSize="SMART_BANNER"
             ads:adUnitId="@string/admob_publisher_id"
-             />
+            />
 
 
 </LinearLayout>

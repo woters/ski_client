@@ -11,9 +11,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +65,8 @@ public class MultiColumnActivity extends Activity
 
 
             }
+
+
 
         });
 
@@ -115,6 +119,7 @@ public class MultiColumnActivity extends Activity
         ArrayList<String> price = intent.getStringArrayListExtra("price");
         n = intent.getStringArrayListExtra("name");
         Log.i("Ski_c MCA n is ", String.valueOf(n));
+        if (String.valueOf(n)=="[]") Toast.makeText(this, "There are no available ski-passes for your dates", Toast.LENGTH_LONG).show();
         pr =  intent.getStringArrayListExtra("price");
         Log.i("Ski_c MCA pr is ", String.valueOf(pr));
         ph = intent.getStringArrayListExtra("phone");
@@ -142,9 +147,20 @@ public class MultiColumnActivity extends Activity
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.i("Ski_c MA", " moveTaskToBack(true);");
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     public void GoBack(View view) {
         this.finish();
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //intent.putExtra("runner", Constants.ACTIVITY_SELL);
 
         startActivity(intent);

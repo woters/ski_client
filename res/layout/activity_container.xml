@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +8,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Container_Sell" >
 
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/back"
+               android:scaleType = "centerCrop"/>
+
     <TextView
         android:id="@+id/frgmCont"
         android:layout_width="wrap_content"
@@ -16,4 +19,4 @@
 
 
 
-</RelativeLayout>
+</FrameLayout>

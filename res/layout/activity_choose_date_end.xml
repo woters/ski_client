@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
@@ -9,6 +9,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ChooseDateEnd" >
+
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/back"
+               android:scaleType = "centerCrop"/>
 
 
 
@@ -29,9 +32,14 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
+                android:layout_gravity="center|bottom"
                 android:layout_span="2"
                 android:text="@string/End"
+                android:textColor="@color/white"
+                android:shadowColor="@color/dk_gray"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
                 android:textSize="20sp" />
         </TableRow>
 
@@ -73,7 +81,7 @@
              android:layout_gravity="bottom|left"
              
              android:text="@string/Back"
-             android:onClick="GoToChooseDate" />
+             android:onClick="GoToChooseDate" android:minWidth="90dp"/>
          
          <Button
              android:id="@+id/button2"
@@ -85,7 +93,7 @@
 
 
              android:text="@string/Finish"
-             android:onClick="goNext" />
+             android:onClick="goNext" android:minWidth="90dp"/>
          
          </TableRow>
 
@@ -108,4 +116,4 @@
          
     </TableLayout>
 
-</RelativeLayout>
+</FrameLayout>

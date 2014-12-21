@@ -82,11 +82,25 @@ public class SendData extends AsyncTask<String, Void, String> {
 
         Log.w("Ski_c sd ", "onPostExecute()");
 
-        if (Error == "3") Toast.makeText(context, "No internet connection", Toast.LENGTH_LONG).show();
-        else if (Error == "4") Toast.makeText(context, "Service is temporary unavailable", Toast.LENGTH_LONG).show();
+        if (Error == "3") {
+            Toast.makeText(context, "No internet connection", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+
+        }
+        else if (Error == "4") {
+            Toast.makeText(context, "Service is temporary unavailable", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+
+        }
+
+        else
 
         switch (Constants.ACTIVITY) {
-            case 1:
+            case 0:
 
 
                 super.onPostExecute(result);
@@ -95,9 +109,9 @@ public class SendData extends AsyncTask<String, Void, String> {
                 intent.putExtra("name", name1);
                 Log.i("Ski_c sd name to displayFromResult pushed is", String.valueOf(name1));
 
-                if (name1==null)
+                /*if (name1==null)
                 Toast.makeText(context, "Service is temporary unavailable, your ad wasn't saved", Toast.LENGTH_LONG).show();
-                else Toast.makeText(context, "Your information is added", Toast.LENGTH_LONG).show();
+                else Toast.makeText(context, "Your information is added", Toast.LENGTH_LONG).show();*/
 
                 intent.putExtra("price", price1);
                 intent.putExtra("phone", phone1);
@@ -105,13 +119,19 @@ public class SendData extends AsyncTask<String, Void, String> {
                 intent.putExtra("date1", date11);
                 intent.putExtra("date2", date21);
                 Log.i("Ski_c sd startActivity ", String.valueOf(intent));
-                /*context.startActivity(intent);*/
+                context.startActivity(intent);
                 break;
 
-            case 0:
+            case 1:
+                super.onPostExecute(result);
+                Log.w("Ski_c sd ", "Dialog dismissed");
+                Intent intent0 = new Intent(context, MainActivity.class);
+                context.startActivity(intent0);
+                intent0.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 break;
             default:
                 break;
+
         }
 
 
@@ -195,10 +215,10 @@ public class SendData extends AsyncTask<String, Void, String> {
             Log.i("Ski_c sd already in ", "post.setEntity");
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             HttpResponse response = client.execute(post);
-            int StatusCode = response.getStatusLine().getStatusCode();    //200 is bad?
+            int StatusCode = response.getStatusLine().getStatusCode();    //200 is bad or ok?
             Log.w("Ski_c sd StatusCode is ", String.valueOf(StatusCode));
 
-            Log.w("Ski_c ", "sd info sent");
+            Log.w("Ski_c sd", " info sent");
             switch (Constants.ACTIVITY) {
                 case 0:
                     Log.v("response code", response.getStatusLine().getStatusCode() + "");

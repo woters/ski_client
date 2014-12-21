@@ -3,6 +3,7 @@ package com.ski.ski_4;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class EnterName extends Fragment implements ICallBackFragmentAdapter {
     int backColor;
     static EditText editText1;
     static EditText editText2;
+    static String phoneNumber ="";
 
     static EnterName newInstance(int page) {
         EnterName pageFragment = new EnterName();
@@ -34,6 +36,13 @@ public class EnterName extends Fragment implements ICallBackFragmentAdapter {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        TelephonyManager tMgr = (TelephonyManager)getActivity().getSystemService(getActivity().TELEPHONY_SERVICE);
+        String mPhoneNumber = tMgr.getLine1Number();
+
+        if (mPhoneNumber!=null) Log.i("ski_c EN mPhoneNumber is ", mPhoneNumber);
+        phoneNumber = mPhoneNumber;
+
 //    pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
 
         //Random rnd = new Random();
@@ -48,7 +57,7 @@ public class EnterName extends Fragment implements ICallBackFragmentAdapter {
     TextView tvPage = (TextView) view.findViewById(R.id.tvPage);
     tvPage.setText("Page " + pageNumber);
     tvPage.setBackgroundColor(backColor);*/
-        Log.w("EnterName", "Generated view");
+        Log.i("ski_c EN ", "Generated view");
 
         Button button1 = (Button) view.findViewById(R.id.button1);
         button1.setOnClickListener(lsn1);
@@ -57,7 +66,11 @@ public class EnterName extends Fragment implements ICallBackFragmentAdapter {
         button2.setOnClickListener(lsn2);
 
         editText1 = (EditText) view.findViewById(R.id.editText1);
+        if (MainActivity.userName!="")
+        editText1.setText(MainActivity.userName);
         editText2 = (EditText) view.findViewById(R.id.editText2);
+        if (phoneNumber!="")
+        editText2.setText(phoneNumber);
 
 
         return view;

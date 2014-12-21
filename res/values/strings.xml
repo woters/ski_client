@@ -12,6 +12,7 @@
     <color name="hex_gray">#f2f2f2</color>
     <color name="l_gray">#f8f8f8</color>
     <color name="dk_gray">#262626</color>
+    <color name="white">#ffffff</color>
 
     <string name="title_activity_choose_date">ChooseDate</string>
     <string name="Start">Start date of skiing</string>
@@ -20,6 +21,8 @@
     <string name="Finish">Finish</string>
     <string name="hello">Hello</string>
     <string name="Back">Back</string>
+    <string name="Experience">Share your experience on Facebook</string>
+    <string name="policy"> Privacy policy <a href="http://www.privacychoice.org/policy/mobile?policy=1ad22636cff4be0902cfb11f25462766"></a></string>
     <!--<string name="On_Main">On Main</string>-->
     <string name="title_activity_go_to_enter_name">GoToEnterName</string>
     <string name="Name">Enter Your Name</string>
@@ -33,9 +36,11 @@
     <string name="action_search">Search</string>
     <string name="title_activity_container">Container</string>
     <string name="finish">Press Finish to proceed</string>
+    <string name="share">Share</string>
 
     <string name="admob_publisher_id">ca-app-pub-2675276645478382/6853291552</string>
     <string name="facebook_app_id">840808699304675</string>
+    <string name="title_button_publish">Share</string>
 
 
     <string name="btn_en">English</string>

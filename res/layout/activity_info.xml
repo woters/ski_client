@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:background="@color/dk_gray">
+              android:background="@color/dk_gray"
+
+
+              android:baselineAligned="false">
+    
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/back"
+               android:scaleType = "centerCrop"/>
 
     <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
+
             android:id="@+id/adView1"
 
 
@@ -22,13 +31,23 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Information Page \n\nThis application was developed by \nKyslyi Roman and Voloshchenko Oleksii\nto help all Bukovel skiers and snowboarders ski more and chiaper\n\nWith the help of it you can sell or buy unfinished ski-pass\n\nOur website is coming soon"
-            android:id="@+id/textView" android:layout_gravity="center_vertical" android:layout_margin="10dp"/>
+            android:autoLink="web"
+            android:text="Information Page \n\nThis application was developed by \nKyslyi Roman and Voloshchenko Oleksii\nto help all Bukovel skiers and snowboarders ski more and cheaper\n\nIt assists you to sell or buy an unfinished ski-pass\n\nCheck our website http://skipass.net.ua\n\n"
+            android:textColor="@color/white"
+            android:shadowColor="@color/dk_gray"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:id="@+id/textView" android:layout_gravity="center_vertical|top" android:layout_margin="10dp"/>
+
+
+
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:id="@+id/button" android:layout_gravity="left|center_vertical"
-            android:onClick="GoToMain" android:layout_marginLeft="6dp"/>
-</LinearLayout>
+            android:id="@+id/button" android:layout_gravity="center_vertical|bottom|left"
+            android:onClick="GoToMain" android:layout_marginLeft="6dp" android:layout_marginBottom="60dp"
+            android:minWidth="90dp"/>
+</FrameLayout>

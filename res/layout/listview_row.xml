@@ -15,6 +15,11 @@
             android:layout_height="wrap_content"
             android:text="First"
             android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/dk_gray"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:layout_weight="1" android:layout_marginLeft="10dp">
 
     </TextView>
@@ -26,6 +31,11 @@
             android:layout_height="wrap_content"
             android:text="Second"
             android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/dk_gray"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:layout_weight="1" android:layout_marginRight="10dp">
 
     </TextView>

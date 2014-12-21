@@ -27,7 +27,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Alyosha on 03.10.2014.
@@ -40,17 +39,35 @@ public class BackgroundService extends Service {
 
     private String token = null;
 
+    protected static int index;
+    //protected static boolean service;
+
     private TimerTask updateTask = new TimerTask() {
         @Override
         public void run() {
             Log.i("Ski_c BcS", "Timer task doing work");
+
+            Constants.SERVICE=1;
+
+            Log.i("Ski_c BcS  Constants.SERVICE is ", String.valueOf(Constants.SERVICE));
             try {
 
-                if (checkIndex()>PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)){
-                    Log.i("Ski_c BcS checkIndex() is ", String.valueOf(checkIndex()));
-                    Log.i("Ski_c BcS SharedPreferences index is ", String.valueOf(PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)));
+                int checkIndex=checkIndex();
 
-                    PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).edit().putInt("index", checkIndex()).commit();
+                index = PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0);
+
+
+                Log.i("Ski_c BcS before if SharedPreferences index is ", String.valueOf(index));
+
+
+
+                //if (checkIndex>PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)){
+                if (checkIndex>index){
+                    Log.i("Ski_c BcS checkIndex() is ", String.valueOf(checkIndex));
+                    Log.i("Ski_c BcS SharedPreferences index is ", String.valueOf(index));
+
+                    PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).edit().putInt("index", checkIndex).commit();
+                    Log.i("Ski_c BcS new SharedPreferences index is ", String.valueOf(PreferenceManager.getDefaultSharedPreferences(BackgroundService.this).getInt("index", 0)));
                     showNotification();
                 }
             } catch (IOException e) {
@@ -131,18 +148,78 @@ public class BackgroundService extends Service {
         return null;
     }
 
+    /*@Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // We want this service to continue running until it is explicitly
+        // stopped, so return sticky.
+
+        *//*Log.i("Ski_c BcS", "Service for timer creating");
+
+        Constants.SERVICE=1;
+
+        Log.i("Ski_c BcS Constants.SERVICE is ", String.valueOf(Constants.SERVICE));
+
+        service = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("service", false);
+
+        Log.i("Ski_c MA startup SharedPreferences before service is ", String.valueOf(service));
+
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("service", true).commit();
+
+        Log.i("Ski_c MA startup SharedPreferences after service is ", String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("service", false)));
+
+
+        timer = new Timer();
+        //long period = 3600000; //1 hour
+        //long delay = 600000;  // 10 minutes
+        long period = 300000; //5 minutes
+        long delay = 30000;    //0.5 minute
+        timer.scheduleAtFixedRate(updateTask, delay, period);
+
+        Log.i("Ski_c BcS timer is scheduled every (ms) ", String.valueOf(period));*//*
+
+        Log.i("Ski_c BcS", "Service.START_NOT_STICKY");
+        return START_NOT_STICKY;
+    }*/
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return super.onStartCommand(intent, flags, startId);
+        //return START_NOT_STICKY;
+    }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         Log.i("Ski_c BcS", "Service for timer creating");
 
-        Log.i("Ski_c BcS SharedPreferences index is ", String.valueOf(MainActivity.index));
+        Constants.SERVICE=1;
 
-        Log.i("Ski_c BcS timer is scheduled every (ms) ", String.valueOf(TimeUnit.MINUTES.toMillis(60)));
+        Log.i("Ski_c BcS Constants.SERVICE is ", String.valueOf(Constants.SERVICE));
+
+        //service = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("service", false);
+
+        //Log.i("Ski_c MA startup SharedPreferences before service is ", String.valueOf(service));
+
+        //PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("service", true).commit();
+
+        //Log.i("Ski_c MA startup SharedPreferences after service is ", String.valueOf(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("service", false)));
+
 
         timer = new Timer();
-        timer.schedule(updateTask, 1000L, TimeUnit.MINUTES.toMillis(60));
+        //long period = 3600000; //1 hour
+        long period = 600000;  // 10 minutes
+        //long period = 30000; //5/10 minutes
+        long delay = 20000;   //0.33 minute
+        //long delay = 0;
+        timer.schedule(updateTask, delay, period);
+
+        Log.i("Ski_c BcS timer is scheduled every (ms) ", String.valueOf(period));
 
 
     }
@@ -196,8 +273,21 @@ public class BackgroundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.i("Ski_c BcS", "Service destroying");
+        //PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("service", false).commit();
 
-        timer.cancel();
-        timer = null;
+
+
+        try {
+            timer.cancel();
+            timer = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Intent serviceIntent = new Intent(BackgroundService.class.getName());
+
+        //Intent intent = new Intent("com.android.techtrainner");
+        //intent.putExtra("yourvalue", "torestore");
+        sendBroadcast(serviceIntent);
     }
 }

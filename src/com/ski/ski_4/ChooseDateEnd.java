@@ -2,6 +2,7 @@ package com.ski.ski_4;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -86,10 +87,12 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
 
 
+
+
                                 Thread t = new Thread() {
                                     public void run() {
                                         new SendData(getActivity()).execute("");
-                                        Log.w("Ski_c", "CDE execute senddata");
+                                        Log.w("Ski_c CDE", " execute senddata");
                                     }
                                 };
                                 t.start();
@@ -97,10 +100,34 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
                                 /*Log.i("Ski_c CDE getActivity() is ", String.valueOf(getActivity()));*/
                                 getActivity().finish();
 
+                                Log.i("Ski_c CDE fb isLoggedIn() is ", String.valueOf(MainActivity.isLoggedIn()));
+                                Log.i("Ski_c CDE Constants.FB is ", String.valueOf(Constants.FB));
+
+                                if (MainActivity.isLoggedIn()==true||Constants.FB==1){
+
+                                    Intent intent = new Intent(getActivity(), FbShareActivity.class);
+
+                                    startActivity(intent);
+
+
+                                }
+
+
                                 /*if*/
                                 /*Toast.makeText(getActivity(), "Done", Toast.LENGTH_LONG).show();
                                 Log.w("Ski_c", "CDE pushed to send from ChooseDateEnd");*/
                                 Log.i("Ski_c CDE  ", "here in CDE");
+
+                                /*dialog = new ProgressDialog(getActivity());
+
+                                Log.i("Ski_c cde ", "Dialog 2 started");
+
+                                dialog.setTitle("YOUR DATA IS BEING PROCEED...");
+                                dialog.setMessage("WAIT.");
+                                dialog.setIndeterminate(true);
+                                dialog.setCancelable(true);
+                                dialog.show();
+                                Log.i("Ski_c CDE ", "Dialog 2 is showing");*/
 
                             }
 
@@ -155,6 +182,11 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
 
             if (vp != null) {
+
+
+
+
+
                 // = tabsAdapter.getViewPager();
                 vp.setCurrentItem(vp.getCurrentItem() - 1, true);
             } else {
@@ -199,7 +231,7 @@ public class ChooseDateEnd extends Fragment implements ICallBackFragmentAdapter 
 
                     dialog = new ProgressDialog(getActivity());
 
-                    Log.w("Ski_c", "Dialog 1 started");
+                    Log.w("Ski_c cde ", "Dialog 1 started");
 
                     dialog.setTitle("LOADING...");
                     dialog.setMessage("WAIT.");
